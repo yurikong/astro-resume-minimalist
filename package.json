@@ -2,6 +2,19 @@
   "name": "astro-theme-resume",
   "type": "module",
   "version": "0.0.1",
+  "description": "An open-sourced personal resume site template with a blog, built with Astro and Tailwind.",
+  "homepage": "https://github.com/yurikong/astro-theme-resume#readme",
+  "bugs": {
+    "url": "https://github.com/yurikong/astro-theme-resume/issues",
+    "email": "jackdu2013@163.com"
+  },
+  "author": "Jianqiang Du <jackdu2013@163.com> (https://yurikong.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yurikong/astro-theme-resume.git"
+  },
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
