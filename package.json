@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "lint": "yarn eslint",
     "eslint": "eslint --fix src/**/*.{astro,ts,tsx,vue,svelte}",
+    "format": "prettier . --write --ignore-unknown",
     "astro": "astro"
   },
   "dependencies": {
@@ -19,6 +20,8 @@
     "@typescript-eslint/parser": "^7.17.0",
     "eslint": "^9.8.0",
     "eslint-plugin-astro": "^1.2.3",
-    "eslint-plugin-jsx-a11y": "^6.9.0"
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
