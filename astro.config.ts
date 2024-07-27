@@ -1,5 +1,6 @@
-import { defineConfig } from "astro/config"
+import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
+import { defineConfig } from "astro/config"
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,5 +10,18 @@ export default defineConfig({
     host: true,
     open: true,
   },
-  integrations: [tailwind()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      changefreq: "yearly",
+      priority: 1,
+      lastmod: new Date(),
+      i18n: {
+        defaultLocale: "en",
+        locales: {
+          en: "en-US",
+        },
+      },
+    }),
+  ],
 })
