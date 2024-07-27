@@ -1,0 +1,9 @@
+{
+  "eslint.validate": [
+    "javascript", // Enable .js
+    "javascriptreact", // Enable .jsx
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ]
+}
