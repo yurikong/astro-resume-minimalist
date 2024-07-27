@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "lint": "eslint src --fix",
+    "lint": "yarn eslint",
+    "eslint": "eslint --fix src/**/*.{astro,ts,tsx,vue,svelte}",
     "astro": "astro"
   },
   "dependencies": {

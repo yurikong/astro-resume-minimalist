@@ -7,7 +7,6 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   jsxA11y.flatConfigs.strict,
   {
-    files: ["**/*.astro", "**/*.ts", "**/*.tsx"],
     rules: {
       // override/add rules settings here, such as:
       // "astro/no-set-html-directive": "error"
