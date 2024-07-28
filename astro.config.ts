@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      changefreq: "yearly",
+      changefreq: "monthly",
       priority: 1,
       lastmod: new Date(),
       i18n: {
