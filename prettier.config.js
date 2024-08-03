@@ -11,5 +11,6 @@ export default {
     },
   ],
   semi: false,
+  printWidth: 120,
   trailingComma: "es5",
 }
