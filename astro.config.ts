@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config"
-import tailwind from "@astrojs/tailwind"
+import UnoCSS from "unocss/astro"
 // import sitemap from "@astrojs/sitemap"
 
 // https://astro.build/config
@@ -11,7 +11,9 @@ export default defineConfig({
     open: true,
   },
   integrations: [
-    tailwind(),
+    UnoCSS({
+      injectReset: true,
+    }),
     // sitemap({
     //   changefreq: "monthly",
     //   priority: 1,
