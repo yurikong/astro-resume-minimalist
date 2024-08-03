@@ -6,4 +6,6 @@ export default {
     extend: {},
   },
   plugins: [],
+  prefix: "tw-",
+  darkMode: "selector",
 } satisfies Config
