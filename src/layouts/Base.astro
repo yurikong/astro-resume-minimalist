@@ -1,0 +1,42 @@
+---
+import { ViewTransitions } from "astro:transitions"
+import AppHeader from "~components/AppHeader.astro"
+
+const pageTitle: string = "astro-theme-resume"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <ViewTransitions />
+    <script type="module" is:inline>
+      const themeKey = "theme"
+      const darkClass = "dark"
+      const docEl = document.documentElement
+      const matchMediaListDark = window.matchMedia("(prefers-color-scheme: dark)")
+
+      if (
+        localStorage.getItem(themeKey) === darkClass ||
+        (localStorage.getItem(themeKey) === null && matchMediaListDark.matches)
+      ) {
+        docEl.classList.add(darkClass)
+      } else {
+        docEl.classList.remove(darkClass)
+      }
+    </script>
+  </head>
+
+  <body>
+    <button id="btn">dark</button>
+    <a href="/astro-theme-resume/x">/x</a>
+    <a href="/astro-theme-resume/y">/y</a>
+    <AppHeader />
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
