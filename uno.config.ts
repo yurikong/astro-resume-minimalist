@@ -4,6 +4,7 @@ import {
   presetIcons,
   transformerVariantGroup,
   transformerDirectives,
+  transformerCompileClass,
 } from "unocss"
 
 export default defineConfig({
@@ -17,5 +18,5 @@ export default defineConfig({
       warn: import.meta.env.DEV,
     }),
   ],
-  transformers: [transformerVariantGroup(), transformerDirectives()],
+  transformers: [transformerVariantGroup(), transformerDirectives(), transformerCompileClass()],
 })
