@@ -1,10 +1,10 @@
 ---
+import "~styles/index.css"
 import { ViewTransitions } from "astro:transitions"
 import AppHeader from "~components/AppHeader.astro"
-import "~styles/index.css"
 
 const title: string = "astro-theme-resume"
-const description: string = "A simple resume template built with astro."
+const description: string = "A simple astro resume template."
 ---
 
 <html lang="en">
@@ -18,9 +18,12 @@ const description: string = "A simple resume template built with astro."
 
   <body>
     <AppHeader />
-
     <slot />
-
-    <script src="./setDarkClass.ts"></script>
   </body>
 </html>
+
+<script>
+  import { setDarkClass } from "~utils/setDarkClass"
+
+  setDarkClass()
+</script>
