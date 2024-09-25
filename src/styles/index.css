@@ -5,6 +5,9 @@
 }
 
 html {
-  --at-apply: antialiased tabular-nums;
   font-family: var(--font-family);
+}
+
+body {
+  --at-apply: antialiased tabular-nums;
 }
