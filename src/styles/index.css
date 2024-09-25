@@ -4,10 +4,7 @@
     "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-html,
-:host {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-variant-numeric: tabular-nums;
+html {
+  --at-apply: antialiased tabular-nums;
   font-family: var(--font-family);
 }
