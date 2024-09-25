@@ -1,6 +1,7 @@
 ---
 import "~styles/index.css"
 import { ViewTransitions } from "astro:transitions"
+import Inter from "~assets/fonts/Inter.astro"
 import AppHeader from "~components/AppHeader.astro"
 
 const title: string = "astro-theme-resume"
@@ -14,6 +15,7 @@ const description: string = "A simple astro resume template."
   <title>{title}</title>
   <meta name="title" content={title} />
   <meta name="description" content={description} />
+  <Inter />
   <ViewTransitions />
 
   <body>
