@@ -12,7 +12,7 @@ export default defineConfig({
     presetUno(),
     presetIcons({
       extraProperties: {
-        display: "block",
+        display: "inline-block",
         "vertical-align": "middle",
       },
       warn: import.meta.env.DEV,
