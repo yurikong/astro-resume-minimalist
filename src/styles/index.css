@@ -9,5 +9,9 @@ html {
 }
 
 body {
-  --at-apply: antialiased tabular-nums;
+  --at-apply: antialiased tabular-nums leading-relaxed;
+}
+
+a {
+  --at-apply: inline-block;
 }
