@@ -1,0 +1,62 @@
+---
+import type { ILink } from "~types/link"
+
+interface Props extends ILink {
+  showPrefixIcon?: boolean
+  showSuffixIcon?: boolean
+  title?: string
+}
+const { href, showPrefixIcon = false, showSuffixIcon = false, title } = Astro.props
+---
+
+<app-link class="inline-block leading-none" data-href={href}>
+  <a href={href} target="_blank" rel="noopener noreferrer" title={title}>
+    <!-- Prefix Icon -->
+    {showPrefixIcon && <i class="i-ri:links-line" />}
+
+    <!-- Text -->
+    <span class="inline-block align-middle leading-relaxed">
+      <slot />
+    </span>
+
+    <!-- Suffix Icon -->
+    {showSuffixIcon && <i class="i-ri:external-link-line" />}
+  </a>
+</app-link>
+
+<script>
+  class AppLink extends HTMLElement {
+    connectedCallback() {
+      const href: string = this.dataset.href!
+
+      let isExternal: boolean = false
+      let shouldSkip: boolean = false
+
+      if (href === "#") {
+        shouldSkip = true
+      } else {
+        // judge whether `href` is external
+        const destinationURL: URL = new URL(href)
+        const { protocol: destinationProtocol, hostname: destinationHostname } = destinationURL
+        const { protocol: currentProtocol, hostname: currentHostname } = window.location
+        isExternal = destinationProtocol !== currentProtocol || destinationHostname !== currentHostname
+      }
+
+      const a: HTMLAnchorElement | null = this.querySelector("a")
+      a?.addEventListener("click", (evt: MouseEvent): void => {
+        if (shouldSkip) {
+          evt.preventDefault()
+          return
+        }
+        if (isExternal) {
+          // TODO: user confirm
+        } else {
+          evt.preventDefault()
+          // TODO: in page scroll
+        }
+      })
+    }
+  }
+
+  customElements.define("app-link", AppLink)
+</script>
