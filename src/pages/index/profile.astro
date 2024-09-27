@@ -1,0 +1,47 @@
+---
+import AppLink from "~components/AppLink.astro"
+import type { ISocial } from "~types/social"
+
+const socials: ISocial[] = [
+  { name: "WeChat", iconClassName: "i-ri:wechat-line", href: "#" }, // WeChat
+  { name: "Email", iconClassName: "i-ri:mail-line", href: "mailto:jackdu2013@163.com" }, // Email
+  { name: "Portfolio", iconClassName: "i-ri:earth-line", href: "https://yurikong.github.io" }, // Portfolio
+  { name: "Github", iconClassName: "i-ri:github-line", href: "https://github.com/yurikong" }, // Github
+  { name: "LinkedIn", iconClassName: "i-ri:linkedin-box-line", href: "#" }, // LinkedIn
+  { name: "Instagram", iconClassName: "i-ri:instagram-line", href: "#" }, // Instagram
+  { name: "Twitter X", iconClassName: "i-ri:twitter-x-line", href: "#" }, // Twitter X
+]
+---
+
+<section>
+  <!-- Name -->
+  <h1 class="text-4xl font-semibold tracking-tight capitalize">
+    <AppLink href="https://yurikong.github.io">jianqiang du</AppLink>
+  </h1>
+
+  <!-- Job Title -->
+  <div class="mt-3 text-lg font-medium tracking-tight capitalize">Software Developer</div>
+
+  <!-- Description -->
+  <p class="mt-4 text-base">
+    I am the creator of
+    <span class="inline-flex">
+      <AppLink href="https://github.com/yurikong/astro-theme-resume">astro-theme-resume-minimalist</AppLink>
+      .
+    </span>
+  </p>
+
+  <!-- Social Contacts -->
+  <ul class="mt-8 flex items-center gap-5 px-2 text-6">
+    {
+      socials.map((it) => (
+        <li class="leading-none">
+          {/* TODO: replace with AppLink */}
+          <a href={it.href} target="_blank" rel="noopener noreferrer" title={it.name}>
+            <i class={it.iconClassName} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
