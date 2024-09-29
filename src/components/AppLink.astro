@@ -5,6 +5,7 @@ interface Props extends ILink {
   showPrefixIcon?: boolean
   showSuffixIcon?: boolean
   title?: string
+  children: unknown
 }
 const { href, showPrefixIcon = false, showSuffixIcon = false, title } = Astro.props
 ---
