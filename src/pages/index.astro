@@ -1,7 +1,51 @@
 ---
-import BaseLayout from "~layouts/Base.astro"
+import BaseLayout from "~layouts/BaseLayout.astro"
+import Profile from "./index/profile.astro"
+import Education from "./index/education.astro"
+import Experience from "./index/experience.astro"
+import Skills from "./index/skills.astro"
+import type { IEducation } from "~types/education"
+import { mostRecentYearComparator } from "~utils/comparator"
+
+const educations: IEducation[] = [
+  {
+    university: "California State University, Long Beach",
+    degree: "B.S.",
+    major: "Computer Science",
+    GPA: "3.65",
+    startYear: 2018,
+    endYear: 2020,
+    href: "https://www.csulb.edu/",
+  },
+  {
+    university: "Mt. San Antonio College",
+    major: "Computer Science",
+    GPA: "3.48",
+    startYear: 2015,
+    endYear: 2018,
+    href: "https://www.mtsac.edu/",
+  },
+].toSorted(mostRecentYearComparator)
 ---
 
 <BaseLayout>
-  <div>index</div>
+  <Profile />
+
+  <!-- Education -->
+  <section class="pt-24">
+    <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">education</h2>
+    <ul>
+      {
+        educations.map((x) => (
+          <li class="mb-12">
+            <Education {...x} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Experience />
+
+  <Skills />
 </BaseLayout>
