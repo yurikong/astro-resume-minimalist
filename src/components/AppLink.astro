@@ -10,19 +10,16 @@ interface Props extends ILink {
 const { href, showPrefixIcon = false, showSuffixIcon = false, title } = Astro.props
 ---
 
-<app-link class="inline-flex" data-href={href}>
+<app-link class="inline-block" data-href={href}>
   <a class="inline-block" href={href} target="_blank" rel="noopener noreferrer" title={title}>
     <!-- Prefix Icon -->
-    {showPrefixIcon && <i class="i-ri:links-line" />}
+    {showPrefixIcon && <i class="i-ri:links-line h-1.625em align-top" />}
 
-    <!-- Text & Suffix Icon -->
-    <span class="inline-block">
-      <!-- Text -->
-      <slot />
+    <!-- Text -->
+    <slot />
 
-      <!-- Suffix Icon -->
-      {showSuffixIcon && <i class="i-ri:external-link-line" />}
-    </span>
+    <!-- Suffix Icon -->
+    {showSuffixIcon && <i class="i-ri:external-link-line h-1.625em align-top" />}
   </a>
 </app-link>
 
