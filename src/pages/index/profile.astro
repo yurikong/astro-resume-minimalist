@@ -34,12 +34,11 @@ const socials: ISocial[] = [
   <!-- Social Contacts -->
   <ul class="mt-8 flex items-center gap-5 px-2 text-6">
     {
-      socials.map((it) => (
+      socials.map((x) => (
         <li class="leading-none">
-          {/* TODO: replace with AppLink */}
-          <a href={it.href} target="_blank" rel="noopener noreferrer" title={it.name}>
-            <i class={it.iconClassName} />
-          </a>
+          <AppLink href={x.href} title={x.name}>
+            <i class={x.iconClassName} />
+          </AppLink>
         </li>
       ))
     }
