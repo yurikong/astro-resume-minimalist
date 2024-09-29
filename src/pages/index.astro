@@ -2,7 +2,7 @@
 import BaseLayout from "~layouts/BaseLayout.astro"
 import Profile from "./index/profile.astro"
 import Education from "./index/education.astro"
-import Experience from "./index/experience.astro"
+import Work from "./index/work.astro"
 import Skills from "./index/skills.astro"
 import type { IEducation } from "~types/education"
 import { mostRecentYearComparator } from "~utils/comparator"
@@ -45,7 +45,7 @@ const educations: IEducation[] = [
     </ul>
   </section>
 
-  <Experience />
+  <Work />
 
   <Skills />
 </BaseLayout>
