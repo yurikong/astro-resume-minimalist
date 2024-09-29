@@ -32,13 +32,11 @@ const socials: ISocial[] = [
   </p>
 
   <!-- Social Contacts -->
-  <ul class="mt-8 flex items-center gap-5 px-2 text-6">
+  <ul class="mt-8 flex items-center gap-5 px-2 text-2xl leading-none">
     {
-      socials.map((x) => (
-        <li class="leading-none">
-          <AppLink href={x.href} title={x.name}>
-            <i class={x.iconClassName} />
-          </AppLink>
+      socials.map((it) => (
+        <li>
+          <AppLink href={it.href} title={it.name} showPrefixIcon prefixIconClassName={it.iconClassName} />
         </li>
       ))
     }
