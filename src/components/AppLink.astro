@@ -5,33 +5,58 @@ interface Props extends ILink {
   showPrefixIcon?: boolean
   showSuffixIcon?: boolean
   title?: string
+  class?: string
   children: unknown
 }
-const { href, showPrefixIcon = false, showSuffixIcon = false, title } = Astro.props
+const { href, showPrefixIcon, showSuffixIcon, title, class: className } = Astro.props
 ---
 
-<app-link class="inline-block" data-href={href}>
+<app-link class:list={[className, "inline-block"]} data-href={href}>
   <a class="inline-block" href={href} target="_blank" rel="noopener noreferrer" title={title}>
     <!-- Prefix Icon -->
-    {showPrefixIcon && <i class="i-ri:links-line h-1.625em align-top" />}
+    {Boolean(showPrefixIcon) && <i class="i-ri:links-line align-top" />}
 
     <!-- Text -->
     <slot />
 
     <!-- Suffix Icon -->
-    {showSuffixIcon && <i class="i-ri:external-link-line h-1.625em align-top" />}
+    {Boolean(showSuffixIcon) && <i class="i-ri:external-link-line align-top" />}
   </a>
 </app-link>
 
 <script>
   class AppLink extends HTMLElement {
-    connectedCallback() {
-      const href: string = this.dataset.href!
+    connectedCallback(): void {
+      //
+      // Set `height` of <i> equal to `lineHeight` of <app-link>
+      //
+      const lineHeight: CSSStyleValue | undefined = this.computedStyleMap().get("line-height")
+      if (lineHeight !== undefined) {
+        const { value: lineHeightValue, unit: lineHeightUnit } = lineHeight as CSSUnitValue
 
+        this.querySelectorAll("i").forEach((el) => {
+          let h: string
+          if (lineHeightUnit === "number") {
+            h = `${lineHeightValue}em`
+          } else {
+            h = lineHeight.toString()
+          }
+          el.style.setProperty("height", h)
+        })
+      }
+
+      const { href } = this.dataset
+      const a: HTMLAnchorElement | null = this.querySelector("a")
+      if (a === null) {
+        return
+      }
+
+      //
+      // Customize `click` behavior based on `shouldSkip` & `isExternal`.
+      //
       let isExternal: boolean = false
       let shouldSkip: boolean = false
-
-      if (href === "#") {
+      if (href === undefined || href === "#") {
         shouldSkip = true
       } else {
         // judge whether `href` is external
@@ -40,14 +65,11 @@ const { href, showPrefixIcon = false, showSuffixIcon = false, title } = Astro.pr
         const { protocol: currentProtocol, hostname: currentHostname } = window.location
         isExternal = destinationProtocol !== currentProtocol || destinationHostname !== currentHostname
       }
-
-      const a: HTMLAnchorElement | null = this.querySelector("a")
-      a?.addEventListener("click", (evt: MouseEvent): void => {
+      a.addEventListener("click", (evt: MouseEvent): void => {
         if (shouldSkip) {
           evt.preventDefault()
           return
-        }
-        if (isExternal) {
+        } else if (isExternal) {
           // TODO: user confirm
         } else {
           evt.preventDefault()
