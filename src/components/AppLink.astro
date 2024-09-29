@@ -3,24 +3,33 @@ import type { ILink } from "~types/link"
 
 interface Props extends ILink {
   showPrefixIcon?: boolean
+  prefixIconClassName?: string
   showSuffixIcon?: boolean
+  suffixIconClassName?: string
   title?: string
   class?: string
-  children: unknown
 }
-const { href, showPrefixIcon, showSuffixIcon, title, class: className } = Astro.props
+const {
+  href,
+  showPrefixIcon,
+  prefixIconClassName = "i-ri:links-line",
+  showSuffixIcon,
+  suffixIconClassName = "i-ri:external-link-line",
+  title,
+  class: className,
+} = Astro.props
 ---
 
 <app-link class:list={[className, "inline-block"]} data-href={href}>
   <a class="inline-block" href={href} target="_blank" rel="noopener noreferrer" title={title}>
     <!-- Prefix Icon -->
-    {Boolean(showPrefixIcon) && <i class="i-ri:links-line align-top" />}
+    {Boolean(showPrefixIcon) && <i class:list={[prefixIconClassName, "align-top"]} />}
 
     <!-- Text -->
     <slot />
 
     <!-- Suffix Icon -->
-    {Boolean(showSuffixIcon) && <i class="i-ri:external-link-line align-top" />}
+    {Boolean(showSuffixIcon) && <i class:list={[suffixIconClassName, "align-top"]} />}
   </a>
 </app-link>
 
