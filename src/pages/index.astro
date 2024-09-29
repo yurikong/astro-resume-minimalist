@@ -2,12 +2,12 @@
 import BaseLayout from "~layouts/BaseLayout.astro"
 import Profile from "./index/profile.astro"
 import Education from "./index/education.astro"
+import type { IEducation } from "~types/education"
 import Work from "./index/work.astro"
 import Skills from "./index/skills.astro"
-import type { IEducation } from "~types/education"
 import { mostRecentYearComparator } from "~utils/comparator"
 
-const educations: IEducation[] = [
+const educationList: IEducation[] = [
   {
     university: "California State University, Long Beach",
     degree: "B.S.",
@@ -36,9 +36,9 @@ const educations: IEducation[] = [
     <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">education</h2>
     <ul>
       {
-        educations.map((x) => (
+        educationList.map((it) => (
           <li class="mb-12">
-            <Education {...x} />
+            <Education {...it} />
           </li>
         ))
       }
