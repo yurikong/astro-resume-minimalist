@@ -2,6 +2,7 @@
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["DOM", "ESNext"],
     "paths": {
       "~components/*": ["src/components/*"],
       "~assets/*": ["src/assets/*"],
