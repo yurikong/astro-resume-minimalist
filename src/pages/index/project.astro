@@ -1,0 +1,53 @@
+---
+import type { IProject } from "~types/project"
+import AppLink from "~components/AppLink.astro"
+
+interface Props extends IProject {}
+
+const { name, description, technologiesUsed, preview, highlights, startYear, endYear, href } = Astro.props
+---
+
+<!-- Project Details -->
+<div>
+  <!-- Ongoing Years -->
+  <div class="py-2 text-xs font-semibold tracking-wide uppercase">
+    {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
+  </div>
+
+  <div class="font-medium leading-normal">
+    <!-- Name -->
+    <div>
+      <AppLink href={href} showSuffixIcon title={name}>{name}</AppLink>
+    </div>
+
+    <!-- Description -->
+    <p class="mt-2 text-sm leading-relaxed">{description}</p>
+
+    <!-- Highlights -->
+    {
+      !!highlights && highlights.length > 0 && (
+        <ul class="mt-2 flex flex-wrap gap-2">
+          {highlights.map((it) => (
+            <li class="flex items-center gap-1 text-sm font-medium" title={it.name}>
+              <i class={it.iconClassName} />
+              <span>{it.value}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Technologies Used -->
+    {
+      !!technologiesUsed && technologiesUsed.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-x-1.5 gap-y-2">
+          {technologiesUsed.map((it) => (
+            <li class="border border-red-900 rounded-full bg-red-100 px-2 py-1 text-xs font-medium">{it}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Preview TODO -->
+  </div>
+</div>
