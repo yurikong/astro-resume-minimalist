@@ -14,9 +14,9 @@ const { university, degree, major, GPA, startYear, endYear, href } = Astro.props
     {startYear} — {endYear ?? "Present"}
   </div>
 
-  <div class="font-medium">
+  <div>
     <!-- University Name -->
-    <div>
+    <div class="font-medium">
       <AppLink href={href} showSuffixIcon title={university}>
         {university}
       </AppLink>
