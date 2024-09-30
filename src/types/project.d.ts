@@ -6,4 +6,11 @@ export interface IProject extends IExperience, ILink {
   description: string
   technologiesUsed?: string[]
   preview: string
+  highlights?: IProjectHighlight[]
+}
+
+export interface IProjectHighlight {
+  name: string
+  value: number
+  iconClassName: string
 }
