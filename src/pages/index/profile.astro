@@ -20,13 +20,19 @@ const socials: ISocial[] = [
   </h1>
 
   <!-- Job Title -->
-  <div class="mt-3 text-lg font-medium tracking-tight capitalize">Software Developer</div>
+  <div class="mt-4 text-lg font-medium tracking-tight capitalize">Software Developer</div>
 
   <!-- Description -->
-  <p class="mt-4 text-base">
+  <p class="mt-6 text-base">
     <span class="inline-block">I am the creator of</span>
     <span class="inline-flex">
-      <AppLink href="https://github.com/yurikong/astro-theme-resume">astro-theme-resume-minimalist</AppLink>
+      <AppLink
+        href="https://github.com/yurikong/astro-theme-resume"
+        showSuffixIcon
+        title="Astro Theme Resume Minimalist"
+      >
+        Astro Theme Resume Minimalist
+      </AppLink>
       .
     </span>
   </p>
@@ -36,7 +42,7 @@ const socials: ISocial[] = [
     {
       socials.map((it) => (
         <li>
-          <AppLink href={it.href} title={it.name} showPrefixIcon prefixIconClassName={it.iconClassName} />
+          <AppLink href={it.href} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
         </li>
       ))
     }
