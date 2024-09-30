@@ -5,7 +5,7 @@ import UnoCSS from "unocss/astro"
 // https://astro.build/config
 export default defineConfig({
   site: "https://yurikong.github.io", // TODO: change to vercel deploy url
-  base: "/astro-theme-resume", // TODO: change to / when setting for vercel
+  base: "/astro-theme-resume-minimalist", // TODO: change to / when setting for vercel
   server: {
     host: true,
     open: true,
