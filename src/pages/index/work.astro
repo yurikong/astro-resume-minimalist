@@ -31,7 +31,7 @@ const { jobTitle, company, description, products, technologiesUsed, startYear, e
         <ul class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
           {products.map((it) => (
             <li class="text-sm font-medium">
-              <AppLink href={it.href} showPrefixIcon>
+              <AppLink href={it.href} showPrefixIcon title={it.name}>
                 {it.name}
               </AppLink>
             </li>
