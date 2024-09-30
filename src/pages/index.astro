@@ -4,6 +4,7 @@ import Profile from "./index/profile.astro"
 import Education from "./index/education.astro"
 import type { IEducation } from "~types/education"
 import Work from "./index/work.astro"
+import type { IWork } from "~types/work"
 import Skills from "./index/skills.astro"
 import { mostRecentYearComparator } from "~utils/comparator"
 
@@ -25,19 +26,64 @@ const educationList: IEducation[] = [
     endYear: 2018,
     href: "https://www.mtsac.edu/",
   },
-].toSorted(mostRecentYearComparator)
+]
+educationList.sort(mostRecentYearComparator)
+
+const workList: IWork[] = [
+  {
+    jobTitle: "Software Engineer",
+    company: "Sacmi Machinery (Foshan Nanhai) Co., Ltd.",
+    description:
+      "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Provide leadership within R&D department through close collaboration and knowledge shares.",
+    products: [
+      { name: "SDP Print", href: "#" },
+      { name: "SDP Print - Image Rotation", href: "#" },
+    ],
+    technologiesUsed: [
+      "Typescript",
+      "Vue 3",
+      "Pinia",
+      "Vue Router",
+      "Element Plus",
+      "Material UI",
+      "UnoCSS",
+      "Vite",
+      "Go",
+      "Wails v2",
+      "Electron",
+      "Docker",
+    ],
+    startYear: 2023,
+    href: "https://www.sacmi.cn/sacmi-china",
+  },
+  {
+    jobTitle: "Frontend Engineer",
+    company: "Stramo",
+    description:
+      "Developed and maintained various interactive web apps for a bank client. Worked closely with cross-functional teams, including developers, designers, and product managers, to ensure compliance and code quality.",
+    products: [
+      { name: "Digifly", href: "#" },
+      { name: "BMP", href: "#" },
+    ],
+    technologiesUsed: ["Javascript", "Vue 2", "Vuex", "Vue Router", "Element UI", "SCSS", "Webpack"],
+    startYear: 2021,
+    endYear: 2023,
+    href: "http://www.stramo.cn/",
+  },
+]
+workList.sort(mostRecentYearComparator)
 ---
 
 <BaseLayout>
   <Profile />
 
   <!-- Education -->
-  <section class="pt-24">
+  <section class="mt-36">
     <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">education</h2>
     <ul>
       {
         educationList.map((it) => (
-          <li class="mb-12">
+          <li class="mb-16 last-of-type:mb-0">
             <Education {...it} />
           </li>
         ))
@@ -45,7 +91,19 @@ const educationList: IEducation[] = [
     </ul>
   </section>
 
-  <Work />
+  <!-- Work -->
+  <section class="mt-36">
+    <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">work</h2>
+    <ul>
+      {
+        workList.map((it) => (
+          <li class="mb-16 last-of-type:mb-0">
+            <Work {...it} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
   <Skills />
 </BaseLayout>
