@@ -23,12 +23,12 @@ const { university, degree, major, GPA, startYear, endYear, href } = Astro.props
     </div>
 
     <!-- Major & Degree -->
-    <div class="flex leading-normal">
+    <div class="flex text-sm leading-relaxed">
       {major}
       {!!degree && <span>, {degree}</span>}
     </div>
 
     <!-- GPA -->
-    <div class="leading-normal">GPA: {GPA}</div>
+    <div class="text-sm leading-relaxed">GPA: {GPA}</div>
   </div>
 </div>
