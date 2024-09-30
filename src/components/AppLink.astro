@@ -23,13 +23,13 @@ const {
 <app-link class:list={[className, "inline-block"]} data-href={href}>
   <a class="inline-block" href={href} target="_blank" rel="noopener noreferrer" title={title}>
     <!-- Prefix Icon -->
-    {Boolean(showPrefixIcon) && <i class:list={[prefixIconClassName, "align-top"]} />}
+    {!!showPrefixIcon && <i class:list={[prefixIconClassName, "align-top"]} />}
 
     <!-- Text -->
     <slot />
 
     <!-- Suffix Icon -->
-    {Boolean(showSuffixIcon) && <i class:list={[suffixIconClassName, "align-top"]} />}
+    {!!showSuffixIcon && <i class:list={[suffixIconClassName, "align-top"]} />}
   </a>
 </app-link>
 
