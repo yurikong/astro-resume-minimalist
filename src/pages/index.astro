@@ -7,6 +7,7 @@ import Work from "./index/work.astro"
 import type { IWork } from "~types/work"
 import Skills from "./index/skills.astro"
 import { mostRecentYearComparator } from "~utils/comparator"
+import AppLink from "~components/AppLink.astro"
 
 const educationList: IEducation[] = [
   {
@@ -103,6 +104,11 @@ workList.sort(mostRecentYearComparator)
         ))
       }
     </ul>
+
+    <!-- View Full Resume -->
+    <div class="mt-16">
+      <AppLink class="capitalize" href="#" showSuffixIcon>view full resume</AppLink>
+    </div>
   </section>
 
   <Skills />
