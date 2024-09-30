@@ -5,7 +5,7 @@ import Education from "./index/education.astro"
 import type { IEducation } from "~types/education"
 import Work from "./index/work.astro"
 import type { IWork } from "~types/work"
-import Skills from "./index/skills.astro"
+import Projects from "./index/projects.astro"
 import { mostRecentYearComparator } from "~utils/comparator"
 import AppLink from "~components/AppLink.astro"
 
@@ -114,5 +114,8 @@ workList.sort(mostRecentYearComparator)
     </div>
   </section>
 
-  <Skills />
+  <!-- Projects -->
+  <section class="mt-36">
+    <Projects />
+  </section>
 </BaseLayout>
