@@ -25,7 +25,7 @@ const { university, degree, major, GPA, startYear, endYear, href } = Astro.props
     <!-- Major & Degree -->
     <div class="flex">
       {major}
-      {Boolean(degree) && <span>, {degree}</span>}
+      {!!degree && <span>, {degree}</span>}
     </div>
 
     <!-- GPA -->
