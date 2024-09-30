@@ -11,7 +11,7 @@ const { jobTitle, company, description, products, technologiesUsed, startYear, e
 <div>
   <!-- Employed Years -->
   <div class="py-2 text-xs font-semibold tracking-wide uppercase">
-    {startYear} — {endYear ?? "Present"}
+    {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
   </div>
 
   <div class="font-medium leading-normal">
