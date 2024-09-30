@@ -1,6 +1,7 @@
 ---
 import Inter from "~assets/fonts/Inter.astro"
 import AppHeader from "~components/AppHeader.astro"
+import AppFooter from "~components/AppFooter.astro"
 import "~styles/index.css"
 
 const title: string = "astro-theme-resume-minimalist"
@@ -22,6 +23,8 @@ const description: string = "A minimalistic astro resume."
     <main class="px-6 py-12">
       <slot />
     </main>
+
+    <AppFooter />
   </body>
 </html>
 
