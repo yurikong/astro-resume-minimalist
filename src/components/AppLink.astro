@@ -1,35 +1,39 @@
 ---
-import type { ILink } from "~types/link"
-
-interface Props extends ILink {
-  showPrefixIcon?: boolean
-  prefixIconClassName?: string
-  showSuffixIcon?: boolean
-  suffixIconClassName?: string
-  title?: string
-  class?: string
+interface Props {
+  url?: string | undefined
+  showPrefixIcon?: boolean | undefined
+  prefixIconClassName?: string | undefined
+  showSuffixIcon?: boolean | undefined
+  suffixIconClassName?: string | undefined
+  title?: string | undefined
+  class?: string | undefined
 }
-const {
-  href,
-  showPrefixIcon,
-  prefixIconClassName = "i-ri:links-line",
-  showSuffixIcon,
-  suffixIconClassName = "i-ri:external-link-line",
-  title,
-  class: className,
-} = Astro.props
+
+const url: string = Astro.props.url || "#"
+const showPrefixIcon: boolean = Astro.props.showPrefixIcon ?? false
+const prefixIconClassName: string = Astro.props.prefixIconClassName || "i-ri:links-line"
+const showSuffixIcon: boolean = Astro.props.showSuffixIcon ?? false
+const suffixIconClassName: string = Astro.props.suffixIconClassName || "i-ri:external-link-line"
+const title: string | undefined = Astro.props.title || undefined
+const className: string | undefined = Astro.props.class || undefined
 ---
 
-<app-link class:list={[className, "inline-block"]} data-href={href}>
-  <a class="inline-block" href={href} target="_blank" rel="noopener noreferrer" title={title}>
+<app-link class:list={[className, "inline-block"]} data-url={url}>
+  <a
+    class:list={["inline-block", { "cursor-default": url === "#" }]}
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={title}
+  >
     <!-- Prefix Icon -->
-    {!!showPrefixIcon && <i class:list={[prefixIconClassName, "align-top"]} />}
+    {showPrefixIcon && <i class:list={[prefixIconClassName, "align-top"]} />}
 
     <!-- Text -->
     <slot />
 
     <!-- Suffix Icon -->
-    {!!showSuffixIcon && <i class:list={[suffixIconClassName, "align-top"]} />}
+    {showSuffixIcon && <i class:list={[suffixIconClassName, "align-top"]} />}
   </a>
 </app-link>
 
@@ -54,7 +58,7 @@ const {
         })
       }
 
-      const { href } = this.dataset
+      const url: string = this.dataset.url!
       const a: HTMLAnchorElement | null = this.querySelector("a")
       if (a === null) {
         return
@@ -65,11 +69,11 @@ const {
       //
       let isExternal: boolean = false
       let shouldSkip: boolean = false
-      if (href === undefined || href === "#") {
+      if (url === "#") {
         shouldSkip = true
       } else {
         // judge whether `href` is external
-        const destinationURL: URL = new URL(href)
+        const destinationURL: URL = new URL(url)
         const { protocol: destinationProtocol, hostname: destinationHostname } = destinationURL
         const { protocol: currentProtocol, hostname: currentHostname } = window.location
         isExternal = destinationProtocol !== currentProtocol || destinationHostname !== currentHostname
