@@ -1,14 +1,15 @@
 import type { IExperience } from "./experience"
-import type { ILink } from "./link"
 
-export interface IWork extends IExperience, ILink {
+export interface IWork extends IExperience {
   jobTitle: string
   company: string
+  companyHomepage: string
   description: string
-  products?: IProduct[]
+  products?: IProduct[] | undefined
   technologiesUsed: string[]
 }
 
-export interface IProduct extends ILink {
+export interface IProduct {
   name: string
+  url: string
 }
