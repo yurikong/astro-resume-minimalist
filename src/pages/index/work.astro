@@ -4,7 +4,7 @@ import AppLink from "~components/AppLink.astro"
 
 interface Props extends IWork {}
 
-const { jobTitle, company, description, products, technologiesUsed, startYear, endYear, href } = Astro.props
+const { jobTitle, company, companyHomepage, description, products, technologiesUsed, startYear, endYear } = Astro.props
 ---
 
 <!-- Work Details -->
@@ -17,7 +17,7 @@ const { jobTitle, company, description, products, technologiesUsed, startYear, e
   <div class="font-medium leading-normal">
     <!-- Job Title & Company -->
     <div>
-      <AppLink href={href} showSuffixIcon title={company}>
+      <AppLink url={companyHomepage} showSuffixIcon title={company}>
         {jobTitle} · {company}
       </AppLink>
     </div>
@@ -31,7 +31,7 @@ const { jobTitle, company, description, products, technologiesUsed, startYear, e
         <ul class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
           {products.map((it) => (
             <li class="text-sm font-medium">
-              <AppLink href={it.href} showPrefixIcon title={it.name}>
+              <AppLink url={it.url} showPrefixIcon title={it.name}>
                 {it.name}
               </AppLink>
             </li>
