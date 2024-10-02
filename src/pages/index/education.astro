@@ -4,7 +4,7 @@ import AppLink from "~components/AppLink.astro"
 
 interface Props extends IEducation {}
 
-const { university, degree, major, GPA, startYear, endYear, href } = Astro.props
+const { university, universityHomepage, degree, major, GPA, startYear, endYear } = Astro.props
 ---
 
 <!-- Education Details -->
@@ -17,7 +17,7 @@ const { university, degree, major, GPA, startYear, endYear, href } = Astro.props
   <div>
     <!-- University Name -->
     <div class="font-medium">
-      <AppLink href={href} showSuffixIcon title={university}>
+      <AppLink url={universityHomepage} showSuffixIcon title={university}>
         {university}
       </AppLink>
     </div>
