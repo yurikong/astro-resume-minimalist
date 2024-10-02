@@ -3,20 +3,20 @@ import AppLink from "~components/AppLink.astro"
 import type { ISocial } from "~types/social"
 
 const socials: ISocial[] = [
-  { name: "WeChat", iconClassName: "i-ri:wechat-line", href: "#" }, // WeChat
-  { name: "Email", iconClassName: "i-ri:mail-line", href: "mailto:jackdu2013@163.com" }, // Email
-  { name: "Portfolio", iconClassName: "i-ri:earth-line", href: "https://yurikong.github.io" }, // Portfolio
-  { name: "Github", iconClassName: "i-ri:github-line", href: "https://github.com/yurikong" }, // Github
-  { name: "LinkedIn", iconClassName: "i-ri:linkedin-box-line", href: "#" }, // LinkedIn
-  { name: "Instagram", iconClassName: "i-ri:instagram-line", href: "#" }, // Instagram
-  { name: "Twitter X", iconClassName: "i-ri:twitter-x-line", href: "#" }, // Twitter X
+  { name: "WeChat", iconClassName: "i-ri:wechat-line" }, // WeChat
+  { name: "Email", iconClassName: "i-ri:mail-line", url: "mailto:jackdu2013@163.com" }, // Email
+  { name: "Portfolio", iconClassName: "i-ri:earth-line", url: "https://yurikong.github.io" }, // Portfolio
+  { name: "Github", iconClassName: "i-ri:github-line", url: "https://github.com/yurikong" }, // Github
+  { name: "LinkedIn", iconClassName: "i-ri:linkedin-box-line" }, // LinkedIn
+  { name: "Instagram", iconClassName: "i-ri:instagram-line" }, // Instagram
+  { name: "Twitter X", iconClassName: "i-ri:twitter-x-line" }, // Twitter X
 ]
 ---
 
 <div>
   <!-- Name -->
   <h1 class="text-4xl font-semibold tracking-tight capitalize">
-    <AppLink href="https://yurikong.github.io">jianqiang du</AppLink>
+    <AppLink url="https://yurikong.github.io" title="Portfolio">jianqiang du</AppLink>
   </h1>
 
   <!-- Job Title -->
@@ -27,7 +27,7 @@ const socials: ISocial[] = [
     <span class="inline-block">I am the creator of</span>
     <span class="inline-flex">
       <AppLink
-        href="https://github.com/yurikong/astro-theme-resume-minimalist"
+        url="https://github.com/yurikong/astro-theme-resume-minimalist"
         showSuffixIcon
         title="Project Repository"
       >
@@ -42,7 +42,7 @@ const socials: ISocial[] = [
     {
       socials.map((it) => (
         <li>
-          <AppLink href={it.href} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
+          <AppLink url={it.url} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
         </li>
       ))
     }
