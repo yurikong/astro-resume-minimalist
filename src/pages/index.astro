@@ -3,30 +3,31 @@ import BaseLayout from "~layouts/BaseLayout.astro"
 import Profile from "./index/profile.astro"
 import Education from "./index/education.astro"
 import Work from "./index/work.astro"
-import Project from "./index/project.astro"
+import Project from "./index/Project.astro"
 import type { IEducation } from "~types/education"
 import type { IWork } from "~types/work"
 import type { IProject } from "~types/project"
 import { mostRecentYearComparator } from "~utils/comparator"
 import AppLink from "~components/AppLink.astro"
+import { Repository } from "~types/repository"
 
 const educationList: IEducation[] = [
   {
     university: "California State University, Long Beach",
+    universityHomepage: "https://www.csulb.edu/",
     degree: "B.S.",
     major: "Computer Science",
     GPA: "3.65",
     startYear: 2018,
     endYear: 2020,
-    href: "https://www.csulb.edu/",
   },
   {
     university: "Mt. San Antonio College",
+    universityHomepage: "https://www.mtsac.edu/",
     major: "Computer Science",
     GPA: "3.48",
     startYear: 2015,
     endYear: 2018,
-    href: "https://www.mtsac.edu/",
   },
 ]
 educationList.sort(mostRecentYearComparator)
@@ -35,11 +36,12 @@ const workList: IWork[] = [
   {
     jobTitle: "Software Engineer",
     company: "Sacmi Machinery (Foshan Nanhai) Co., Ltd.",
+    companyHomepage: "https://www.sacmi.cn/sacmi-china",
     description:
       "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Provide leadership within R&D department through close collaboration and knowledge shares.",
     products: [
-      { name: "SDP Print", href: "#" },
-      { name: "SDP Print - Image Rotation", href: "#" },
+      { name: "SDP Print", url: "#" },
+      { name: "SDP Print - Image Rotation", url: "#" },
     ],
     technologiesUsed: [
       "Typescript",
@@ -56,21 +58,20 @@ const workList: IWork[] = [
       "Docker",
     ],
     startYear: 2023,
-    href: "https://www.sacmi.cn/sacmi-china",
   },
   {
     jobTitle: "Frontend Engineer",
     company: "Stramo",
+    companyHomepage: "http://www.stramo.cn/",
     description:
       "Developed and maintained various interactive web apps for a bank client. Worked closely with cross-functional teams, including developers, designers, and product managers, to ensure compliance and code quality.",
     products: [
-      { name: "Digifly", href: "#" },
-      { name: "BMP", href: "#" },
+      { name: "Digifly", url: "#" },
+      { name: "BMP", url: "#" },
     ],
     technologiesUsed: ["Javascript", "Vue 2", "Vuex", "Vue Router", "Element UI", "SCSS", "Webpack"],
     startYear: 2021,
     endYear: 2023,
-    href: "http://www.stramo.cn/",
   },
 ]
 workList.sort(mostRecentYearComparator)
@@ -80,20 +81,17 @@ const projectList: IProject[] = [
     name: "Astro Theme Resume Minimalist",
     description: "An open-sourced minimal resume site template built with Astro.",
     technologiesUsed: ["Astro", "Typescript", "Unocss", "HTML & CSS", "Github Pages"],
-    preview: "",
     startYear: 2024,
     endYear: 2024,
-    href: "#",
+    repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
   },
   {
     name: "Certificate of Analysis Generator",
     description:
       "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
     technologiesUsed: ["Flutter"],
-    preview: "",
     startYear: 2023,
     endYear: 2023,
-    href: "#",
   },
 ]
 projectList.sort(mostRecentYearComparator)
@@ -134,7 +132,7 @@ projectList.sort(mostRecentYearComparator)
 
     <!-- View Full Resume -->
     <div class="mt-16">
-      <AppLink class="capitalize" href="#" showSuffixIcon title="Resume">view full resume</AppLink>
+      <AppLink class="capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
     </div>
   </section>
 
@@ -153,7 +151,7 @@ projectList.sort(mostRecentYearComparator)
 
     <!-- View All Projects -->
     <div class="mt-16">
-      <AppLink class="capitalize" href="#" showSuffixIcon title="Projects">view all projects</AppLink>
+      <AppLink class="capitalize" showSuffixIcon title="Projects">view all projects</AppLink>
     </div>
   </section>
 </BaseLayout>
