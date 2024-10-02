@@ -2,7 +2,7 @@
   "name": "astro-theme-resume-minimalist",
   "type": "module",
   "version": "0.0.1",
-  "description": "An open-sourced resume site template with a blog using Astro.",
+  "description": "An open-sourced minimal resume site template built with Astro.",
   "homepage": "https://github.com/yurikong/astro-theme-resume-minimalist#readme",
   "bugs": {
     "url": "https://github.com/yurikong/astro-theme-resume-minimalist/issues",
