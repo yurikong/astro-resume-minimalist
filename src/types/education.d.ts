@@ -1,9 +1,9 @@
-import type { ILink } from "./link"
 import type { IExperience } from "./experience"
 
-export interface IEducation extends IExperience, ILink {
+export interface IEducation extends IExperience {
   university: string
-  degree?: string
+  universityHomepage: string
+  degree?: string | undefined
   major: string
   GPA: string
 }
