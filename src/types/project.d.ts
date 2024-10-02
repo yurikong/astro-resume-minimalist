@@ -1,16 +1,17 @@
 import type { IExperience } from "./experience"
-import type { ILink } from "./link"
+import type { Repository } from "./repository"
 
-export interface IProject extends IExperience, ILink {
+export interface IProject extends IExperience {
   name: string
   description: string
-  technologiesUsed?: string[]
-  preview: string
-  highlights?: IProjectHighlight[]
+  technologiesUsed: string[]
+  preview?: string | undefined
+  repository?: Repository | undefined
 }
 
 export interface IProjectHighlight {
   name: string
-  value: number
   iconClassName: string
+  value: number
+  hidden: boolean
 }

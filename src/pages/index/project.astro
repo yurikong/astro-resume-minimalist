@@ -1,10 +1,39 @@
 ---
-import type { IProject } from "~types/project"
+import type { IProject, IProjectHighlight } from "~types/project"
+import type { IGithubRepository } from "~types/repository"
 import AppLink from "~components/AppLink.astro"
 
 interface Props extends IProject {}
 
-const { name, description, technologiesUsed, preview, highlights, startYear, endYear, href } = Astro.props
+const { name, description, technologiesUsed, repository, startYear, endYear } = Astro.props
+
+const highlights: IProjectHighlight[] = []
+if (!!repository) {
+  try {
+    const response: Response = await fetch(repository.apiUrl)
+    const data: IGithubRepository = await response.json()
+    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = data
+    if (isPrivate === false) {
+      highlights.push(
+        {
+          name: "Stars",
+          iconClassName: "i-ri:star-fill",
+          value: starsCount,
+          hidden: starsCount < 5,
+        },
+        {
+          name: "Forks",
+          iconClassName: "i-ri:git-fork-fill",
+          value: forksCount,
+          hidden: forksCount < 5,
+        }
+      )
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidden === false)
 ---
 
 <!-- Project Details -->
@@ -17,17 +46,17 @@ const { name, description, technologiesUsed, preview, highlights, startYear, end
   <div class="font-medium leading-normal">
     <!-- Name -->
     <div>
-      <AppLink href={href} showSuffixIcon title={name}>{name}</AppLink>
+      <AppLink url={repository?.url} showSuffixIcon={!!repository?.url} title={name}>{name}</AppLink>
     </div>
 
     <!-- Description -->
     <p class="mt-2 text-sm leading-relaxed">{description}</p>
 
-    <!-- Highlights -->
+    <!-- Repository Stars & Forks -->
     {
-      !!highlights && highlights.length > 0 && (
+      visibleHighlights.length > 0 && (
         <ul class="mt-2 flex flex-wrap gap-2">
-          {highlights.map((it) => (
+          {visibleHighlights.map((it) => (
             <li class="flex items-center gap-1 text-sm font-medium" title={it.name}>
               <i class={it.iconClassName} />
               <span>{it.value}</span>
