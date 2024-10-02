@@ -1,4 +1,4 @@
 export interface IExperience {
   startYear: number
-  endYear?: number
+  endYear?: number | undefined
 }
