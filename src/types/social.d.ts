@@ -1,6 +1,5 @@
-import type { ILink } from "./link"
-
-export interface ISocial extends ILink {
+export interface ISocial {
   name: string
   iconClassName: string
+  url?: string
 }
