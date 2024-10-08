@@ -39,14 +39,16 @@ const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidd
 <!-- Project Details -->
 <div>
   <!-- Ongoing Years -->
-  <div class="py-2 text-xs font-semibold tracking-wide uppercase">
+  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
     {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
   </div>
 
-  <div class="font-medium leading-normal">
+  <div class="leading-normal">
     <!-- Name -->
     <div>
-      <AppLink url={repository?.url} showSuffixIcon={!!repository?.url} title={name}>{name}</AppLink>
+      <AppLink class="text-gray-800 font-medium" url={repository?.url} showSuffixIcon={!!repository?.url} title={name}>
+        {name}
+      </AppLink>
     </div>
 
     <!-- Description -->
@@ -69,9 +71,9 @@ const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidd
     <!-- Technologies Used -->
     {
       !!technologiesUsed && technologiesUsed.length > 0 && (
-        <ul class="mt-4 flex flex-wrap gap-x-1.5 gap-y-2">
+        <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
           {technologiesUsed.map((it) => (
-            <li class="border border-red-900 rounded-full bg-red-100 px-2 py-1 text-xs font-medium">{it}</li>
+            <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs">{it}</li>
           ))}
         </ul>
       )

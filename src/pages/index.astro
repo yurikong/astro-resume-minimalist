@@ -105,7 +105,7 @@ projectList.sort(mostRecentYearComparator)
 
   <!-- Education -->
   <section class="mt-36">
-    <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">education</h2>
+    <h2 class="mb-4 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase">education</h2>
     <ul>
       {
         educationList.map((it) => (
@@ -119,7 +119,7 @@ projectList.sort(mostRecentYearComparator)
 
   <!-- Work -->
   <section class="mt-36">
-    <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">work</h2>
+    <h2 class="mb-4 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase">work</h2>
     <ul>
       {
         workList.map((it) => (
@@ -132,13 +132,13 @@ projectList.sort(mostRecentYearComparator)
 
     <!-- View Full Resume -->
     <div class="mt-16">
-      <AppLink class="capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
+      <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
     </div>
   </section>
 
   <!-- Projects -->
   <section class="mt-36">
-    <h2 class="mb-4 py-5 text-sm font-semibold tracking-widest uppercase">projects</h2>
+    <h2 class="mb-4 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase">projects</h2>
     <ul>
       {
         projectList.map((it) => (
@@ -151,7 +151,8 @@ projectList.sort(mostRecentYearComparator)
 
     <!-- View All Projects -->
     <div class="mt-16">
-      <AppLink class="capitalize" showSuffixIcon title="Projects">view all projects</AppLink>
+      <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Projects">view all projects</AppLink
+      >
     </div>
   </section>
 </BaseLayout>
