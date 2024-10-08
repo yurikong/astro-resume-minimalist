@@ -1,6 +1,5 @@
 ---
 import Inter from "~assets/fonts/Inter.astro"
-import AppHeader from "~components/AppHeader.astro"
 import AppFooter from "~components/AppFooter.astro"
 import "~styles/index.css"
 
@@ -17,9 +16,7 @@ const description: string = "An open-sourced minimal resume site template built 
   <meta name="description" content={description} />
   <Inter />
 
-  <body class="bg-white text-gray-500">
-    <AppHeader />
-
+  <body class="relative bg-gray-100 text-gray-500">
     <main class="px-6 py-12">
       <slot />
     </main>
