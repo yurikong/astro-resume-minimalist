@@ -9,15 +9,15 @@ const { university, universityHomepage, degree, major, GPA, startYear, endYear }
 
 <!-- Education Details -->
 <div>
-  <!-- Appended Years -->
-  <div class="py-2 text-xs font-semibold tracking-wide uppercase">
+  <!-- Attended Years -->
+  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
     {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
   </div>
 
-  <div>
+  <div class="text-gray-800">
     <!-- University Name -->
-    <div class="font-medium">
-      <AppLink url={universityHomepage} showSuffixIcon title={university}>
+    <div>
+      <AppLink class="font-medium" url={universityHomepage} showSuffixIcon title={university}>
         {university}
       </AppLink>
     </div>

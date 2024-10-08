@@ -4,21 +4,44 @@ import AppLink from "./AppLink.astro"
 
 <footer class="px-6 pb-6 pt-24 text-(center xs) leading-relaxed">
   <p>
-    <div>Made with ❤️ by Jianqiang Du.</div>
+    <!-- Author -->
+    <div>
+      <span>Made with <span class="text-red-500">❤️</span> by</span>
+      <span class="inline-flex">
+        <AppLink
+          class="text-gray-800 capitalize"
+          url="https://yurikong.github.io"
+          showSuffixIcon
+          title="Jianqiang Du's Portfolio"
+        >
+          jianqiang du
+        </AppLink>
+        .
+      </span>
+    </div>
+
+    <!-- License -->
     <div>
       <span>Released under</span>
       <span class="inline-flex">
-        <AppLink url="https://opensource.org/license/mit" showSuffixIcon title="The MIT License">
+        <AppLink class="text-gray-800" url="https://opensource.org/license/mit" showSuffixIcon title="The MIT License">
           The MIT license
         </AppLink>
         .
       </span>
     </div>
+
+    <!-- Credit -->
     <div>
-      <span>Credits to:</span>
+      <span>Credits —</span>
       <span class="inline-flex">
-        <AppLink url="https://brittanychiang.com" showSuffixIcon title="Brittany Chiang's Portfolio">
-          Brittany Chiang
+        <AppLink
+          class="text-gray-800 capitalize"
+          url="https://brittanychiang.com"
+          showSuffixIcon
+          title="Brittany Chiang's Portfolio"
+        >
+          brittany chiang
         </AppLink>
         .
       </span>

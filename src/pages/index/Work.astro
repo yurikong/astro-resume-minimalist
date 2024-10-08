@@ -10,14 +10,14 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
 <!-- Work Details -->
 <div>
   <!-- Employed Years -->
-  <div class="py-2 text-xs font-semibold tracking-wide uppercase">
+  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
     {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
   </div>
 
-  <div class="font-medium leading-normal">
+  <div class="leading-normal">
     <!-- Job Title & Company -->
     <div>
-      <AppLink url={companyHomepage} showSuffixIcon title={company}>
+      <AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
         {jobTitle} · {company}
       </AppLink>
     </div>
@@ -28,9 +28,9 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
     <!-- Products -->
     {
       !!products && products.length > 0 && (
-        <ul class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+        <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
           {products.map((it) => (
-            <li class="text-sm font-medium">
+            <li class="text-(sm gray-700) font-medium">
               <AppLink url={it.url} showPrefixIcon title={it.name}>
                 {it.name}
               </AppLink>
@@ -41,12 +41,8 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
     }
 
     <!-- Technologies Used -->
-    <ul class="mt-4 flex flex-wrap gap-x-1.5 gap-y-2">
-      {
-        technologiesUsed.map((it) => (
-          <li class="border border-red-900 rounded-full bg-red-100 px-2 py-1 text-xs font-medium">{it}</li>
-        ))
-      }
+    <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
+      {technologiesUsed.map((it) => <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs">{it}</li>)}
     </ul>
   </div>
 </div>
