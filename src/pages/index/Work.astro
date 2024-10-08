@@ -16,11 +16,9 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
 
   <div class="leading-normal">
     <!-- Job Title & Company -->
-    <div>
-      <AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
-        {jobTitle} · {company}
-      </AppLink>
-    </div>
+    <AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
+      {jobTitle} · {company}
+    </AppLink>
 
     <!-- Description -->
     <p class="mt-2 text-sm leading-relaxed">{description}</p>
@@ -30,7 +28,7 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
       !!products && products.length > 0 && (
         <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
           {products.map((it) => (
-            <li class="text-(sm gray-700) font-medium">
+            <li class="text-(nowrap sm gray-700) font-medium">
               <AppLink url={it.url} showPrefixIcon title={it.name}>
                 {it.name}
               </AppLink>
