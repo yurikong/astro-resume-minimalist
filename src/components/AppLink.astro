@@ -18,9 +18,9 @@ const title: string | undefined = Astro.props.title || undefined
 const className: string | undefined = Astro.props.class || undefined
 ---
 
-<app-link class:list={[className, "inline-block"]} data-url={url}>
+<app-link class:list={[className]} data-url={url}>
   <a
-    class:list={["inline-block", { "cursor-default": url === "#" }]}
+    class:list={["block", { "cursor-default": url === "#" }]}
     href={url}
     target="_blank"
     rel="noopener noreferrer"
