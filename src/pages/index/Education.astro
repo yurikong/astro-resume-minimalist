@@ -16,11 +16,9 @@ const { university, universityHomepage, degree, major, GPA, startYear, endYear }
 
   <div class="text-gray-800">
     <!-- University Name -->
-    <div>
-      <AppLink class="font-medium" url={universityHomepage} showSuffixIcon title={university}>
-        {university}
-      </AppLink>
-    </div>
+    <AppLink class="font-medium" url={universityHomepage} showSuffixIcon title={university}>
+      {university}
+    </AppLink>
 
     <!-- Major & Degree -->
     <div class="flex text-sm leading-relaxed">
