@@ -1,6 +1,5 @@
 ---
 import type { IProject } from "~types/project"
-import { Repository } from "~types/repository"
 import { mostRecentYearComparator } from "~utils/comparators"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
@@ -10,26 +9,18 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const projectDetailsList: IProject[] = (
-  [
-    {
-      name: "Astro Theme Resume Minimalist",
-      description: "An open-sourced minimal resume site template built with Astro.",
-      technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
-      startYear: 2024,
-      endYear: 2024,
-      repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
-    },
-    {
-      name: "Certificate of Analysis Generator",
-      description:
-        "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
-      technologiesUsed: ["Flutter"],
-      startYear: 2023,
-      endYear: 2023,
-    },
-  ] satisfies IProject[]
-).toSorted(mostRecentYearComparator)
+const site: string = import.meta.env.DEV ? `http://localhost:${import.meta.env.PORT}` : import.meta.env.SITE
+const apiUrl: string = `${site}${import.meta.env.BASE_URL}/projects.json`
+const projectDetailsList: IProject[] = []
+
+try {
+  const response = await fetch(apiUrl)
+  const data: IProject[] = await response.json()
+  const selectedProjects: IProject[] = data.toSorted(mostRecentYearComparator).slice(0, 5)
+  projectDetailsList.push(...selectedProjects)
+} catch (error) {
+  console.error(error)
+}
 ---
 
 <!-- Projects -->
