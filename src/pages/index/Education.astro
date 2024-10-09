@@ -1,32 +1,47 @@
 ---
 import type { IEducation } from "~types/education"
-import AppLink from "~components/AppLink.astro"
+import { mostRecentYearComparator } from "~utils/comparators"
+import EducationDetails from "./EducationDetails.astro"
 
-interface Props extends IEducation {}
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
 
-const { university, universityHomepage, degree, major, GPA, startYear, endYear } = Astro.props
+const educationDetailsList: IEducation[] = [
+  {
+    university: "California State University, Long Beach",
+    universityHomepage: "https://www.csulb.edu/",
+    degree: "B.S.",
+    major: "Computer Science",
+    GPA: "3.65",
+    startYear: 2018,
+    endYear: 2020,
+  },
+  {
+    university: "Mt. San Antonio College",
+    universityHomepage: "https://www.mtsac.edu/",
+    major: "Computer Science",
+    GPA: "3.48",
+    startYear: 2015,
+    endYear: 2018,
+  },
+].toSorted(mostRecentYearComparator)
 ---
 
-<!-- Education Details -->
-<div>
-  <!-- Attended Years -->
-  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
-    {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
-  </div>
-
-  <div class="text-gray-800">
-    <!-- University Name -->
-    <AppLink class="font-medium" url={universityHomepage} showSuffixIcon title={university}>
-      {university}
-    </AppLink>
-
-    <!-- Major & Degree -->
-    <div class="flex text-sm leading-relaxed">
-      {major}
-      {!!degree && <span>, {degree}</span>}
-    </div>
-
-    <!-- GPA -->
-    <div class="text-sm leading-relaxed">GPA: {GPA}</div>
-  </div>
-</div>
+<section class={className}>
+  <h2
+    class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+  >
+    education
+  </h2>
+  <ul>
+    {
+      educationDetailsList.map((it) => (
+        <li class="mb-16 last-of-type:mb-0">
+          <EducationDetails {...it} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
