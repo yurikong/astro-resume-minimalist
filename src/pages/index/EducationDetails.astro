@@ -1,0 +1,26 @@
+---
+import type { IEducation } from "~types/education"
+import AppLink from "~components/AppLink.astro"
+
+interface Props extends IEducation {}
+const { university, universityHomepage, degree, major, GPA, startYear, endYear } = Astro.props
+---
+
+<!-- Attended Years -->
+<div class="py-2 text-(xs gray-400) tracking-wide uppercase">
+  {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
+</div>
+
+<!-- University Name -->
+<AppLink class="text-gray-800 font-medium" url={universityHomepage} showSuffixIcon title={university}>
+  {university}
+</AppLink>
+
+<!-- Major & Degree -->
+<div class="flex text-(sm gray-800) leading-relaxed">
+  {major}
+  {!!degree && <span>, {degree}</span>}
+</div>
+
+<!-- GPA -->
+<div class="text-(sm gray-800) leading-relaxed">GPA: {GPA}</div>
