@@ -67,7 +67,7 @@ if (url.startsWith("/")) {
       const url: string = this.dataset.url!
       const a: HTMLAnchorElement | null = this.querySelector("a")
       a?.addEventListener("click", (evt: MouseEvent): void => {
-        if (url === "#") {
+        if (url === "#" || url === "") {
           evt.preventDefault()
         }
       })
