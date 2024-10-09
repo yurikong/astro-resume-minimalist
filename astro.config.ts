@@ -1,8 +1,9 @@
+/// <reference path="./src/env.d.ts" />
+
 import { loadEnv } from "vite"
 import { defineConfig } from "astro/config"
 import UnoCSS from "unocss/astro"
 // import sitemap from "@astrojs/sitemap"
-import type { ImportMetaEnv } from "~/env"
 
 const { PORT }: ImportMetaEnv | Record<string, string> = loadEnv(import.meta.env.MODE, process.cwd(), "")
 
