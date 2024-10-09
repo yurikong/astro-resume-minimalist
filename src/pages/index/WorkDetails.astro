@@ -1,0 +1,44 @@
+---
+import type { IWork } from "~types/work"
+import AppLink from "~components/AppLink.astro"
+
+interface Props extends IWork {}
+const { jobTitle, company, companyHomepage, description, products, technologiesUsed, startYear, endYear } = Astro.props
+---
+
+<!-- Employed Years -->
+<div class="py-2 text-(xs gray-400) tracking-wide uppercase">
+  {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
+</div>
+
+<!-- Job Title & Company -->
+<AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
+  {jobTitle} · {company}
+</AppLink>
+
+<!-- Description -->
+<p class="mt-2 text-sm leading-relaxed">{description}</p>
+
+<!-- Products -->
+{
+  !!products && products.length > 0 && (
+    <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
+      {products.map((it) => (
+        <li class="text-(nowrap sm gray-700) font-medium leading-normal">
+          <AppLink url={it.url} showPrefixIcon title={it.name}>
+            {it.name}
+          </AppLink>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<!-- Technologies Used -->
+<ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
+  {
+    technologiesUsed.map((it) => (
+      <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal">{it}</li>
+    ))
+  }
+</ul>
