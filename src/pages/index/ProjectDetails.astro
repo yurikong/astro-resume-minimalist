@@ -1,6 +1,7 @@
 ---
 import type { IProject, IProjectHighlight } from "~types/project"
 import type { IGithubRepository } from "~types/repository"
+import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
 
 interface Props extends IProject {}
@@ -36,9 +37,7 @@ const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidd
 ---
 
 <!-- Ongoing Years -->
-<div class="py-2 text-(xs gray-400) tracking-wide uppercase">
-  {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
-</div>
+<YearRange class="py-2 text-(xs gray-400) tracking-wide uppercase" startYear={startYear} endYear={endYear} />
 
 <!-- Name -->
 <AppLink class="text-gray-800 font-medium" url={repository?.url} showSuffixIcon={!!repository?.url}>
