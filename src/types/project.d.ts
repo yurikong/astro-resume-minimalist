@@ -15,3 +15,16 @@ export interface IProjectHighlight {
   value: number
   hidden: boolean
 }
+
+export interface IProjectArchive extends IExperience {
+  name: string
+  madeAt?: string | undefined
+  technologiesUsed: string[]
+  link?: IProjectArchiveLink | undefined
+}
+
+export interface IProjectArchiveLink {
+  url: string
+  displayText: string
+  iconClassName?: string | undefined
+}
