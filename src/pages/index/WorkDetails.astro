@@ -12,7 +12,7 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
 </div>
 
 <!-- Job Title & Company -->
-<AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
+<AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon>
   {jobTitle} · {company}
 </AppLink>
 
@@ -25,7 +25,7 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
     <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
       {products.map((it) => (
         <li class="text-(nowrap sm gray-700) font-medium leading-normal">
-          <AppLink url={it.url} showPrefixIcon title={it.name}>
+          <AppLink url={it.url} showPrefixIcon>
             {it.name}
           </AppLink>
         </li>
