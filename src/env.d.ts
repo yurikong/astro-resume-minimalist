@@ -1,10 +1,10 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-export interface ImportMetaEnv {
+interface ImportMetaEnv {
   readonly PORT: string
 }
 
-export interface ImportMeta {
+interface ImportMeta {
   readonly env: ImportMetaEnv
 }
