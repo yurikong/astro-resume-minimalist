@@ -4,30 +4,6 @@ import Profile from "./index/Profile.astro"
 import Education from "./index/Education.astro"
 import Work from "./index/Work.astro"
 import Project from "./index/Project.astro"
-import type { IProject } from "~types/project"
-import { mostRecentYearComparator } from "~utils/comparators"
-import AppLink from "~components/AppLink.astro"
-import { Repository } from "~types/repository"
-
-const projectList: IProject[] = [
-  {
-    name: "Astro Theme Resume Minimalist",
-    description: "An open-sourced minimal resume site template built with Astro.",
-    technologiesUsed: ["Astro", "Typescript", "Unocss", "HTML & CSS", "Github Pages"],
-    startYear: 2024,
-    endYear: 2024,
-    repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
-  },
-  {
-    name: "Certificate of Analysis Generator",
-    description:
-      "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
-    technologiesUsed: ["Flutter"],
-    startYear: 2023,
-    endYear: 2023,
-  },
-]
-projectList.sort(mostRecentYearComparator)
 ---
 
 <BaseLayout>
@@ -35,30 +11,6 @@ projectList.sort(mostRecentYearComparator)
     <Profile />
     <Education class="mt-36" />
     <Work class="mt-36" />
-
-    <!-- Projects -->
-    <section class="mt-36">
-      <h2
-        class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
-      >
-        projects
-      </h2>
-      <ul>
-        {
-          projectList.map((it) => (
-            <li class="mb-16 last-of-type:mb-0">
-              <Project {...it} />
-            </li>
-          ))
-        }
-      </ul>
-
-      <!-- View All Projects -->
-      <div class="mt-24">
-        <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Projects">
-          view all projects
-        </AppLink>
-      </div>
-    </section>
+    <Project class="mt-36" />
   </main>
 </BaseLayout>
