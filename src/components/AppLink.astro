@@ -9,21 +9,27 @@ interface Props {
   class?: string | undefined
 }
 
-const url: string = Astro.props.url || "#"
+let url: string = Astro.props.url || "#"
 const showPrefixIcon: boolean = Astro.props.showPrefixIcon ?? false
 const prefixIconClassName: string = Astro.props.prefixIconClassName || "i-ri:links-line"
 const showSuffixIcon: boolean = Astro.props.showSuffixIcon ?? false
 const suffixIconClassName: string = Astro.props.suffixIconClassName || "i-ri:external-link-line"
 const title: string | undefined = Astro.props.title || undefined
 const className: string | undefined = Astro.props.class || undefined
+
+const isInternal: boolean = url.startsWith("#") || url.startsWith("/")
+
+if (url.startsWith("/")) {
+  url = `${import.meta.env.BASE_URL}${url}`
+}
 ---
 
 <app-link class:list={[className]} data-url={url}>
   <a
     class:list={["block", { "cursor-default": url === "#" }]}
     href={url}
-    target="_blank"
-    rel="noopener noreferrer"
+    target={isInternal ? null : "_blank"}
+    rel={isInternal ? null : "noopener noreferrer"}
     title={title}
   >
     <!-- Prefix Icon -->
@@ -60,33 +66,9 @@ const className: string | undefined = Astro.props.class || undefined
 
       const url: string = this.dataset.url!
       const a: HTMLAnchorElement | null = this.querySelector("a")
-      if (a === null) {
-        return
-      }
-
-      //
-      // Customize `click` behavior based on `shouldSkip` & `isExternal`.
-      //
-      let isExternal: boolean = false
-      let shouldSkip: boolean = false
-      if (url === "#") {
-        shouldSkip = true
-      } else {
-        // judge whether `href` is external
-        const destinationURL: URL = new URL(url)
-        const { protocol: destinationProtocol, hostname: destinationHostname } = destinationURL
-        const { protocol: currentProtocol, hostname: currentHostname } = window.location
-        isExternal = destinationProtocol !== currentProtocol || destinationHostname !== currentHostname
-      }
-      a.addEventListener("click", (evt: MouseEvent): void => {
-        if (shouldSkip) {
+      a?.addEventListener("click", (evt: MouseEvent): void => {
+        if (url === "#") {
           evt.preventDefault()
-          return
-        } else if (isExternal) {
-          // TODO: user confirm
-        } else {
-          evt.preventDefault()
-          // TODO: in page scroll
         }
       })
     }
