@@ -10,24 +10,26 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const projectDetailsList: IProject[] = [
-  {
-    name: "Astro Theme Resume Minimalist",
-    description: "An open-sourced minimal resume site template built with Astro.",
-    technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
-    startYear: 2024,
-    endYear: 2024,
-    repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
-  },
-  {
-    name: "Certificate of Analysis Generator",
-    description:
-      "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
-    technologiesUsed: ["Flutter"],
-    startYear: 2023,
-    endYear: 2023,
-  },
-].toSorted(mostRecentYearComparator)
+const projectDetailsList: IProject[] = (
+  [
+    {
+      name: "Astro Theme Resume Minimalist",
+      description: "An open-sourced minimal resume site template built with Astro.",
+      technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
+      startYear: 2024,
+      endYear: 2024,
+      repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
+    },
+    {
+      name: "Certificate of Analysis Generator",
+      description:
+        "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
+      technologiesUsed: ["Flutter"],
+      startYear: 2023,
+      endYear: 2023,
+    },
+  ] satisfies IProject[]
+).toSorted(mostRecentYearComparator)
 ---
 
 <!-- Projects -->
