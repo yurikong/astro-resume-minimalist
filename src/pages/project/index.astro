@@ -1,0 +1,131 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro"
+import AppLink from "~components/AppLink.astro"
+import type { IProjectArchive } from "~types/project"
+import { mostRecentYearComparator } from "~utils/comparators"
+import YearRange from "~components/YearRange.astro"
+
+const projectArchiveList: IProjectArchive[] = (
+  [
+    {
+      name: "Astro Theme Resume Minimalist",
+      technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
+      link: {
+        url: "https://github.com/yurikong/astro-theme-resume-minimalist",
+        displayText: "Github",
+        iconClassName: "i-ri:github-fill",
+      },
+      startYear: 2024,
+      endYear: 2024,
+    },
+    {
+      name: "SDP Print",
+      madeAt: "Sacmi NH",
+      technologiesUsed: [
+        "Vue 3",
+        "Pinia",
+        "Vue Router",
+        "Typescript",
+        "Element Plus",
+        "UnoCSS",
+        "Vite",
+        "Wails v2",
+        "Go",
+        "Electron",
+      ],
+      startYear: 2023,
+    },
+    {
+      name: "SDP Print — Image Rotation",
+      madeAt: "Sacmi NH",
+      technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go"],
+      startYear: 2024,
+      endYear: 2024,
+    },
+    {
+      name: "Certificate of Analysis Generator",
+      technologiesUsed: ["Flutter"],
+      startYear: 2023,
+      endYear: 2023,
+    },
+    {
+      name: "Digifly",
+      madeAt: "Stramo",
+      technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "Webpack", "ECharts", "G2", "G2Plot"],
+      startYear: 2022,
+      endYear: 2023,
+    },
+    {
+      name: "Big Data Marketing Platform",
+      madeAt: "Stramo",
+      technologiesUsed: [
+        "Vue 2",
+        "Vuex",
+        "Vue Router",
+        "Javascript",
+        "Element UI",
+        "SCSS",
+        "Webpack",
+        "ECharts",
+        "G2Plot",
+      ],
+      startYear: 2021,
+      endYear: 2023,
+    },
+  ] satisfies IProjectArchive[]
+).toSorted(mostRecentYearComparator)
+---
+
+<BaseLayout>
+  <AppLink class="mb-2 block leading-tight lowercase" url="/" showPrefixIcon prefixIconClassName="i-ri:arrow-left-line">
+    back
+  </AppLink>
+  <h1 class="text-(4xl gray-800) font-medium tracking-tight capitalize">all projects</h1>
+
+  <table class="mt-12 text-left">
+    <thead>
+      <tr class="border-(b gray-800/10)">
+        <th>Year</th>
+        <th>Project</th>
+        <!-- <th>Made at</th> -->
+        <!-- <th>Technologies Used</th> -->
+        <!-- <th>Link</th> -->
+      </tr>
+    </thead>
+
+    <tbody>
+      {
+        projectArchiveList.map((it) => (
+          <tr class="border-(b gray-800/10) last:border-none">
+            {/* Year */}
+            <td class="py-4 pr-4 align-top text-sm leading-snug capitalize">
+              <YearRange startYear={it.startYear} endYear={it.endYear} />
+            </td>
+
+            {/* Project */}
+            <td class="py-4 pr-4 align-top text-gray-800 font-medium leading-snug">
+              <AppLink url={it.link?.url} showSuffixIcon={!!it.link}>
+                {it.name}
+              </AppLink>
+            </td>
+
+            {/* Made at */}
+            {/* <td>{it.madeAt}</td> */}
+
+            {/* Technologies Used */}
+            {/* <td>{it.technologiesUsed}</td> */}
+
+            {/* Link */}
+            {/* <td>{it.link}</td> */}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</BaseLayout>
+
+<style>
+  th {
+    --at-apply: py-4 pr-8 text-(sm gray-800) font-medium leading-snug;
+  }
+</style>
