@@ -2,6 +2,7 @@
 import type { IWork } from "~types/work"
 import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
+import Tag from "~components/Tag.astro"
 
 interface Props extends IWork {}
 const { jobTitle, company, companyHomepage, description, products, technologiesUsed, startYear, endYear } = Astro.props
@@ -37,7 +38,9 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
 <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
   {
     technologiesUsed.map((it) => (
-      <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal">{it}</li>
+      <li>
+        <Tag text={it} />
+      </li>
     ))
   }
 </ul>

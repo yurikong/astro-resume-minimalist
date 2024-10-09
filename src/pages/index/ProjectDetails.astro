@@ -3,6 +3,7 @@ import type { IProject, IProjectHighlight } from "~types/project"
 import type { IGithubRepository } from "~types/repository"
 import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
+import Tag from "~components/Tag.astro"
 
 interface Props extends IProject {}
 const { name, description, technologiesUsed, repository, startYear, endYear } = Astro.props
@@ -66,7 +67,9 @@ const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidd
   !!technologiesUsed && technologiesUsed.length > 0 && (
     <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
       {technologiesUsed.map((it) => (
-        <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal">{it}</li>
+        <li>
+          <Tag text={it} />
+        </li>
       ))}
     </ul>
   )
