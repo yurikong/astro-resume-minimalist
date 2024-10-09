@@ -1,0 +1,76 @@
+---
+import type { IProject, IProjectHighlight } from "~types/project"
+import type { IGithubRepository } from "~types/repository"
+import AppLink from "~components/AppLink.astro"
+
+interface Props extends IProject {}
+const { name, description, technologiesUsed, repository, startYear, endYear } = Astro.props
+
+const highlights: IProjectHighlight[] = []
+if (!!repository) {
+  try {
+    const response: Response = await fetch(repository.apiUrl)
+    const data: IGithubRepository = await response.json()
+    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = data
+    if (isPrivate === false) {
+      highlights.push(
+        {
+          name: "Stars",
+          iconClassName: "i-ri:star-fill",
+          value: starsCount,
+          hidden: starsCount < 50,
+        },
+        {
+          name: "Forks",
+          iconClassName: "i-ri:git-fork-fill",
+          value: forksCount,
+          hidden: forksCount < 50,
+        }
+      )
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidden === false)
+---
+
+<!-- Ongoing Years -->
+<div class="py-2 text-(xs gray-400) tracking-wide uppercase">
+  {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
+</div>
+
+<!-- Name -->
+<AppLink class="text-gray-800 font-medium" url={repository?.url} showSuffixIcon={!!repository?.url} title={name}>
+  {name}
+</AppLink>
+
+<!-- Description -->
+<p class="mt-2 text-sm leading-relaxed">{description}</p>
+
+<!-- Repository Stars & Forks -->
+{
+  visibleHighlights.length > 0 && (
+    <ul class="mt-2 flex flex-wrap gap-2">
+      {visibleHighlights.map((it) => (
+        <li class="flex items-center gap-1 text-sm font-medium leading-normal" title={it.name}>
+          <i class={it.iconClassName} />
+          <span>{it.value}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<!-- Technologies Used -->
+{
+  !!technologiesUsed && technologiesUsed.length > 0 && (
+    <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
+      {technologiesUsed.map((it) => (
+        <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal">{it}</li>
+      ))}
+    </ul>
+  )
+}
+
+<!-- Preview TODO -->

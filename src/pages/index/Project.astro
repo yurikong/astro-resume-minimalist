@@ -1,84 +1,54 @@
 ---
-import type { IProject, IProjectHighlight } from "~types/project"
-import type { IGithubRepository } from "~types/repository"
+import type { IProject } from "~types/project"
+import { Repository } from "~types/repository"
+import { mostRecentYearComparator } from "~utils/comparators"
+import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
 
-interface Props extends IProject {}
-
-const { name, description, technologiesUsed, repository, startYear, endYear } = Astro.props
-
-const highlights: IProjectHighlight[] = []
-if (!!repository) {
-  try {
-    const response: Response = await fetch(repository.apiUrl)
-    const data: IGithubRepository = await response.json()
-    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = data
-    if (isPrivate === false) {
-      highlights.push(
-        {
-          name: "Stars",
-          iconClassName: "i-ri:star-fill",
-          value: starsCount,
-          hidden: starsCount < 5,
-        },
-        {
-          name: "Forks",
-          iconClassName: "i-ri:git-fork-fill",
-          value: forksCount,
-          hidden: forksCount < 5,
-        }
-      )
-    }
-  } catch (error) {
-    console.error(error)
-  }
+interface Props {
+  class?: string
 }
-const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidden === false)
+const { class: className } = Astro.props
+
+const projectDetailsList: IProject[] = [
+  {
+    name: "Astro Theme Resume Minimalist",
+    description: "An open-sourced minimal resume site template built with Astro.",
+    technologiesUsed: ["Astro", "Typescript", "Unocss", "HTML & CSS", "Github Pages"],
+    startYear: 2024,
+    endYear: 2024,
+    repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
+  },
+  {
+    name: "Certificate of Analysis Generator",
+    description:
+      "Desktop app for generating Certificate of Analysis with a few clicks in an analytical testing laboratory.",
+    technologiesUsed: ["Flutter"],
+    startYear: 2023,
+    endYear: 2023,
+  },
+].toSorted(mostRecentYearComparator)
 ---
 
-<!-- Project Details -->
-<div>
-  <!-- Ongoing Years -->
-  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
-    {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
-  </div>
-
-  <div class="leading-normal">
-    <!-- Name -->
-    <div>
-      <AppLink class="text-gray-800 font-medium" url={repository?.url} showSuffixIcon={!!repository?.url} title={name}>
-        {name}
-      </AppLink>
-    </div>
-
-    <!-- Description -->
-    <p class="mt-2 text-sm leading-relaxed">{description}</p>
-
-    <!-- Repository Stars & Forks -->
+<!-- Projects -->
+<section class={className}>
+  <h2
+    class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+  >
+    projects
+  </h2>
+  <ul>
     {
-      visibleHighlights.length > 0 && (
-        <ul class="mt-2 flex flex-wrap gap-2">
-          {visibleHighlights.map((it) => (
-            <li class="flex items-center gap-1 text-sm font-medium" title={it.name}>
-              <i class={it.iconClassName} />
-              <span>{it.value}</span>
-            </li>
-          ))}
-        </ul>
-      )
+      projectDetailsList.map((it) => (
+        <li class="mb-16 last-of-type:mb-0">
+          <ProjectDetails {...it} />
+        </li>
+      ))
     }
+  </ul>
 
-    <!-- Technologies Used -->
-    {
-      !!technologiesUsed && technologiesUsed.length > 0 && (
-        <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
-          {technologiesUsed.map((it) => (
-            <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs">{it}</li>
-          ))}
-        </ul>
-      )
-    }
-
-    <!-- Preview TODO -->
-  </div>
-</div>
+  <!-- View All Projects -->
+  <AppLink class="mt-24 block text-gray-800 font-semibold capitalize" showSuffixIcon title="Project Archives">
+    view all projects
+  </AppLink>
+</section>
