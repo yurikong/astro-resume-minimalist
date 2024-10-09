@@ -1,46 +1,76 @@
 ---
 import type { IWork } from "~types/work"
+import { mostRecentYearComparator } from "~utils/comparators"
+import WorkDetails from "./WorkDetails.astro"
 import AppLink from "~components/AppLink.astro"
 
-interface Props extends IWork {}
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
 
-const { jobTitle, company, companyHomepage, description, products, technologiesUsed, startYear, endYear } = Astro.props
+const workDetailsList: IWork[] = [
+  {
+    jobTitle: "Software Engineer",
+    company: "Sacmi Machinery (Foshan Nanhai) Co., Ltd.",
+    companyHomepage: "https://www.sacmi.cn/sacmi-china",
+    description:
+      "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Provide leadership within R&D department through close collaboration and knowledge shares.",
+    products: [
+      { name: "SDP Print", url: "#" },
+      { name: "SDP Print - Image Rotation", url: "#" },
+    ],
+    technologiesUsed: [
+      "Typescript",
+      "Vue 3",
+      "Pinia",
+      "Vue Router",
+      "Element Plus",
+      "Material UI",
+      "UnoCSS",
+      "Vite",
+      "Go",
+      "Wails v2",
+      "Electron",
+      "Docker",
+    ],
+    startYear: 2023,
+  },
+  {
+    jobTitle: "Frontend Engineer",
+    company: "Stramo",
+    companyHomepage: "http://www.stramo.cn/",
+    description:
+      "Developed and maintained various interactive web apps for a bank client. Worked closely with cross-functional teams, including developers, designers, and product managers, to ensure compliance and code quality.",
+    products: [
+      { name: "Digifly", url: "#" },
+      { name: "BMP", url: "#" },
+    ],
+    technologiesUsed: ["Javascript", "Vue 2", "Vuex", "Vue Router", "Element UI", "SCSS", "Webpack"],
+    startYear: 2021,
+    endYear: 2023,
+  },
+].toSorted(mostRecentYearComparator)
 ---
 
-<!-- Work Details -->
-<div>
-  <!-- Employed Years -->
-  <div class="py-2 text-(xs gray-400) tracking-wide uppercase">
-    {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
-  </div>
-
-  <div class="leading-normal">
-    <!-- Job Title & Company -->
-    <AppLink class="text-gray-800 font-medium" url={companyHomepage} showSuffixIcon title={company}>
-      {jobTitle} · {company}
-    </AppLink>
-
-    <!-- Description -->
-    <p class="mt-2 text-sm leading-relaxed">{description}</p>
-
-    <!-- Products -->
+<section class={className}>
+  <h2
+    class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+  >
+    work
+  </h2>
+  <ul>
     {
-      !!products && products.length > 0 && (
-        <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
-          {products.map((it) => (
-            <li class="text-(nowrap sm gray-700) font-medium">
-              <AppLink url={it.url} showPrefixIcon title={it.name}>
-                {it.name}
-              </AppLink>
-            </li>
-          ))}
-        </ul>
-      )
+      workDetailsList.map((it) => (
+        <li class="mb-16 last-of-type:mb-0">
+          <WorkDetails {...it} />
+        </li>
+      ))
     }
+  </ul>
 
-    <!-- Technologies Used -->
-    <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
-      {technologiesUsed.map((it) => <li class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs">{it}</li>)}
-    </ul>
-  </div>
-</div>
+  <!-- View Full Resume -->
+  <AppLink class="mt-24 block text-gray-800 font-semibold capitalize" showSuffixIcon title="Resume">
+    view full resume
+  </AppLink>
+</section>

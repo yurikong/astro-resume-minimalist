@@ -4,55 +4,10 @@ import Profile from "./index/Profile.astro"
 import Education from "./index/Education.astro"
 import Work from "./index/Work.astro"
 import Project from "./index/Project.astro"
-import type { IWork } from "~types/work"
 import type { IProject } from "~types/project"
 import { mostRecentYearComparator } from "~utils/comparators"
 import AppLink from "~components/AppLink.astro"
 import { Repository } from "~types/repository"
-
-const workList: IWork[] = [
-  {
-    jobTitle: "Software Engineer",
-    company: "Sacmi Machinery (Foshan Nanhai) Co., Ltd.",
-    companyHomepage: "https://www.sacmi.cn/sacmi-china",
-    description:
-      "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Provide leadership within R&D department through close collaboration and knowledge shares.",
-    products: [
-      { name: "SDP Print", url: "#" },
-      { name: "SDP Print - Image Rotation", url: "#" },
-    ],
-    technologiesUsed: [
-      "Typescript",
-      "Vue 3",
-      "Pinia",
-      "Vue Router",
-      "Element Plus",
-      "Material UI",
-      "UnoCSS",
-      "Vite",
-      "Go",
-      "Wails v2",
-      "Electron",
-      "Docker",
-    ],
-    startYear: 2023,
-  },
-  {
-    jobTitle: "Frontend Engineer",
-    company: "Stramo",
-    companyHomepage: "http://www.stramo.cn/",
-    description:
-      "Developed and maintained various interactive web apps for a bank client. Worked closely with cross-functional teams, including developers, designers, and product managers, to ensure compliance and code quality.",
-    products: [
-      { name: "Digifly", url: "#" },
-      { name: "BMP", url: "#" },
-    ],
-    technologiesUsed: ["Javascript", "Vue 2", "Vuex", "Vue Router", "Element UI", "SCSS", "Webpack"],
-    startYear: 2021,
-    endYear: 2023,
-  },
-]
-workList.sort(mostRecentYearComparator)
 
 const projectList: IProject[] = [
   {
@@ -79,29 +34,7 @@ projectList.sort(mostRecentYearComparator)
   <main>
     <Profile />
     <Education class="mt-36" />
-
-    <!-- Work -->
-    <section class="mt-36">
-      <h2
-        class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
-      >
-        work
-      </h2>
-      <ul>
-        {
-          workList.map((it) => (
-            <li class="mb-16 last-of-type:mb-0">
-              <Work {...it} />
-            </li>
-          ))
-        }
-      </ul>
-
-      <!-- View Full Resume -->
-      <div class="mt-24">
-        <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
-      </div>
-    </section>
+    <Work class="mt-36" />
 
     <!-- Projects -->
     <section class="mt-36">
