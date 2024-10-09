@@ -26,7 +26,7 @@ if (url.startsWith("/")) {
 
 <app-link class:list={[className]} data-url={url}>
   <a
-    class:list={["block", { "cursor-default": url === "#" }]}
+    class:list={["inline-block", { "cursor-default": url === "#" }]}
     href={url}
     target={isInternal ? null : "_blank"}
     rel={isInternal ? null : "noopener noreferrer"}
