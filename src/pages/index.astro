@@ -98,74 +98,76 @@ projectList.sort(mostRecentYearComparator)
 ---
 
 <BaseLayout>
-  <!-- Profile -->
-  <section class="mt-9">
-    <Profile />
-  </section>
+  <main>
+    <!-- Profile -->
+    <section class="mt-9">
+      <Profile />
+    </section>
 
-  <!-- Education -->
-  <section class="mt-36">
-    <h2
-      class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
-    >
-      education
-    </h2>
-    <ul>
-      {
-        educationList.map((it) => (
-          <li class="mb-16 last-of-type:mb-0">
-            <Education {...it} />
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+    <!-- Education -->
+    <section class="mt-36">
+      <h2
+        class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+      >
+        education
+      </h2>
+      <ul>
+        {
+          educationList.map((it) => (
+            <li class="mb-16 last-of-type:mb-0">
+              <Education {...it} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
 
-  <!-- Work -->
-  <section class="mt-36">
-    <h2
-      class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
-    >
-      work
-    </h2>
-    <ul>
-      {
-        workList.map((it) => (
-          <li class="mb-16 last-of-type:mb-0">
-            <Work {...it} />
-          </li>
-        ))
-      }
-    </ul>
+    <!-- Work -->
+    <section class="mt-36">
+      <h2
+        class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+      >
+        work
+      </h2>
+      <ul>
+        {
+          workList.map((it) => (
+            <li class="mb-16 last-of-type:mb-0">
+              <Work {...it} />
+            </li>
+          ))
+        }
+      </ul>
 
-    <!-- View Full Resume -->
-    <div class="mt-24">
-      <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
-    </div>
-  </section>
+      <!-- View Full Resume -->
+      <div class="mt-24">
+        <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Resume">view full resume</AppLink>
+      </div>
+    </section>
 
-  <!-- Projects -->
-  <section class="mt-36">
-    <h2
-      class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
-    >
-      projects
-    </h2>
-    <ul>
-      {
-        projectList.map((it) => (
-          <li class="mb-16 last-of-type:mb-0">
-            <Project {...it} />
-          </li>
-        ))
-      }
-    </ul>
+    <!-- Projects -->
+    <section class="mt-36">
+      <h2
+        class="sticky top-0 z-20 mb-4 w-vw bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6"
+      >
+        projects
+      </h2>
+      <ul>
+        {
+          projectList.map((it) => (
+            <li class="mb-16 last-of-type:mb-0">
+              <Project {...it} />
+            </li>
+          ))
+        }
+      </ul>
 
-    <!-- View All Projects -->
-    <div class="mt-24">
-      <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Projects">
-        view all projects
-      </AppLink>
-    </div>
-  </section>
+      <!-- View All Projects -->
+      <div class="mt-24">
+        <AppLink class="text-gray-800 font-semibold capitalize" showSuffixIcon title="Projects">
+          view all projects
+        </AppLink>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
