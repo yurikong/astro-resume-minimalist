@@ -4,9 +4,17 @@ import type { Repository } from "./repository"
 export interface IProject extends IExperience {
   name: string
   description: string
+  madeAt?: string | undefined
   technologiesUsed: string[]
   preview?: string | undefined
+  link?: IProjectLink | undefined
   repository?: Repository | undefined
+}
+
+export interface IProjectLink {
+  url: string
+  displayText: string
+  iconClassName?: string | undefined
 }
 
 export interface IProjectHighlight {
@@ -14,17 +22,4 @@ export interface IProjectHighlight {
   iconClassName: string
   value: number
   hidden: boolean
-}
-
-export interface IProjectArchive extends IExperience {
-  name: string
-  madeAt?: string | undefined
-  technologiesUsed: string[]
-  link?: IProjectArchiveLink | undefined
-}
-
-export interface IProjectArchiveLink {
-  url: string
-  displayText: string
-  iconClassName?: string | undefined
 }
