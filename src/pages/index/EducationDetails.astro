@@ -1,5 +1,6 @@
 ---
 import type { IEducation } from "~types/education"
+import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
 
 interface Props extends IEducation {}
@@ -7,9 +8,7 @@ const { university, universityHomepage, degree, major, GPA, startYear, endYear }
 ---
 
 <!-- Attended Years -->
-<div class="py-2 text-(xs gray-400) tracking-wide uppercase">
-  {startYear}{startYear !== endYear && <span> — {endYear ?? "Present"}</span>}
-</div>
+<YearRange class="py-2 text-(xs gray-400) tracking-wide uppercase" startYear={startYear} endYear={endYear} />
 
 <!-- University Name -->
 <AppLink class="text-gray-800 font-medium" url={universityHomepage} showSuffixIcon>
