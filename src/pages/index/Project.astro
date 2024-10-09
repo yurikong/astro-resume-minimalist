@@ -1,5 +1,6 @@
 ---
 import type { IProject } from "~types/project"
+import { Repository } from "~/types/repository"
 import { mostRecentYearComparator } from "~utils/comparators"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
@@ -16,6 +17,12 @@ const projectDetailsList: IProject[] = []
 try {
   const response = await fetch(apiUrl)
   const data: IProject[] = await response.json()
+  data.forEach((it) => {
+    if (it.repository) {
+      const { owner, name } = it.repository
+      it.repository = new Repository(owner, name)
+    }
+  })
   const selectedProjects: IProject[] = data.toSorted(mostRecentYearComparator).slice(0, 5)
   projectDetailsList.push(...selectedProjects)
 } catch (error) {
