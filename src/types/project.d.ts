@@ -2,6 +2,7 @@ import type { IExperience } from "./experience"
 import type { GithubRepository } from "~classes/repository"
 
 export interface IProject extends IExperience {
+  id: string
   name: string
   description: string
   madeAt?: string | undefined

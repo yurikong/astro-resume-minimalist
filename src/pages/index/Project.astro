@@ -29,7 +29,7 @@ try {
   <ul>
     {
       projectDetailsList.map((it) => (
-        <li class="mb-16 last-of-type:mb-0">
+        <li id={it.id} class="mb-16 last-of-type:mb-0">
           <ProjectDetails {...it} />
         </li>
       ))
