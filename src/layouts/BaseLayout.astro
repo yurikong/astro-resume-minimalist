@@ -1,7 +1,6 @@
 ---
 import Inter from "~assets/fonts/Inter.astro"
 import AppFooter from "~components/AppFooter.astro"
-import "~styles/index.css"
 
 const title: string = "Astro Theme Resume Minimalist — Jianqiang Du"
 const description: string = "An open-sourced minimal resume site template built with Astro."
@@ -16,7 +15,7 @@ const description: string = "An open-sourced minimal resume site template built 
   <meta name="description" content={description} />
   <Inter />
 
-  <body class="relative bg-gray-100 text-gray-500">
+  <body class="relative bg-gray-100 text-gray-500 leading-relaxed tabular-nums antialiased">
     <div class="px-6 py-12">
       <slot />
     </div>
@@ -30,3 +29,15 @@ const description: string = "An open-sourced minimal resume site template built 
 
   setDarkClass()
 </script>
+
+<style>
+  :root {
+    --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB",
+      "Segoe UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  html {
+    font-family: var(--font-family);
+  }
+</style>
