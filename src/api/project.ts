@@ -9,8 +9,8 @@ import { mostRecentYearComparator } from "~utils/comparators"
 export async function getAllProjects(): Promise<IProject[]> {
   const site: string = import.meta.env.DEV ? `http://localhost:${import.meta.env.PORT}` : import.meta.env.SITE
   const apiUrl: string = `${site}${import.meta.env.BASE_URL}/projects.json`
-  const response: Response = await fetch(apiUrl)
-  const data: IProject[] = await response.json()
+  const r: Response = await fetch(apiUrl)
+  const data: IProject[] = await r.json()
   data.forEach((it) => {
     if (!!it.repository) {
       const { owner, name } = it.repository
