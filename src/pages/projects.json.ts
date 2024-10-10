@@ -5,6 +5,7 @@ import { GithubRepository } from "~classes/repository"
 export const GET: APIRoute = () => {
   const projectList: IProject[] = [
     {
+      id: "astro-theme-resume-minimalist",
       name: "Astro Theme Resume Minimalist",
       description: "An open-sourced minimal resume site template built with Astro.",
       technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
@@ -19,6 +20,7 @@ export const GET: APIRoute = () => {
       endYear: 2024,
     },
     {
+      id: "sdp-print",
       name: "SDP Print",
       description: "Desktop app for ceramic tiles production using Sacmi NH's single-pass inkjet printer (SDP).",
       technologiesUsed: [
@@ -37,6 +39,7 @@ export const GET: APIRoute = () => {
       startYear: 2023,
     },
     {
+      id: "sdp-print-image-rotation",
       name: "SDP Print — Image Rotation",
       description:
         "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
@@ -46,6 +49,7 @@ export const GET: APIRoute = () => {
       endYear: 2024,
     },
     {
+      id: "certificate-of-analysis-generator",
       name: "Certificate of Analysis Generator",
       description: "Desktop app for generating Certificate of Analysis for use in an analytical testing laboratory.",
       technologiesUsed: ["Flutter"],
@@ -54,6 +58,7 @@ export const GET: APIRoute = () => {
       endYear: 2023,
     },
     {
+      id: "digifly",
       name: "Digifly",
       description: "Data visualization web app for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Echarts", "G2", "G2Plot", "Swiper"],
@@ -62,6 +67,7 @@ export const GET: APIRoute = () => {
       endYear: 2023,
     },
     {
+      id: "digifly-admin",
       name: "Digifly Admin",
       description: "Admin dashboard for data visualization web app (Digifly) for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Element UI"],
@@ -69,6 +75,7 @@ export const GET: APIRoute = () => {
       endYear: 2023,
     },
     {
+      id: "big-data-marketing-platform",
       name: "Big Data Marketing Platform",
       description: "Web app for marketing for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Element UI", "Echarts", "G2", "Swiper"],
