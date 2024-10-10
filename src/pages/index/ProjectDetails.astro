@@ -1,32 +1,31 @@
 ---
 import type { IProject, IProjectHighlight } from "~types/project"
-import type { IGithubRepository } from "~types/repository"
+import type { IGithubRepositoryInfo } from "~types/repository"
 import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
 import Tag from "~components/Tag.astro"
 
 interface Props extends IProject {}
-const { name, description, technologiesUsed, repository, startYear, endYear } = Astro.props
+const { name, description, technologiesUsed, link, repository, startYear, endYear } = Astro.props
+
+const url: string | undefined = link?.url ?? repository?.url
 
 const highlights: IProjectHighlight[] = []
 if (!!repository) {
   try {
-    const response: Response = await fetch(repository.apiUrl)
-    const data: IGithubRepository = await response.json()
-    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = data
+    const repositoryInfo: IGithubRepositoryInfo = await repository.getInfo()
+    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = repositoryInfo
     if (isPrivate === false) {
       highlights.push(
         {
           name: "Stars",
           iconClassName: "i-ri:star-fill",
           value: starsCount,
-          hidden: starsCount < 50,
         },
         {
           name: "Forks",
           iconClassName: "i-ri:git-fork-fill",
           value: forksCount,
-          hidden: forksCount < 50,
         }
       )
     }
@@ -34,14 +33,14 @@ if (!!repository) {
     console.error(error)
   }
 }
-const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidden === false)
+const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.value > 0)
 ---
 
 <!-- Ongoing Years -->
 <YearRange class="py-2 text-(xs gray-400) tracking-wide uppercase" startYear={startYear} endYear={endYear} />
 
 <!-- Name -->
-<AppLink class="block text-gray-800 font-medium" url={repository?.url} showSuffixIcon={!!repository?.url}>
+<AppLink class="block text-gray-800 font-medium" url={url} showSuffixIcon={!!url}>
   {name}
 </AppLink>
 
@@ -50,9 +49,9 @@ const visibleHighlights: IProjectHighlight[] = highlights.filter((it) => it.hidd
 
 <!-- Repository Stars & Forks -->
 {
-  visibleHighlights.length > 0 && (
+  selectedHighlights.length > 0 && (
     <ul class="mt-2 flex flex-wrap gap-2">
-      {visibleHighlights.map((it) => (
+      {selectedHighlights.map((it) => (
         <li class="flex items-center gap-1 text-sm font-medium leading-normal" title={it.name}>
           <i class={it.iconClassName} />
           <span>{it.value}</span>

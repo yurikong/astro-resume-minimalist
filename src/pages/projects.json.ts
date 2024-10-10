@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
 import type { IProject } from "~types/project"
-import { Repository } from "~types/repository"
+import { GithubRepository } from "~classes/repository"
 
 export const GET: APIRoute = () => {
   const projectList: IProject[] = [
@@ -10,11 +10,11 @@ export const GET: APIRoute = () => {
       technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
       // preview: "", // TODO
       link: {
-        url: "https://github.com/yurikong/astro-theme-resume-minimalist",
+        url: "https://yurikong.github.io/astro-theme-resume-minimalist/",
         displayText: "Github",
         iconClassName: "i-ri:github-fill",
       },
-      repository: new Repository("yurikong", "astro-theme-resume-minimalist"),
+      repository: new GithubRepository("yurikong", "astro-theme-resume-minimalist"),
       startYear: 2024,
       endYear: 2024,
     },

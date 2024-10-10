@@ -1,5 +1,5 @@
 import type { IProject } from "~/types/project"
-import { Repository } from "~/types/repository"
+import { GithubRepository } from "~classes/repository"
 
 /**
  * Get all projects.
@@ -13,7 +13,7 @@ export async function getAllProjects(): Promise<IProject[]> {
   data.forEach((it) => {
     if (!!it.repository) {
       const { owner, name } = it.repository
-      it.repository = new Repository(owner, name)
+      it.repository = new GithubRepository(owner, name)
     }
   })
   return data
