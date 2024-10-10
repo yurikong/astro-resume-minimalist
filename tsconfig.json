@@ -5,6 +5,7 @@
     "lib": ["DOM", "ESNext"],
     "paths": {
       "~/*": ["src/*"],
+      "~api/*": ["src/api/*"],
       "~components/*": ["src/components/*"],
       "~assets/*": ["src/assets/*"],
       "~layouts/*": ["src/layouts/*"],
