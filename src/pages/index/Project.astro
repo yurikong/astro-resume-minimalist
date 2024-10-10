@@ -1,7 +1,6 @@
 ---
 import type { IProject } from "~types/project"
-import { getAllProjects } from "~/api/project"
-import { mostRecentYearComparator } from "~utils/comparators"
+import { getDisplayProjects } from "~api/project"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
 
@@ -13,9 +12,8 @@ const { class: className } = Astro.props
 const projectDetailsList: IProject[] = []
 
 try {
-  const projects: IProject[] = await getAllProjects()
-  const selectedProjects: IProject[] = projects.toSorted(mostRecentYearComparator).slice(0, 5)
-  projectDetailsList.push(...selectedProjects)
+  const projects: IProject[] = await getDisplayProjects()
+  projectDetailsList.push(...projects)
 } catch (error) {
   console.error(error)
 }

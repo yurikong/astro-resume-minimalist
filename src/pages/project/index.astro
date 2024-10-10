@@ -3,15 +3,13 @@ import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import { getAllProjects } from "~api/project"
 import type { IProject } from "~types/project"
-import { mostRecentYearComparator } from "~utils/comparators"
 import YearRange from "~components/YearRange.astro"
 
 const projects: IProject[] = []
 
 try {
   const projectList: IProject[] = await getAllProjects()
-  const sortedProjectList: IProject[] = projectList.toSorted(mostRecentYearComparator)
-  projects.push(...sortedProjectList)
+  projects.push(...projectList)
 } catch (error) {
   console.error(error)
 }

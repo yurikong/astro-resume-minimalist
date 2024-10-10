@@ -1,8 +1,9 @@
-import type { IProject } from "~/types/project"
+import type { IProject } from "~types/project"
 import { GithubRepository } from "~classes/repository"
+import { mostRecentYearComparator } from "~utils/comparators"
 
 /**
- * Get all projects.
+ * Get all projects sorted in most recent year order.
  * @returns {Promise<IProject[]>}
  */
 export async function getAllProjects(): Promise<IProject[]> {
@@ -16,5 +17,15 @@ export async function getAllProjects(): Promise<IProject[]> {
       it.repository = new GithubRepository(owner, name)
     }
   })
-  return data
+  return data.toSorted(mostRecentYearComparator)
+}
+
+/**
+ * Get `n` most recent projects for display
+ * @param {number} n display count
+ * @returns {Promise<IProject[]>}
+ */
+export async function getDisplayProjects(n: number = 5): Promise<IProject[]> {
+  const projects: IProject[] = await getAllProjects()
+  return projects.slice(0, n)
 }
