@@ -5,7 +5,7 @@ import AppLink from "~components/AppLink.astro"
 import Tag from "~components/Tag.astro"
 
 interface Props extends IWork {}
-const { jobTitle, company, companyHomepage, description, products, technologiesUsed, startYear, endYear } = Astro.props
+const { jobTitle, company, companyHomepage, description, projects, technologiesUsed, startYear, endYear } = Astro.props
 ---
 
 <!-- Employed Years -->
@@ -21,9 +21,9 @@ const { jobTitle, company, companyHomepage, description, products, technologiesU
 
 <!-- Products -->
 {
-  !!products && products.length > 0 && (
+  !!projects && projects.length > 0 && (
     <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
-      {products.map((it) => (
+      {projects.map((it) => (
         <li class="text-(nowrap sm gray-700) font-medium leading-normal">
           <AppLink url={it.url} showPrefixIcon>
             {it.name}
