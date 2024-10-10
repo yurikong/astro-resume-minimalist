@@ -1,79 +1,20 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
-import type { IProjectArchive } from "~types/project"
+import { getAllProjects } from "~api/project"
+import type { IProject } from "~types/project"
 import { mostRecentYearComparator } from "~utils/comparators"
 import YearRange from "~components/YearRange.astro"
 
-const projectArchiveList: IProjectArchive[] = (
-  [
-    {
-      name: "Astro Theme Resume Minimalist",
-      technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
-      link: {
-        url: "https://github.com/yurikong/astro-theme-resume-minimalist",
-        displayText: "Github",
-        iconClassName: "i-ri:github-fill",
-      },
-      startYear: 2024,
-      endYear: 2024,
-    },
-    {
-      name: "SDP Print",
-      madeAt: "Sacmi NH",
-      technologiesUsed: [
-        "Vue 3",
-        "Pinia",
-        "Vue Router",
-        "Typescript",
-        "Element Plus",
-        "UnoCSS",
-        "Vite",
-        "Wails v2",
-        "Go",
-        "Electron",
-      ],
-      startYear: 2023,
-    },
-    {
-      name: "SDP Print — Image Rotation",
-      madeAt: "Sacmi NH",
-      technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go"],
-      startYear: 2024,
-      endYear: 2024,
-    },
-    {
-      name: "Certificate of Analysis Generator",
-      technologiesUsed: ["Flutter"],
-      startYear: 2023,
-      endYear: 2023,
-    },
-    {
-      name: "Digifly",
-      madeAt: "Stramo",
-      technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "Webpack", "ECharts", "G2", "G2Plot"],
-      startYear: 2022,
-      endYear: 2023,
-    },
-    {
-      name: "Big Data Marketing Platform",
-      madeAt: "Stramo",
-      technologiesUsed: [
-        "Vue 2",
-        "Vuex",
-        "Vue Router",
-        "Javascript",
-        "Element UI",
-        "SCSS",
-        "Webpack",
-        "ECharts",
-        "G2Plot",
-      ],
-      startYear: 2021,
-      endYear: 2023,
-    },
-  ] satisfies IProjectArchive[]
-).toSorted(mostRecentYearComparator)
+const projects: IProject[] = []
+
+try {
+  const projectList: IProject[] = await getAllProjects()
+  const sortedProjectList: IProject[] = projectList.toSorted(mostRecentYearComparator)
+  projects.push(...sortedProjectList)
+} catch (error) {
+  console.error(error)
+}
 ---
 
 <BaseLayout>
@@ -95,7 +36,7 @@ const projectArchiveList: IProjectArchive[] = (
 
     <tbody>
       {
-        projectArchiveList.map((it) => (
+        projects.map((it) => (
           <tr class="border-(b gray-800/10) last:border-none">
             {/* Year */}
             <td class="py-4 pr-4 align-top text-sm leading-snug capitalize">
