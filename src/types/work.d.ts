@@ -5,11 +5,11 @@ export interface IWork extends IExperience {
   company: string
   companyHomepage: string
   description: string
-  products?: IProduct[] | undefined
+  projects?: IWorkProject[] | undefined
   technologiesUsed: string[]
 }
 
-export interface IProduct {
+export interface IWorkProject {
   name: string
   url: string
 }
