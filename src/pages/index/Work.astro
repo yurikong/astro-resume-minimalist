@@ -1,6 +1,6 @@
 ---
 import type { IWork } from "~types/work"
-import { mostRecentYearComparator } from "~utils/comparators"
+import { getAllWorks } from "~/api/work"
 import WorkDetails from "./WorkDetails.astro"
 import AppLink from "~components/AppLink.astro"
 
@@ -9,51 +9,14 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const workDetailsList: IWork[] = (
-  [
-    {
-      jobTitle: "Software Engineer",
-      company: "Sacmi Machinery (Foshan Nanhai) Co., Ltd.",
-      companyHomepage: "https://www.sacmi.cn/sacmi-china",
-      description:
-        "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Obtained software copyright for the company. Provide leadership within R&D department through close collaboration and knowledge shares.",
-      products: [
-        { name: "SDP Print", url: "#" },
-        { name: "SDP Print - Image Rotation", url: "#" },
-      ],
-      technologiesUsed: [
-        "Vue 3",
-        "Pinia",
-        "Vue Router",
-        "React",
-        "Typescript",
-        "Element Plus",
-        "Material UI",
-        "UnoCSS",
-        "Vite",
-        "Go",
-        "Wails v2",
-        "Electron",
-        "Docker",
-      ],
-      startYear: 2023,
-    },
-    {
-      jobTitle: "Frontend Engineer",
-      company: "Stramo",
-      companyHomepage: "http://www.stramo.cn/",
-      description:
-        "Developed and maintained various interactive web apps for a bank client. Worked closely with cross-functional teams, including developers, designers, and product managers, to ensure compliance and code quality.",
-      products: [
-        { name: "Digifly", url: "#" },
-        { name: "Big Data Marketing Platform", url: "#" },
-      ],
-      technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Element UI", "SCSS", "Webpack"],
-      startYear: 2021,
-      endYear: 2023,
-    },
-  ] satisfies IWork[]
-).toSorted(mostRecentYearComparator)
+const workDetailsList: IWork[] = []
+
+try {
+  const works: IWork[] = await getAllWorks()
+  workDetailsList.push(...works)
+} catch (error) {
+  console.error(error)
+}
 ---
 
 <section class={className}>
