@@ -1,5 +1,5 @@
 import type { IExperience } from "./experience"
-import type { Repository } from "./repository"
+import type { GithubRepository } from "~classes/repository"
 
 export interface IProject extends IExperience {
   name: string
@@ -8,7 +8,7 @@ export interface IProject extends IExperience {
   technologiesUsed: string[]
   preview?: string | undefined
   link?: IProjectLink | undefined
-  repository?: Repository | undefined
+  repository?: GithubRepository | undefined
 }
 
 export interface IProjectLink {
@@ -21,5 +21,4 @@ export interface IProjectHighlight {
   name: string
   iconClassName: string
   value: number
-  hidden: boolean
 }

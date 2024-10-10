@@ -6,6 +6,7 @@
     "paths": {
       "~/*": ["src/*"],
       "~api/*": ["src/api/*"],
+      "~classes/*": ["src/classes/*"],
       "~components/*": ["src/components/*"],
       "~assets/*": ["src/assets/*"],
       "~layouts/*": ["src/layouts/*"],
