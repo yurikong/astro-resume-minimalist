@@ -42,7 +42,7 @@ export const GET: APIRoute = () => {
       description:
         "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
       technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
-      assetPath: "/src/assets/images/sdp-print-image-rotation.png",
+      // assetPath: "/src/assets/images/sdp-print-image-rotation.png",
       startYear: 2024,
       endYear: 2024,
     },
