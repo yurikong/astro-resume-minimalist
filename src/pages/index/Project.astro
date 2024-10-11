@@ -12,7 +12,7 @@ const { class: className } = Astro.props
 const projectDetailsList: IProject[] = []
 
 try {
-  const projects: IProject[] = await getDisplayProjects()
+  const projects: IProject[] = await getDisplayProjects(10)
   projectDetailsList.push(...projects)
 } catch (error) {
   console.error(error)
