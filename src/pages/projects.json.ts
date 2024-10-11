@@ -72,7 +72,7 @@ export const GET: APIRoute = () => {
     },
     {
       id: "sdebank-management-cockpit",
-      name: "SdeBank Management Cockpit",
+      name: "Sdebank Management Cockpit",
       description: "Management Cockpit on the web for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "ECharts", "G2", "G2Plot"],
       startYear: 2022,
