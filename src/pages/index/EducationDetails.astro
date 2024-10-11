@@ -8,18 +8,18 @@ const { university, universityHomepage, degree, major, GPA, startYear, endYear }
 ---
 
 <!-- Attended Years -->
-<YearRange class="py-2 text-(xs gray-400) tracking-wide uppercase" startYear={startYear} endYear={endYear} />
+<YearRange class="py-2 text-xs tracking-wide uppercase" startYear={startYear} endYear={endYear} />
 
 <!-- University Name -->
-<AppLink class="block text-gray-800 font-medium" url={universityHomepage} showSuffixIcon>
+<AppLink class="block text-gray-800 font-medium dark:text-gray-300" url={universityHomepage} showSuffixIcon>
   {university}
 </AppLink>
 
 <!-- Major & Degree -->
-<div class="flex text-(sm gray-800) leading-relaxed">
+<div class="flex text-(sm gray-700) leading-relaxed dark:text-gray-400">
   {major}
   {!!degree && <span>, {degree}</span>}
 </div>
 
 <!-- GPA -->
-<div class="text-(sm gray-800) leading-relaxed">GPA: {GPA}</div>
+<div class="text-(sm gray-700) leading-relaxed dark:text-gray-400">GPA: {GPA}</div>

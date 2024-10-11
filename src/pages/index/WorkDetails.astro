@@ -9,10 +9,10 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
 ---
 
 <!-- Employed Years -->
-<YearRange class="py-2 text-(xs gray-400) tracking-wide uppercase" startYear={startYear} endYear={endYear} />
+<YearRange class="py-2 text-xs tracking-wide uppercase" startYear={startYear} endYear={endYear} />
 
 <!-- Job Title & Company -->
-<AppLink class="block text-gray-800 font-medium" url={companyHomepage} showSuffixIcon>
+<AppLink class="block text-gray-800 font-medium dark:text-gray-300" url={companyHomepage} showSuffixIcon>
   {jobTitle} · {company}
 </AppLink>
 
@@ -24,7 +24,7 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
   !!projects && projects.length > 0 && (
     <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
       {projects.map((it) => (
-        <li class="text-(nowrap sm gray-700) font-medium leading-normal">
+        <li class="text-(nowrap sm gray-700) font-medium leading-normal dark:text-gray-400">
           <AppLink url={it.url} showPrefixIcon>
             {it.name}
           </AppLink>

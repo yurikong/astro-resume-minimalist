@@ -5,4 +5,8 @@ interface Props {
 const { text } = Astro.props
 ---
 
-<div class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal">{text}</div>
+<div
+  class="border-(px gray-300 solid) rounded-full px-2 py-1 text-xs leading-normal dark:(border-gray-600 text-gray-400)"
+>
+  {text}
+</div>
