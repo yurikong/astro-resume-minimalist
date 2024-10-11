@@ -9,7 +9,6 @@ export const GET: APIRoute = () => {
       name: "Astro Theme Resume Minimalist",
       description: "An open-sourced minimal resume site template built with Astro.",
       technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
-      // preview: "", // TODO
       link: {
         url: "https://yurikong.github.io/astro-theme-resume-minimalist/",
         displayText: "Github",
@@ -20,7 +19,7 @@ export const GET: APIRoute = () => {
       endYear: 2024,
     },
     {
-      id: "sdp-print",
+      id: "sacmi-nh-sdp-print",
       name: "SDP Print",
       description: "Desktop app for ceramic tiles production using Sacmi NH's single-pass inkjet printer (SDP).",
       technologiesUsed: [
@@ -35,39 +34,36 @@ export const GET: APIRoute = () => {
         "Go",
         "Electron",
       ],
-      // preview: "", // TODO
       startYear: 2023,
     },
     {
-      id: "sdp-print-image-rotation",
+      id: "sacmi-nh-sdp-print-image-rotation",
       name: "SDP Print — Image Rotation",
       description:
         "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
       technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
-      // preview: "", // TODO
+      assetPath: "/src/assets/images/sdp-print-image-rotation.png",
       startYear: 2024,
       endYear: 2024,
     },
     {
-      id: "certificate-of-analysis-generator",
+      id: "aats-certificate-of-analysis-generator",
       name: "Certificate of Analysis Generator",
       description: "Desktop app for generating Certificate of Analysis for use in an analytical testing laboratory.",
       technologiesUsed: ["Flutter"],
-      // preview: "", // TODO
       startYear: 2023,
       endYear: 2023,
     },
     {
-      id: "digifly",
+      id: "sdebank-digifly",
       name: "Digifly",
       description: "Data visualization web app for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Echarts", "G2", "G2Plot", "Swiper"],
-      // preview: "", // TODO
       startYear: 2022,
       endYear: 2023,
     },
     {
-      id: "digifly-admin",
+      id: "sdebank-digifly-admin",
       name: "Digifly Admin",
       description: "Admin dashboard for data visualization web app (Digifly) for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Element UI"],
@@ -75,11 +71,26 @@ export const GET: APIRoute = () => {
       endYear: 2023,
     },
     {
-      id: "big-data-marketing-platform",
+      id: "sdebank-management-cockpit",
+      name: "SdeBank Management Cockpit",
+      description: "Management Cockpit on the web for a bank client.",
+      technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "ECharts", "G2", "G2Plot"],
+      startYear: 2022,
+      endYear: 2022,
+    },
+    {
+      id: "sdebank-groton-snakehead-monitor",
+      name: "Snakehead Monitor",
+      description: "Web app for monitoring snakehead prices.",
+      technologiesUsed: ["Vue 2", "Javascript", "G2Plot"],
+      startYear: 2022,
+      endYear: 2022,
+    },
+    {
+      id: "sdebank-big-data-marketing-platform",
       name: "Big Data Marketing Platform",
       description: "Web app for marketing for a bank client.",
       technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "Element UI", "Echarts", "G2", "Swiper"],
-      // preview: "", // TODO
       startYear: 2021,
       endYear: 2023,
     },
