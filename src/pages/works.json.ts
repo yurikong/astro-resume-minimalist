@@ -11,7 +11,7 @@ export const GET: APIRoute = () => {
         "Developed and styled various desktop apps for single-pass inkjet printer in ceramic tiles production. Deployed and maintained self-hosted private git and npm repositories. Provided assistance in obtaining software copyrights. Provided leadership within R&D department through close collaboration and knowledge shares.",
       projects: [
         { name: "SDP Print", url: "#sacmi-nh-sdp-print" },
-        { name: "SDP Print — Image Rotation", url: "#sacmi-nh-sdp-print-image-rotation" },
+        { name: "SDP Print - Image Rotation", url: "#sacmi-nh-sdp-print-image-rotation" },
       ],
       technologiesUsed: [
         "Vue 3",
