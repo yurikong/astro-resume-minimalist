@@ -38,7 +38,7 @@ export const GET: APIRoute = () => {
     },
     {
       id: "sacmi-nh-sdp-print-image-rotation",
-      name: "SDP Print - Image Rotation",
+      name: "SDP Print-Image Rotation",
       description:
         "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
       technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
