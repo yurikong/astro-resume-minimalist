@@ -22,6 +22,7 @@ export const GET: APIRoute = () => {
         "Element Plus",
         "Material UI",
         "UnoCSS",
+        "CSS",
         "Vite",
         "Go",
         "Wails v2",
