@@ -1,6 +1,6 @@
 ---
 import type { IEducation } from "~types/education"
-import { mostRecentYearComparator } from "~utils/comparators"
+import { getAllEducations } from "~api/education"
 import EducationDetails from "./EducationDetails.astro"
 
 interface Props {
@@ -8,27 +8,14 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const educationDetailsList: IEducation[] = (
-  [
-    {
-      university: "California State University, Long Beach",
-      universityHomepage: "https://www.csulb.edu/",
-      degree: "B.S.",
-      major: "Computer Science",
-      GPA: "3.65",
-      startYear: 2018,
-      endYear: 2020,
-    },
-    {
-      university: "Mt. San Antonio College",
-      universityHomepage: "https://www.mtsac.edu/",
-      major: "Computer Science",
-      GPA: "3.48",
-      startYear: 2015,
-      endYear: 2018,
-    },
-  ] satisfies IEducation[]
-).toSorted(mostRecentYearComparator)
+const educationDetailsList: IEducation[] = []
+
+try {
+  const educations: IEducation[] = await getAllEducations()
+  educationDetailsList.push(...educations)
+} catch (error) {
+  console.error(error)
+}
 ---
 
 <section class={className}>
