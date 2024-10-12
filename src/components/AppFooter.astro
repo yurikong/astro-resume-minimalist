@@ -2,7 +2,7 @@
 import AppLink from "./AppLink.astro"
 ---
 
-<footer class="px-6 pb-12 pt-24 text-(center xs) leading-relaxed">
+<footer class:list={["text-center", "text-xs", "leading-relaxed", "px-6", "pt-24", "pb-12"]}>
   <p>
     <!-- Author -->
     <div>
@@ -12,7 +12,11 @@ import AppLink from "./AppLink.astro"
         by
       </span>
       <span class="inline-flex">
-        <AppLink class="text-gray-800 capitalize dark:text-gray-400" url="https://yurikong.github.io" showSuffixIcon>
+        <AppLink
+          class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+          url="https://yurikong.github.io"
+          showSuffixIcon
+        >
           jianqiang du
         </AppLink>
         .
@@ -23,7 +27,11 @@ import AppLink from "./AppLink.astro"
     <div>
       <span>Released under</span>
       <span class="inline-flex">
-        <AppLink class="text-gray-800 dark:text-gray-400" url="https://opensource.org/license/mit" showSuffixIcon>
+        <AppLink
+          class:list={["text-gray-800", "dark:text-gray-400"]}
+          url="https://opensource.org/license/mit"
+          showSuffixIcon
+        >
           The MIT License
         </AppLink>
         .
@@ -34,7 +42,11 @@ import AppLink from "./AppLink.astro"
     <div>
       <span>Credits —</span>
       <span class="inline-flex">
-        <AppLink class="text-gray-800 capitalize dark:text-gray-400" url="https://brittanychiang.com" showSuffixIcon>
+        <AppLink
+          class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+          url="https://brittanychiang.com"
+          showSuffixIcon
+        >
           brittany chiang
         </AppLink>
         .
@@ -44,8 +56,12 @@ import AppLink from "./AppLink.astro"
     <!-- Engine -->
     <div>
       <span>Site built with</span>
-      <span class="inline-fle">
-        <AppLink class="text-gray-800 capitalize dark:text-gray-400" url="https://astro.build" showSuffixIcon>
+      <span class="inline-flex">
+        <AppLink
+          class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+          url="https://astro.build"
+          showSuffixIcon
+        >
           Astro
         </AppLink>
         .

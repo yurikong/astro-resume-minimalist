@@ -21,14 +21,31 @@ try {
 
 <section class={className}>
   <header
-    class="sticky top-0 z-20 mb-4 bg-gray-100 px-6 py-5 text-(sm gray-800) font-semibold tracking-widest uppercase -mx-6 dark:(bg-transparent text-gray-300 backdrop-blur-lg)"
+    class:list={[
+      "sticky",
+      "top-0",
+      "z-20",
+      "px-6",
+      "py-5",
+      "mb-4",
+      "-mx-6",
+      "font-semibold",
+      "text-sm",
+      "tracking-widest",
+      "uppercase",
+      "text-gray-800",
+      "dark:text-gray-300",
+      "bg-gray-100",
+      "dark:bg-transparent",
+      "dark:backdrop-blur-lg",
+    ]}
   >
     work
   </header>
   <ul>
     {
       workDetailsList.map((it) => (
-        <li class="mb-12 last-of-type:mb-0">
+        <li class:list={["mb-12", "last-of-type:mb-0"]}>
           <WorkDetails {...it} />
         </li>
       ))
@@ -36,7 +53,10 @@ try {
   </ul>
 
   <!-- View Full Resume -->
-  <AppLink class="mt-12 block text-gray-800 font-semibold capitalize dark:text-gray-300" showSuffixIcon>
+  <AppLink
+    class:list={["block", "mt-12", "font-semibold", "capitalize", "text-gray-800", "dark:text-gray-300"]}
+    showSuffixIcon
+  >
     view full resume
   </AppLink>
 </section>
