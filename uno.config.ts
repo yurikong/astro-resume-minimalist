@@ -1,4 +1,4 @@
-import { defineConfig, presetUno, presetIcons, transformerVariantGroup, transformerDirectives } from "unocss"
+import { defineConfig, presetUno, presetIcons, transformerDirectives } from "unocss"
 
 export default defineConfig({
   presets: [
@@ -11,5 +11,5 @@ export default defineConfig({
       warn: import.meta.env.DEV,
     }),
   ],
-  transformers: [transformerVariantGroup(), transformerDirectives()],
+  transformers: [transformerDirectives()],
 })
