@@ -1,17 +1,17 @@
 ---
 import AppLink from "~components/AppLink.astro"
 import type { ISocial } from "~types/social"
+import { getAllSocials } from "~api/social"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
 
-const socials: ISocial[] = [
-  { name: "WeChat", iconClassName: "i-ri:wechat-line" }, // WeChat
-  { name: "Email", iconClassName: "i-ri:mail-line", url: "mailto:jackdu2013@163.com" }, // Email
-  { name: "Portfolio", iconClassName: "i-ri:earth-line", url: "https://yurikong.github.io" }, // Portfolio
-  { name: "Github", iconClassName: "i-ri:github-line", url: "https://github.com/yurikong" }, // Github
-  { name: "LinkedIn", iconClassName: "i-ri:linkedin-box-line", url: "https://www.linkedin.com/in/jianqiang-du/" }, // LinkedIn
-  { name: "Instagram", iconClassName: "i-ri:instagram-line", url: "https://www.instagram.com/jackduu/" }, // Instagram
-  { name: "Twitter X", iconClassName: "i-ri:twitter-x-line", url: "https://x.com/yurikong2017" }, // Twitter X
-]
+const socials: ISocial[] = []
+
+try {
+  const socialsList: ISocial[] = await getAllSocials()
+  socials.push(...socialsList)
+} catch (error) {
+  console.error(error)
+}
 ---
 
 <section>
