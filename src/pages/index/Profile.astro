@@ -1,6 +1,7 @@
 ---
 import AppLink from "~components/AppLink.astro"
 import type { ISocial } from "~types/social"
+import ToggleColorScheme from "~components/ToggleColorScheme.astro"
 
 const socials: ISocial[] = [
   { name: "WeChat", iconClassName: "i-ri:wechat-line" }, // WeChat
@@ -15,9 +16,10 @@ const socials: ISocial[] = [
 
 <section>
   <header
-    class="text-md sticky top-0 z-20 mb-12 bg-gray-100 px-6 py-5 text-(gray-800) tracking-widest lowercase -mx-6 dark:(bg-transparent text-gray-300 backdrop-blur-lg)"
+    class="text-md sticky top-0 z-20 mb-12 flex items-center justify-between bg-gray-100 px-6 py-5 text-(gray-800) tracking-widest lowercase -mx-6 dark:(bg-transparent text-gray-300 backdrop-blur-lg)"
   >
     <AppLink url="/">resume</AppLink>
+    <ToggleColorScheme class="text-lg" />
   </header>
 
   <!-- Name -->
