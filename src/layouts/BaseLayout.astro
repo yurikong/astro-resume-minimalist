@@ -15,7 +15,17 @@ const description: string = "An open-sourced minimal resume site template built 
   <meta name="description" content={description} />
   <Inter />
 
-  <body class="relative bg-gray-100 text-gray-500 leading-relaxed tabular-nums antialiased dark:bg-gray-900">
+  <body
+    class:list={[
+      "tabular-nums",
+      "antialiased",
+      "relative",
+      "leading-relaxed",
+      "text-gray-500",
+      "bg-gray-100",
+      "dark:bg-gray-900",
+    ]}
+  >
     <div class="px-6">
       <slot />
     </div>

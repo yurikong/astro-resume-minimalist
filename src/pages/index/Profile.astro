@@ -16,24 +16,56 @@ const socials: ISocial[] = [
 
 <section>
   <header
-    class="text-md sticky top-0 z-20 mb-12 flex items-center justify-between bg-gray-100 px-6 py-5 text-(gray-800) tracking-widest lowercase -mx-6 dark:(bg-transparent text-gray-300 backdrop-blur-lg)"
+    class:list={[
+      "flex",
+      "items-center",
+      "justify-between",
+      "sticky",
+      "top-0",
+      "z-20",
+      "px-6",
+      "py-5",
+      "mb-12",
+      "-mx-6",
+      "tracking-widest",
+      "lowercase",
+      "text-gray-800",
+      "dark:text-gray-300",
+      "bg-gray-100",
+      "dark:bg-transparent",
+      "dark:backdrop-blur-lg",
+    ]}
   >
     <AppLink url="/">resume</AppLink>
     <ToggleColorScheme class="text-lg" />
   </header>
 
   <!-- Name -->
-  <h1 class="text-(4xl gray-800) font-medium tracking-tight capitalize dark:text-gray-300">jianqiang du</h1>
+  <h1 class:list={["text-4xl", "font-medium", "tracking-tight", "capitalize", "text-gray-800", "dark:text-gray-300"]}>
+    jianqiang du
+  </h1>
 
   <!-- Job Title -->
-  <div class="mt-2 text-(lg gray-800) font-medium tracking-tight capitalize dark:text-gray-300">Software Developer</div>
+  <div
+    class:list={[
+      "text-lg",
+      "font-medium",
+      "tracking-tight",
+      "capitalize",
+      "text-gray-800",
+      "dark:text-gray-300",
+      "mt-2",
+    ]}
+  >
+    Software Developer
+  </div>
 
   <!-- Description -->
-  <p class="mt-8 leading-normal">
+  <p class:list={["leading-normal", "mt-8"]}>
     <span>I am the creator of</span>
     <span class="inline-flex">
       <AppLink
-        class="text-gray-800 dark:text-gray-300"
+        class:list={["text-gray-800", "dark:text-gray-300"]}
         url="https://github.com/yurikong/astro-theme-resume-minimalist"
         showSuffixIcon
       >
@@ -44,7 +76,7 @@ const socials: ISocial[] = [
   </p>
 
   <!-- Social Contacts -->
-  <ul class="mt-12 flex flex-wrap items-center gap-5 text-2xl leading-none">
+  <ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
     {
       socials.map((it) => (
         <li>

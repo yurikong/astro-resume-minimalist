@@ -37,22 +37,22 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
 ---
 
 <!-- Ongoing Years -->
-<YearRange class="py-2 text-xs tracking-wide uppercase" startYear={startYear} endYear={endYear} />
+<YearRange class:list={["text-xs", "tracking-widest", "uppercase", "py-2"]} startYear={startYear} endYear={endYear} />
 
 <!-- Name -->
-<AppLink class="block text-gray-800 font-medium dark:text-gray-300" url={url} showSuffixIcon={!!url}>
+<AppLink class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]} url={url} showSuffixIcon={!!url}>
   {name}
 </AppLink>
 
 <!-- Description -->
-<p class="mt-2 text-sm leading-relaxed">{description}</p>
+<p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
 
 <!-- Repository Stars & Forks -->
 {
   selectedHighlights.length > 0 && (
-    <ul class="mt-2 flex flex-wrap gap-2">
+    <ul class:list={["flex", "flex-wrap", "gap-2", "mt-2"]}>
       {selectedHighlights.map((it) => (
-        <li class="flex items-center gap-1 text-sm font-medium leading-normal" title={it.name}>
+        <li class:list={["flex", "items-center", "gap-1", "font-medium", "text-sm", "leading-normal"]} title={it.name}>
           <i class={it.iconClassName} />
           <span>{it.value}</span>
         </li>
@@ -64,7 +64,7 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
 <!-- Technologies Used -->
 {
   !!technologiesUsed && technologiesUsed.length > 0 && (
-    <ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
+    <ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
       {technologiesUsed.map((it) => (
         <li>
           <Tag text={it} />

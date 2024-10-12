@@ -9,22 +9,35 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
 ---
 
 <!-- Employed Years -->
-<YearRange class="py-2 text-xs tracking-wide uppercase" startYear={startYear} endYear={endYear} />
+<YearRange class:list={["text-xs", "tracking-wide", "uppercase", "py-2"]} startYear={startYear} endYear={endYear} />
 
 <!-- Job Title & Company -->
-<AppLink class="block text-gray-800 font-medium dark:text-gray-300" url={companyHomepage} showSuffixIcon>
+<AppLink
+  class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+  url={companyHomepage}
+  showSuffixIcon
+>
   {jobTitle} · {company}
 </AppLink>
 
 <!-- Description -->
-<p class="mt-2 text-sm leading-relaxed">{description}</p>
+<p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
 
 <!-- Products -->
 {
   !!projects && projects.length > 0 && (
-    <ul class="mt-4 flex flex-wrap gap-(x-4 y-2)">
+    <ul class:list={["flex", "flex-wrap", "gap-x-4", "gap-y-2", "mt-4"]}>
       {projects.map((it) => (
-        <li class="text-(nowrap sm gray-700) font-medium leading-normal dark:text-gray-400">
+        <li
+          class:list={[
+            "font-medium",
+            "text-sm",
+            "text-nowrap",
+            "leading-normal",
+            "text-gray-700",
+            "dark:text-gray-400",
+          ]}
+        >
           <AppLink url={it.url} showPrefixIcon>
             {it.name}
           </AppLink>
@@ -35,7 +48,7 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
 }
 
 <!-- Technologies Used -->
-<ul class="mt-4 flex flex-wrap gap-(x-1.5 y-2)">
+<ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
   {
     technologiesUsed.map((it) => (
       <li>

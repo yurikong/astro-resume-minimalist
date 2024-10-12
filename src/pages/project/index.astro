@@ -18,18 +18,18 @@ try {
 <BaseLayout>
   <div class="py-5">
     <AppLink
-      class="mb-2 block leading-tight lowercase"
+      class:list={["block", "mb-2", "leading-tight", "lowercase"]}
       url="/"
       showPrefixIcon
       prefixIconClassName="i-ri:arrow-left-line"
     >
       back
     </AppLink>
-    <h1 class="text-(4xl gray-800) font-medium tracking-tight capitalize">all projects</h1>
+    <h1 class:list={["font-medium", "tracking-tight", "capitalize", "text-4xl", "text-gray-800"]}>all projects</h1>
 
-    <table class="mt-12 text-left">
+    <table class:list={["text-left", "mt-12"]}>
       <thead>
-        <tr class="sticky top-0 z-20 bg-gray-100 capitalize">
+        <tr class:list={["sticky", "top-0", "z-20", "capitalize", "bg-gray-100"]}>
           <th>Year</th>
           <th>Project</th>
           <!-- <th>Made at</th> -->
@@ -41,14 +41,14 @@ try {
       <tbody>
         {
           projects.map((it) => (
-            <tr class="border-(b gray-800/10) last:border-none">
+            <tr class:list={["border-b", "border-gray-800/10", "last:border-none"]}>
               {/* Year */}
-              <td class="py-4 pr-4 align-top text-sm leading-snug capitalize">
+              <td class:list={["align-top", "text-sm", "leading-snug", "capitalize", "py-4", "pr-4"]}>
                 <YearRange startYear={it.startYear} endYear={it.endYear} />
               </td>
 
               {/* Project */}
-              <td class="py-4 pr-4 align-top text-gray-800 font-medium leading-snug">
+              <td class:list={["align-top", "font-medium", "leading-snug", "text-gray-800", "py-4", "pr-4"]}>
                 <AppLink url={it.link?.url} showSuffixIcon={!!it.link}>
                   {it.name}
                 </AppLink>
