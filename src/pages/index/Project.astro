@@ -29,7 +29,7 @@ try {
   <ul>
     {
       projectDetailsList.map((it) => (
-        <li id={it.id} class="mb-16 last-of-type:mb-0">
+        <li id={it.id} class="mb-12 last-of-type:mb-0">
           <ProjectDetails {...it} />
         </li>
       ))
@@ -38,7 +38,7 @@ try {
 
   <!-- View All Projects -->
   <AppLink
-    class="mt-24 block text-gray-800 font-semibold capitalize dark:text-gray-300"
+    class="mt-12 block text-gray-800 font-semibold capitalize dark:text-gray-300"
     url="/project"
     showSuffixIcon
     suffixIconClassName="i-ri:arrow-right-line"
