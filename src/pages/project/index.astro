@@ -30,13 +30,43 @@ try {
 
       <ToggleColorScheme class="text-xl" />
     </div>
-    <h1 class:list={["font-medium", "tracking-tight", "capitalize", "text-4xl", "text-gray-800"]}>all projects</h1>
+    <h1 class:list={["font-medium", "tracking-tight", "capitalize", "text-4xl", "text-gray-800", "dark:text-gray-300"]}>
+      all projects
+    </h1>
 
     <table class:list={["text-left", "mt-12"]}>
       <thead>
-        <tr class:list={["sticky", "top-0", "z-20", "capitalize", "bg-gray-100"]}>
-          <th>Year</th>
-          <th>Project</th>
+        <tr class:list={["sticky", "top-0", "z-20", "capitalize"]}>
+          <th
+            class:list={[
+              "py-4",
+              "pr-8",
+              "font-medium",
+              "leading-snug",
+              "text-sm",
+              "text-gray-800",
+              "dark:text-gray-300",
+              "bg-gray-100",
+              "dark:bg-gray-900",
+            ]}
+          >
+            Year
+          </th>
+          <th
+            class:list={[
+              "py-4",
+              "pr-8",
+              "font-medium",
+              "leading-snug",
+              "text-sm",
+              "text-gray-800",
+              "dark:text-gray-300",
+              "bg-gray-100",
+              "dark:bg-gray-900",
+            ]}
+          >
+            Project
+          </th>
           <!-- <th>Made at</th> -->
           <!-- <th>Technologies Used</th> -->
           <!-- <th>Link</th> -->
@@ -46,14 +76,24 @@ try {
       <tbody>
         {
           projects.map((it) => (
-            <tr class:list={["border-b", "border-gray-800/10", "last:border-none"]}>
+            <tr class:list={["border-b", "last:border-none", "border-gray-800/10", "dark:border-gray-100/10"]}>
               {/* Year */}
               <td class:list={["align-top", "text-sm", "leading-snug", "capitalize", "py-4", "pr-4"]}>
                 <YearRange startYear={it.startYear} endYear={it.endYear} />
               </td>
 
               {/* Project */}
-              <td class:list={["align-top", "font-medium", "leading-snug", "text-gray-800", "py-4", "pr-4"]}>
+              <td
+                class:list={[
+                  "align-top",
+                  "font-medium",
+                  "leading-snug",
+                  "text-gray-800",
+                  "dark:text-gray-300",
+                  "py-4",
+                  "pr-4",
+                ]}
+              >
                 <AppLink url={it.link?.url} showSuffixIcon={!!it.link}>
                   {it.name}
                 </AppLink>
@@ -74,9 +114,3 @@ try {
     </table>
   </div>
 </BaseLayout>
-
-<style>
-  th {
-    --at-apply: py-4 pr-8 text-(sm gray-800) font-medium leading-snug;
-  }
-</style>
