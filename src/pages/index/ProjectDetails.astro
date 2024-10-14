@@ -54,6 +54,7 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
       class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
       url={url}
       showSuffixIcon={!!url}
+      suffixIconClassName={link?.iconClassName}
     >
       {name}
     </AppLink>

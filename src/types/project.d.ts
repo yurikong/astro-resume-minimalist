@@ -15,6 +15,7 @@ export interface IProject extends IExperience {
 export interface IProjectLink {
   url: string
   displayText: string
+  iconClassName?: string | undefined
 }
 
 export interface IProjectHighlight {
