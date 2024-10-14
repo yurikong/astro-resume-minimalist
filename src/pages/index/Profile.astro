@@ -15,12 +15,15 @@ try {
 ---
 
 <section>
-  <ToggleColorScheme
-    class:list={["fixed", "top-5", "right-6", "md:top-8", "md:right-12", "lg:right-24", "z-21", "text-xl"]}
-  />
+  <div
+    class:list={["toggle-color-scheme-wrapper", "fixed", "top-5", "mr-6", "md:top-8", "md:mr-12", "lg:mr-24", "z-21"]}
+  >
+    <ToggleColorScheme class:list={["text-xl"]} />
+  </div>
 
   <header
     class:list={[
+      "app-header",
       "sticky",
       "top-0",
       "z-20",
@@ -104,3 +107,14 @@ try {
     }
   </ul>
 </section>
+
+<style>
+  .toggle-color-scheme-wrapper {
+    position-anchor: --app-header;
+    right: anchor(right);
+  }
+
+  .app-header {
+    anchor-name: --app-header;
+  }
+</style>
