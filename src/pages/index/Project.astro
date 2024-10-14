@@ -3,6 +3,7 @@ import type { IProject } from "~types/project"
 import { getDisplayProjects } from "~api/project"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
+import type { TImageModule } from "~types/module"
 
 interface Props {
   class?: string
@@ -17,6 +18,8 @@ try {
 } catch (error) {
   console.error(error)
 }
+
+const images: Record<string, () => Promise<TImageModule>> = import.meta.glob<TImageModule>("/src/assets/images/**/*")
 ---
 
 <!-- Projects -->
@@ -37,8 +40,7 @@ try {
       "text-gray-800",
       "dark:text-gray-300",
       "bg-gray-100",
-      "dark:bg-transparent",
-      "dark:backdrop-blur-lg",
+      "dark:bg-gray-900",
     ]}
   >
     projects
@@ -47,7 +49,7 @@ try {
     {
       projectDetailsList.map((it) => (
         <li id={it.id} class:list={["mb-12", "last-of-type:mb-0"]}>
-          <ProjectDetails {...it} />
+          <ProjectDetails {...it} images={images} />
         </li>
       ))
     }
