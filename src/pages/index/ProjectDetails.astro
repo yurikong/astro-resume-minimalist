@@ -4,9 +4,13 @@ import type { IGithubRepositoryInfo } from "~types/repository"
 import YearRange from "~components/YearRange.astro"
 import AppLink from "~components/AppLink.astro"
 import Tag from "~components/Tag.astro"
+import type { TImageModule } from "~types/module"
+import { Image } from "astro:assets"
 
-interface Props extends IProject {}
-const { name, description, technologiesUsed, link, repository, startYear, endYear } = Astro.props
+interface Props extends IProject {
+  images: Record<string, () => Promise<TImageModule>>
+}
+const { name, description, technologiesUsed, assetPath, link, repository, startYear, endYear, images } = Astro.props
 
 const url: string | undefined = link?.url ?? repository?.url
 
@@ -74,4 +78,13 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
   )
 }
 
-<!-- Preview TODO -->
+<!-- Preview -->
+{
+  !!assetPath && !!images[assetPath] && (
+    <Image
+      class:list={["mt-4", "rounded", "border-1", "border-gray-300", "dark:border-gray-600"]}
+      src={images[assetPath]()}
+      alt={`A preview of ${name} project.`}
+    />
+  )
+}
