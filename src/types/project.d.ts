@@ -7,7 +7,7 @@ export interface IProject extends IExperience {
   description: string
   madeAt?: string | undefined
   technologiesUsed: string[]
-  preview?: string | undefined
+  assetPath?: string | undefined
   link?: IProjectLink | undefined
   repository?: GithubRepository | undefined
 }
