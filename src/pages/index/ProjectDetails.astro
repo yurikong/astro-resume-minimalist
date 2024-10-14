@@ -40,51 +40,66 @@ if (!!repository) {
 const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.value > 0)
 ---
 
-<!-- Ongoing Years -->
-<YearRange class:list={["text-xs", "tracking-widest", "uppercase", "py-2"]} startYear={startYear} endYear={endYear} />
+<div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
+  <!-- Ongoing Years -->
+  <YearRange
+    class:list={["text-xs", "tracking-widest", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
+    startYear={startYear}
+    endYear={endYear}
+  />
 
-<!-- Name -->
-<AppLink class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]} url={url} showSuffixIcon={!!url}>
-  {name}
-</AppLink>
+  <div class:list={["sm:col-span-6"]}>
+    <!-- Name -->
+    <AppLink
+      class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+      url={url}
+      showSuffixIcon={!!url}
+    >
+      {name}
+    </AppLink>
 
-<!-- Description -->
-<p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
+    <!-- Description -->
+    <p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
 
-<!-- Repository Stars & Forks -->
-{
-  selectedHighlights.length > 0 && (
-    <ul class:list={["flex", "flex-wrap", "gap-2", "mt-2"]}>
-      {selectedHighlights.map((it) => (
-        <li class:list={["flex", "items-center", "gap-1", "font-medium", "text-sm", "leading-normal"]} title={it.name}>
-          <i class={it.iconClassName} />
-          <span>{it.value}</span>
-        </li>
-      ))}
-    </ul>
-  )
-}
+    <!-- Repository Stars & Forks -->
+    {
+      selectedHighlights.length > 0 && (
+        <ul class:list={["flex", "flex-wrap", "gap-2", "mt-2"]}>
+          {selectedHighlights.map((it) => (
+            <li
+              class:list={["flex", "items-center", "gap-1", "font-medium", "text-sm", "leading-normal"]}
+              title={it.name}
+            >
+              <i class={it.iconClassName} />
+              <span>{it.value}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
 
-<!-- Technologies Used -->
-{
-  !!technologiesUsed && technologiesUsed.length > 0 && (
-    <ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
-      {technologiesUsed.map((it) => (
-        <li>
-          <Tag text={it} />
-        </li>
-      ))}
-    </ul>
-  )
-}
+    <!-- Technologies Used -->
+    {
+      !!technologiesUsed && technologiesUsed.length > 0 && (
+        <ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
+          {technologiesUsed.map((it) => (
+            <li>
+              <Tag text={it} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
 
-<!-- Preview -->
-{
-  !!assetPath && !!images[assetPath] && (
-    <Image
-      class:list={["mt-4", "rounded", "border-1", "border-gray-300", "dark:border-gray-600"]}
-      src={images[assetPath]()}
-      alt={`A preview of ${name} project.`}
-    />
-  )
-}
+    <!-- Preview -->
+    {
+      !!assetPath && !!images[assetPath] && (
+        <Image
+          class:list={["mt-4", "rounded", "border-1", "border-gray-300", "dark:border-gray-600"]}
+          src={images[assetPath]()}
+          alt={`A preview of ${name} project.`}
+        />
+      )
+    }
+  </div>
+</div>
