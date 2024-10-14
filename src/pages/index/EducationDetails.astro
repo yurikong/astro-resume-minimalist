@@ -7,23 +7,31 @@ interface Props extends IEducation {}
 const { university, universityHomepage, degree, major, GPA, startYear, endYear } = Astro.props
 ---
 
-<!-- Attended Years -->
-<YearRange class:list={["text-xs", "tracking-wide", "uppercase", "py-2"]} startYear={startYear} endYear={endYear} />
+<div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
+  <!-- Attended Years -->
+  <YearRange
+    class:list={["text-xs", "tracking-wide", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
+    startYear={startYear}
+    endYear={endYear}
+  />
 
-<!-- University Name -->
-<AppLink
-  class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
-  url={universityHomepage}
-  showSuffixIcon
->
-  {university}
-</AppLink>
+  <div class:list={["sm:col-span-6"]}>
+    <!-- University Name -->
+    <AppLink
+      class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+      url={universityHomepage}
+      showSuffixIcon
+    >
+      {university}
+    </AppLink>
 
-<!-- Major & Degree -->
-<div class:list={["flex", "text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>
-  {major}
-  {!!degree && <span>, {degree}</span>}
+    <!-- Major & Degree -->
+    <div class:list={["flex", "text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>
+      {major}
+      {!!degree && <span>, {degree}</span>}
+    </div>
+
+    <!-- GPA -->
+    <div class:list={["text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>GPA: {GPA}</div>
+  </div>
 </div>
-
-<!-- GPA -->
-<div class:list={["text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>GPA: {GPA}</div>
