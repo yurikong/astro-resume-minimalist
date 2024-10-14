@@ -12,6 +12,7 @@ export const GET: APIRoute = () => {
       link: {
         url: "https://yurikong.github.io/astro-theme-resume-minimalist/",
         displayText: "Github",
+        iconClassName: "i-ri:github-fill",
       },
       repository: new GithubRepository("yurikong", "astro-theme-resume-minimalist"),
       startYear: 2024,
