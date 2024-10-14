@@ -48,7 +48,7 @@ try {
     </h1>
 
     <!-- Project Archives -->
-    <table class:list={["text-left", "mt-12"]}>
+    <table class:list={["text-left", "mt-12", "w-full"]}>
       <thead>
         <tr class:list={["sticky", "top-0", "z-20", "capitalize"]}>
           <th
@@ -83,7 +83,23 @@ try {
           </th>
           <!-- <th>Made at</th> -->
           <!-- <th>Technologies Used</th> -->
-          <!-- <th>Link</th> -->
+          <th
+            class:list={[
+              "py-4",
+              "pr-8",
+              "font-medium",
+              "leading-snug",
+              "text-sm",
+              "text-gray-800",
+              "dark:text-gray-300",
+              "bg-gray-100",
+              "dark:bg-gray-900",
+              "hidden",
+              "sm:table-cell",
+            ]}
+          >
+            Link
+          </th>
         </tr>
       </thead>
 
@@ -108,9 +124,10 @@ try {
                   "pr-4",
                 ]}
               >
-                <AppLink url={it.link?.url} showSuffixIcon={!!it.link}>
+                <AppLink class="sm:hidden" url={it.link?.url} showSuffixIcon={!!it.link}>
                   {it.name}
                 </AppLink>
+                <div class:list={["hidden", "sm:block"]}>{it.name}</div>
               </td>
 
               {/* Made at */}
@@ -120,7 +137,11 @@ try {
               {/* <td>{it.technologiesUsed}</td> */}
 
               {/* Link */}
-              {/* <td>{it.link}</td> */}
+              <td class:list={["align-top", "font-medium", "leading-snug", "py-4", "pr-4", "hidden", "sm:table-cell"]}>
+                <AppLink url={it.link?.url} showSuffixIcon={!!it.link}>
+                  {it.link?.displayText}
+                </AppLink>
+              </td>
             </tr>
           ))
         }
