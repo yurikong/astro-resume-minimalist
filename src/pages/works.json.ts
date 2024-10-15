@@ -28,6 +28,7 @@ export const GET: APIRoute = () => {
         "Wails v2",
         "Electron",
         "Docker",
+        "OPC-UA",
       ],
       startYear: 2023,
     },
