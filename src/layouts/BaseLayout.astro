@@ -1,5 +1,6 @@
 ---
 import Inter from "~assets/fonts/Inter.astro"
+import IconifyIconDisplayFix from "~components/IconifyIconDisplayFix.astro"
 import AppFooter from "~components/AppFooter.astro"
 
 const title: string = "Astro Theme Resume Minimalist — Jianqiang Du"
@@ -28,6 +29,8 @@ const description: string = "An open-sourced minimal resume site template built 
       "mx-auto",
     ]}
   >
+    <IconifyIconDisplayFix />
+
     <div class:list={["px-6", "md:px-12"]}>
       <slot />
     </div>
