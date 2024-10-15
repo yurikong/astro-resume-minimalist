@@ -1,9 +1,25 @@
 ---
 import AppLink from "./AppLink.astro"
+import { Image } from "astro:assets"
+import WechatDonationQr from "~assets/images/wechat-donation-qr.webp"
+import BuyMeACoffeeDonationQr from "~assets/images/buy-me-a-coffee-donation-qr.webp"
 ---
 
 <footer class:list={["text-center", "text-xs", "leading-relaxed", "px-6", "pt-24", "pb-12", "md:px-12", "md:pt-48"]}>
-  <p>
+  <!-- Donations -->
+  <div class:list={["flex", "items-center", "justify-center", "gap-8"]}>
+    <!-- Wechat -->
+    <Image
+      class:list={["w-auto", "h-25", "lg:h-35"]}
+      src={WechatDonationQr}
+      alt="Scan QR to give a donation through Wechat."
+    />
+    <!-- Buy me a coffee -->
+    <Image class:list={["w-auto", "h-25", "lg:h-35"]} src={BuyMeACoffeeDonationQr} alt="Scan QR to buy me a coffee." />
+  </div>
+
+  <!-- Site info -->
+  <p class:list={["mt-8", "lg:mt-12"]}>
     <!-- Author -->
     <div>
       <span>
