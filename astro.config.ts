@@ -9,8 +9,8 @@ const { PORT }: ImportMetaEnv | Record<string, string> = loadEnv(import.meta.env
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://yurikong.github.io", // TODO: change to vercel deploy url
-  base: "/astro-theme-resume-minimalist", // TODO: change to / when setting for vercel
+  site: "https://yurikong.github.io",
+  base: "astro-theme-resume-minimalist",
   server: {
     port: Number(PORT),
     host: true,
