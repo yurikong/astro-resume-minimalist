@@ -1,17 +1,7 @@
 ---
+import { socials } from "~data/socials"
 import AppLink from "~components/AppLink.astro"
-import type { ISocial } from "~types/social"
-import { getAllSocials } from "~api/social"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
-
-const socials: ISocial[] = []
-
-try {
-  const socialsList: ISocial[] = await getAllSocials()
-  socials.push(...socialsList)
-} catch (error) {
-  console.error(error)
-}
 ---
 
 <section>
