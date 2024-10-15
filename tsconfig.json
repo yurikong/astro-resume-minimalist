@@ -5,12 +5,11 @@
     "lib": ["DOM", "ESNext"],
     "paths": {
       "~/*": ["src/*"],
-      "~api/*": ["src/api/*"],
+      "~data/*": ["src/data/*"],
       "~classes/*": ["src/classes/*"],
       "~components/*": ["src/components/*"],
       "~assets/*": ["src/assets/*"],
       "~layouts/*": ["src/layouts/*"],
-      "~styles/*": ["src/styles/*"],
       "~utils/*": ["src/utils/*"],
       "~types/*": ["src/types/*"]
     }

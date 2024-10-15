@@ -1,6 +1,7 @@
 ---
 import type { IProject } from "~types/project"
-import { getDisplayProjects } from "~api/project"
+import { projects } from "~data/projects"
+import { mostRecentYearComparator } from "~utils/comparators"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
 import type { TImageModule } from "~types/module"
@@ -10,15 +11,7 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const projectDetailsList: IProject[] = []
-
-try {
-  const projects: IProject[] = await getDisplayProjects(10)
-  projectDetailsList.push(...projects)
-} catch (error) {
-  console.error(error)
-}
-
+const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparator).slice(0, 10)
 const images: Record<string, () => Promise<TImageModule>> = import.meta.glob<TImageModule>("/src/assets/images/**/*")
 ---
 

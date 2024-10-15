@@ -1,6 +1,7 @@
 ---
+import { works } from "~data/works"
+import { mostRecentYearComparator } from "~utils/comparators"
 import type { IWork } from "~types/work"
-import { getAllWorks } from "~/api/work"
 import WorkDetails from "./WorkDetails.astro"
 import AppLink from "~components/AppLink.astro"
 
@@ -9,14 +10,7 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-const workDetailsList: IWork[] = []
-
-try {
-  const works: IWork[] = await getAllWorks()
-  workDetailsList.push(...works)
-} catch (error) {
-  console.error(error)
-}
+const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
 ---
 
 <section class={className}>

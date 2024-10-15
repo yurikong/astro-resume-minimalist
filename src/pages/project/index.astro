@@ -2,19 +2,13 @@
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
-import { getAllProjects } from "~api/project"
 import type { IProject } from "~types/project"
+import { projects } from "~data/projects"
+import { mostRecentYearComparator } from "~utils/comparators"
 import YearRange from "~components/YearRange.astro"
 import Tag from "~components/Tag.astro"
 
-const projects: IProject[] = []
-
-try {
-  const projectList: IProject[] = await getAllProjects()
-  projects.push(...projectList)
-} catch (error) {
-  console.error(error)
-}
+const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
 ---
 
 <BaseLayout>
@@ -148,7 +142,7 @@ try {
 
       <tbody>
         {
-          projects.map((it) => (
+          projectList.map((it) => (
             <tr class:list={["border-b", "last:border-none", "border-gray-800/10", "dark:border-gray-100/10"]}>
               {/* Year */}
               <td class:list={["w-1/12", "align-top", "text-sm", "leading-snug", "capitalize", "py-4", "pr-4"]}>
