@@ -34,16 +34,7 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
       !!projects && projects.length > 0 && (
         <ul class:list={["flex", "flex-wrap", "gap-x-4", "gap-y-2", "mt-4"]}>
           {projects.map((it) => (
-            <li
-              class:list={[
-                "font-medium",
-                "text-sm",
-                "text-nowrap",
-                "leading-normal",
-                "text-gray-700",
-                "dark:text-gray-400",
-              ]}
-            >
+            <li class:list={["font-medium", "text-sm", "leading-normal", "text-gray-700", "dark:text-gray-400"]}>
               <AppLink url={it.url} showPrefixIcon>
                 {it.name}
               </AppLink>
