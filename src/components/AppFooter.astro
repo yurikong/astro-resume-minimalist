@@ -9,17 +9,24 @@ import BuyMeACoffeeDonationQr from "~assets/images/buy-me-a-coffee-donation-qr.w
   <!-- Donations -->
   <div class:list={["flex", "items-center", "justify-center", "gap-8"]}>
     <!-- Wechat -->
-    <Image
-      class:list={["w-auto", "h-25", "lg:h-35", "dark:brightness-95"]}
-      src={WechatDonationQr}
-      alt="Scan QR to give a donation through Wechat."
-    />
+    <div>
+      <Image
+        class:list={["w-auto", "h-25", "lg:h-35", "dark:brightness-95"]}
+        src={WechatDonationQr}
+        alt="Scan QR to give a donation through Wechat."
+      />
+      <div class:list={["mt-1", "dark:text-gray-400"]}>Wechat</div>
+    </div>
+
     <!-- Buy me a coffee -->
-    <Image
-      class:list={["w-auto", "h-25", "lg:h-35", "dark:brightness-95"]}
-      src={BuyMeACoffeeDonationQr}
-      alt="Scan QR to buy me a coffee."
-    />
+    <div>
+      <Image
+        class:list={["w-auto", "h-25", "lg:h-35", "dark:brightness-95"]}
+        src={BuyMeACoffeeDonationQr}
+        alt="Scan QR to buy me a coffee."
+      />
+      <div class:list={["mt-1", "dark:text-gray-400"]}>Buy me a coffee</div>
+    </div>
   </div>
 
   <!-- Site info -->
