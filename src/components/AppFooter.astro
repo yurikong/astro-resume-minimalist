@@ -10,6 +10,7 @@ import ImageViewer from "./ImageViewer.astro"
     <div class:list={["flex-1", "max-w-25", "lg:max-w-35"]}>
       <ImageViewer
         assets={[{ src: "/src/assets/images/wechat-donation-qr.webp", alt: "Scan QR code to donate on Wechat." }]}
+        showIndex={false}
       />
       <div class:list={["mt-1", "dark:text-gray-400"]}>Wechat Donate</div>
     </div>
@@ -20,6 +21,7 @@ import ImageViewer from "./ImageViewer.astro"
         assets={[
           { src: "/src/assets/images/buy-me-a-coffee-donation-qr.webp", alt: "Scan QR code to buy me a coffee." },
         ]}
+        showIndex={false}
       />
       <div class:list={["mt-1", "dark:text-gray-400"]}>Buy me a coffee</div>
     </div>
