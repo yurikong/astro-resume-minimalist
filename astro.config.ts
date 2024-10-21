@@ -9,6 +9,9 @@ const { PORT }: ImportMetaEnv | Record<string, string> = loadEnv(import.meta.env
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    prefetchAll: true,
+  },
   site: "https://yurikong.github.io",
   base: "astro-theme-resume-minimalist",
   server: {
