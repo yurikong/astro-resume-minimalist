@@ -3,7 +3,8 @@
 import { loadEnv } from "vite"
 import { defineConfig, squooshImageService } from "astro/config"
 import UnoCSS from "unocss/astro"
-// import sitemap from "@astrojs/sitemap"
+import sitemap from "@astrojs/sitemap"
+import robotsTxt from "astro-robots-txt"
 
 const { PORT }: ImportMetaEnv | Record<string, string> = loadEnv(import.meta.env.MODE, process.cwd(), "")
 
@@ -23,17 +24,11 @@ export default defineConfig({
     UnoCSS({
       injectReset: true,
     }),
-    // sitemap({
-    //   changefreq: "monthly",
-    //   priority: 1,
-    //   lastmod: new Date(),
-    //   i18n: {
-    //     defaultLocale: "en",
-    //     locales: {
-    //       en: "en-US",
-    //     },
-    //   },
-    // }),
+    sitemap({
+      changefreq: "monthly",
+      lastmod: new Date(),
+    }),
+    robotsTxt(),
   ],
   image: {
     service: squooshImageService(),
