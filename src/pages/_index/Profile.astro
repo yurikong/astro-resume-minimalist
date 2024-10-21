@@ -2,6 +2,7 @@
 import { socials } from "~data/socials"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
+import ImageViewer from "~components/ImageViewer.astro"
 ---
 
 <section>
@@ -102,6 +103,15 @@ import ToggleColorScheme from "~components/ToggleColorScheme.astro"
 
   <!-- Social Contacts -->
   <ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
+    <li>
+      <ImageViewer
+        assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "Wechat logo." }]}
+        showIndex={false}
+      >
+        <i class="i-ri:wechat-line"></i>
+      </ImageViewer>
+    </li>
+
     {
       socials.map((it) => (
         <li>

@@ -7,6 +7,7 @@ interface Props {
   assets: IProjectAsset[]
   showIndex?: boolean | undefined
   class?: string | undefined
+  children?: unknown | undefined
 }
 const { assets, showIndex = true, class: className } = Astro.props
 
@@ -24,11 +25,13 @@ const dialogId: string = nanoid(8)
 {
   imageModules[0] && (
     <image-viewer data-dialog-id={dialogId} class:list={["flex", "items-center", "justify-center", className]}>
-      <Image
-        class:list={["h-full", "object-contain", "dark:brightness-95"]}
-        src={imageModules[0]}
-        alt={assets[0]?.alt}
-      />
+      <slot>
+        <Image
+          class:list={["h-full", "object-contain", "dark:brightness-95"]}
+          src={imageModules[0]}
+          alt={assets[0]?.alt}
+        />
+      </slot>
 
       <dialog id={dialogId} popover class:list={["focus-visible:outline-0"]}>
         <div
