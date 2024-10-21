@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets"
+import type { ImageMetadata } from "astro"
 import type { IProjectAsset } from "~types/project"
 import { nanoid } from "nanoid"
+import DefaultImage from "~assets/images/default.webp"
 
 interface Props {
   assets: IProjectAsset[]
@@ -11,12 +13,11 @@ interface Props {
 }
 const { assets, showIndex = true, class: className } = Astro.props
 
-const imageModules = assets.map(async ({ src }) => {
-  try {
-    return await import(/* @vite-ignore */ src)
-  } catch {
-    return await import("/src/assets/images/default.webp")
-  }
+type ImageMetadataModule = { default: ImageMetadata }
+
+const localImages = import.meta.glob<ImageMetadataModule>("/src/assets/images/**/*.{png,jpe?g,gif,svg,webp}")
+const imageModules = assets.map<ImageMetadata | Promise<ImageMetadataModule>>(({ src }) => {
+  return localImages[src]?.() ?? DefaultImage
 })
 
 const dialogId: string = nanoid(8)
