@@ -1,7 +1,6 @@
 import type { ISocial } from "~types/social"
 
 export const socials: ISocial[] = [
-  { name: "WeChat", iconClassName: "i-ri:wechat-line" },
   { name: "Email", iconClassName: "i-ri:mail-line", url: "mailto:jackdu2013@163.com" },
   { name: "Portfolio", iconClassName: "i-ri:earth-line", url: "https://yurikong.github.io" },
   { name: "Github", iconClassName: "i-ri:github-line", url: "https://github.com/yurikong" },
