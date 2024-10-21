@@ -5,9 +5,10 @@ import { nanoid } from "nanoid"
 
 interface Props {
   assets: IProjectAsset[]
+  showIndex?: boolean | undefined
   class?: string | undefined
 }
-const { assets, class: className } = Astro.props
+const { assets, showIndex = true, class: className } = Astro.props
 
 const imageModules = assets.map(async ({ src }) => {
   try {
@@ -43,7 +44,7 @@ const dialogId: string = nanoid(8)
           ]}
         >
           {/* 数量 */}
-          {assets.length > 1 && (
+          {!!showIndex && (
             <div class:list={["fixed", "top-4", "left-1/2", "-translate-x-1/2", "text-gray-800", "dark:text-gray-300"]}>
               <span id={`${dialogId}__index`}>1</span>/{assets.length}
             </div>
