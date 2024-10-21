@@ -23,23 +23,36 @@ const dialogId: string = nanoid(8)
 {
   imageModules[0] && (
     <image-viewer data-dialog-id={dialogId} class:list={["flex", "items-center", "justify-center", className]}>
-      <Image class:list={["dark:brightness-95"]} src={imageModules[0]} alt={assets[0]?.alt} />
+      <Image
+        class:list={["h-full", "object-contain", "dark:brightness-95"]}
+        src={imageModules[0]}
+        alt={assets[0]?.alt}
+      />
 
-      <dialog id={dialogId} popover class:list={["focus-visible:outline-0", "text-gray-800", "dark:text-gray-300"]}>
-        {/* 数量 */}
-        {assets.length > 1 && (
-          <div class:list={["fixed", "top-4", "left-1/2", "-translate-x-1/2"]}>
-            <span id={`${dialogId}__index`}>1</span>/{assets.length}
-          </div>
-        )}
+      <dialog id={dialogId} popover class:list={["focus-visible:outline-0"]}>
+        <div
+          class:list={[
+            "w-vw",
+            "h-dvh",
+            "py-12",
+            "flex",
+            "items-center",
+            "justify-center",
+            "bg-gray-100",
+            "dark:bg-gray-900",
+          ]}
+        >
+          {/* 数量 */}
+          {assets.length > 1 && (
+            <div class:list={["fixed", "top-4", "left-1/2", "-translate-x-1/2", "text-gray-800", "dark:text-gray-300"]}>
+              <span id={`${dialogId}__index`}>1</span>/{assets.length}
+            </div>
+          )}
 
-        {imageModules.map((it, index) => (
-          <Image
-            class:list={["bg-gray-50", "dark:bg-gray-800", "dark:brightness-95"]}
-            src={it}
-            alt={assets[index]?.alt}
-          />
-        ))}
+          {imageModules.map((it, index) => (
+            <Image class:list={["h-full", "object-contain", "dark:brightness-95"]} src={it} alt={assets[index]?.alt} />
+          ))}
+        </div>
       </dialog>
     </image-viewer>
   )
