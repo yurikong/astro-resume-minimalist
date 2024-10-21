@@ -35,4 +35,29 @@ export default defineConfig({
   image: {
     service: squooshImageService(),
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          chunkFileNames: "static/assets/js/[name]-[hash].js",
+          entryFileNames: "static/assets/js/[name]-[hash].js",
+          assetFileNames: ({ name }): string => {
+            if (name === undefined) {
+              return "static/assets/[name]-[hash].[ext]"
+            }
+            if (/\.css$/i.test(name)) {
+              return "static/assets/css/[name]-[hash].css"
+            }
+            if (/\.(jpe?g|png|gif|svg|webp)$/i.test(name)) {
+              return "static/assets/img/[name]-[hash].[ext]"
+            }
+            if (/\.(ttf|woff|woff2|eot)$/i.test(name)) {
+              return "static/assets/fonts/[name]-[hash].[ext]"
+            }
+            return "static/assets/[name]-[hash].[ext]"
+          },
+        },
+      },
+    },
+  },
 })
