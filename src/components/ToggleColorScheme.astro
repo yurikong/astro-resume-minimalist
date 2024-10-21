@@ -16,6 +16,7 @@ const { class: className } = Astro.props
     private colorScheme: TColorScheme = "os"
     private localStorageKey: string = "colorScheme"
     private matchMediaListDark: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
+    private matchMediaListPrefersReducedMotion: MediaQueryList = window.matchMedia("(prefers-reduced-motion: reduce)")
 
     public connectedCallback(): void {
       this.readColorScheme()
@@ -38,7 +39,12 @@ const { class: className } = Astro.props
       } else {
         this.colorScheme = "os"
       }
-      document.startViewTransition(() => this.setColorScheme())
+      if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
+        document.startViewTransition(() => this.setColorScheme())
+        return
+      }
+
+      this.setColorScheme()
     }
 
     /**

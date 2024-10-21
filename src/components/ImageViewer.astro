@@ -65,6 +65,7 @@ const dialogId: string = nanoid(8)
     private dialogEl: HTMLDialogElement
     private imageNodeList: NodeListOf<HTMLImageElement>
     private touch: Touch | null
+    private matchMediaListPrefersReducedMotion: MediaQueryList
 
     constructor() {
       super()
@@ -74,14 +75,21 @@ const dialogId: string = nanoid(8)
       this.dialogEl = document.getElementById(dialogId)! as HTMLDialogElement
       this.imageNodeList = this.dialogEl.querySelectorAll("img")
       this.touch = null
+      this.matchMediaListPrefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
     }
 
     public connectedCallback() {
       this.addEventListener("click", () => {
-        document.startViewTransition(() => {
-          this.setDisplayImage(0)
-          this.dialogEl.togglePopover()
-        })
+        if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
+          document.startViewTransition(() => {
+            this.setDisplayImage(0)
+            this.dialogEl.togglePopover()
+          })
+          return
+        }
+
+        this.setDisplayImage(0)
+        this.dialogEl.togglePopover()
       })
       const threshold: number = 50
       this.dialogEl.addEventListener("touchstart", (e) => {
