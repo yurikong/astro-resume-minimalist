@@ -1,0 +1,163 @@
+---
+import { Image } from "astro:assets"
+import type { IProjectAsset } from "~types/project"
+import { nanoid } from "nanoid"
+
+interface Props {
+  assets: IProjectAsset[]
+  showIndex?: boolean | undefined
+  class?: string | undefined
+  children?: unknown | undefined
+}
+const { assets, showIndex = true, class: className } = Astro.props
+
+const imageModules = assets.map(async ({ src }) => {
+  try {
+    return await import(/* @vite-ignore */ src)
+  } catch {
+    return await import("/src/assets/images/default.webp")
+  }
+})
+
+const dialogId: string = nanoid(8)
+---
+
+{
+  imageModules[0] && (
+    <image-viewer data-dialog-id={dialogId} class:list={["flex", "items-center", "justify-center", className]}>
+      <slot>
+        <Image
+          class:list={["h-full", "object-contain", "dark:brightness-95"]}
+          src={imageModules[0]}
+          alt={assets[0]?.alt}
+        />
+      </slot>
+
+      <dialog id={dialogId} popover class:list={["focus-visible:outline-0"]}>
+        <div
+          class:list={[
+            "w-vw",
+            "h-dvh",
+            "py-12",
+            "flex",
+            "items-center",
+            "justify-center",
+            "bg-gray-100",
+            "dark:bg-gray-900",
+          ]}
+        >
+          {/* 数量 */}
+          {!!showIndex && (
+            <div class:list={["fixed", "top-4", "left-1/2", "-translate-x-1/2", "text-gray-800", "dark:text-gray-300"]}>
+              <span id={`${dialogId}__index`}>1</span>/{assets.length}
+            </div>
+          )}
+
+          {imageModules.map((it, index) => (
+            <Image class:list={["h-full", "object-contain", "dark:brightness-95"]} src={it} alt={assets[index]?.alt} />
+          ))}
+        </div>
+      </dialog>
+    </image-viewer>
+  )
+}
+
+<script>
+  class ImageViewer extends HTMLElement {
+    private index: number
+    private indexEl: HTMLSpanElement | null
+    private dialogEl: HTMLDialogElement
+    private imageNodeList: NodeListOf<HTMLImageElement>
+    private touch: Touch | null
+    private matchMediaListPrefersReducedMotion: MediaQueryList
+
+    constructor() {
+      super()
+      this.index = 0
+      const dialogId: string = this.dataset.dialogId!
+      this.indexEl = document.getElementById(`${dialogId}__index`) as HTMLSpanElement | null
+      this.dialogEl = document.getElementById(dialogId)! as HTMLDialogElement
+      this.imageNodeList = this.dialogEl.querySelectorAll("img")
+      this.touch = null
+      this.matchMediaListPrefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    }
+
+    public connectedCallback() {
+      this.addEventListener("click", () => {
+        if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
+          document.startViewTransition(() => {
+            this.setDisplayImage(0)
+            this.dialogEl.togglePopover()
+          })
+          return
+        }
+
+        this.setDisplayImage(0)
+        this.dialogEl.togglePopover()
+      })
+      const threshold: number = 50
+      this.dialogEl.addEventListener("touchstart", (e) => {
+        if (e.changedTouches.length > 1) {
+          return
+        }
+        this.touch = e.changedTouches.item(0)
+      })
+      this.dialogEl.addEventListener("touchend", (e) => {
+        if (e.changedTouches.length > 1 || !this.touch) {
+          return
+        }
+        const touch = e.changedTouches.item(0)
+        if (!touch) {
+          return
+        }
+        const diff: number = Math.abs(touch.screenX - this.touch.screenX)
+        if (diff < threshold) {
+          return
+        }
+        if (touch.screenX < this.touch.screenX) {
+          // swipe left (show next image)
+          this.setDisplayImage(this.index + 1)
+        } else {
+          // swipe right (show previous image)
+          this.setDisplayImage(this.index - 1)
+        }
+      })
+      this.dialogEl.addEventListener("toggle", (e) => {
+        const evt = e as ToggleEvent
+        if (evt.newState === "open") {
+          document.body.classList.add("overflow-hidden")
+        } else {
+          document.body.classList.remove("overflow-hidden")
+        }
+      })
+    }
+
+    /**
+     * Set currently displaying image.
+     * @param {number} index
+     */
+    private setDisplayImage(index: number): void {
+      if (index < 0) {
+        index = 0
+      }
+      if (index > this.imageNodeList.length - 1) {
+        index = this.imageNodeList.length - 1
+      }
+      this.index = index
+      this.imageNodeList.forEach((it, i) => {
+        it.classList.toggle("hidden", i !== index)
+      })
+      if (this.indexEl) {
+        this.indexEl.textContent = (index + 1).toString()
+      }
+    }
+  }
+
+  customElements.define("image-viewer", ImageViewer)
+</script>
+
+<style>
+  dialog::backdrop {
+    --at-apply: bg-gray-100 "dark:bg-gray-900";
+  }
+</style>
