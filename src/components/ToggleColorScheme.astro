@@ -38,7 +38,7 @@ const { class: className } = Astro.props
       } else {
         this.colorScheme = "os"
       }
-      this.setColorScheme()
+      document.startViewTransition(() => this.setColorScheme())
     }
 
     /**
