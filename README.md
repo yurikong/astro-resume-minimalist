@@ -1,5 +1,11 @@
-# Astro Theme Resume
+# Astro Theme Resume Minimalist
 
-### TODO
+Yet another minimalist resume template built with Astro.
 
-- fix sitemap settings (sitemap, robot.txt, ...) deploy to vercel instead of github pages (assets urls seem funny on pages)
+### Support Me
+
+- 微信
+- 支付宝
+- 买杯咖啡
+- 爱发电
+- Open Collective
