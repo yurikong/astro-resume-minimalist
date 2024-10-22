@@ -12,6 +12,12 @@ export const projects: IProject[] = [
       displayText: "Github",
       iconClassName: "i-ri:github-fill",
     },
+    assets: [
+      {
+        src: "/src/assets/images/projects/astro-theme-resume-minimalist-1.webp",
+        alt: "Screenshot of Astro Theme Resume Minimalist.",
+      },
+    ],
     repository: new GithubRepository("yurikong", "astro-theme-resume-minimalist"),
     startYear: 2024,
     endYear: 2024,
