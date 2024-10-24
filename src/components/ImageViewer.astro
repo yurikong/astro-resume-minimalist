@@ -28,7 +28,7 @@ const dialogId: string = nanoid(8)
     <image-viewer data-dialog-id={dialogId} class:list={["flex", "items-center", "justify-center", className]}>
       <slot>
         <Image
-          class:list={["h-full", "object-contain", "dark:brightness-95"]}
+          class:list={["h-full", "object-contain", "cursor-pointer", "dark:brightness-95"]}
           src={imageModules[0]}
           alt={assets[0]?.alt}
         />
