@@ -8,6 +8,7 @@ interface Props extends IWork {}
 const { jobTitle, company, companyHomepage, description, projects, technologiesUsed, startYear, endYear } = Astro.props
 ---
 
+<!-- Work Details -->
 <div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
   <!-- Employed Years -->
   <YearRange
