@@ -103,6 +103,8 @@ const buttonNextId: string = nanoid(8)
 }
 
 <script>
+  import { throttle } from "~utils/throttle"
+
   class ImageViewer extends HTMLElement {
     private index: number
     private indexEl: HTMLSpanElement | null
@@ -186,6 +188,19 @@ const buttonNextId: string = nanoid(8)
           this.setDisplayImage(this.index + 1)
         })
       }
+
+      this.dialogEl.addEventListener(
+        "wheel",
+        throttle((e: WheelEvent): void => {
+          if (e.deltaY === 0) {
+            return
+          } else if (e.deltaY < 0) {
+            this.setDisplayImage(this.index - 1)
+          } else {
+            this.setDisplayImage(this.index + 1)
+          }
+        }, 250)
+      )
     }
 
     /**
