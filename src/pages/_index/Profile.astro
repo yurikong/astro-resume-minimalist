@@ -6,13 +6,13 @@ import ImageViewer from "~components/ImageViewer.astro"
 ---
 
 <section>
-  <div class:list={["toggle-color-scheme-wrapper", "fixed", "top-5", "mr-6", "md:top-8", "md:mr-12", "z-21"]}>
+  <div id="profile__toggle-color-scheme-wrapper" class:list={["fixed", "top-5", "md:top-8", "z-21"]}>
     <ToggleColorScheme class:list={["text-xl"]} />
   </div>
 
   <header
+    id="app-header"
     class:list={[
-      "app-header",
       "sticky",
       "top-0",
       "z-20",
@@ -122,13 +122,43 @@ import ImageViewer from "~components/ImageViewer.astro"
   </ul>
 </section>
 
+<script>
+  setCSSPropertyOnToggleColorSchemeComponent()
+  window.addEventListener("resize", setCSSPropertyOnToggleColorSchemeComponent)
+
+  /**
+   * Bind `--left` to ToggleColorSchemeComponent.
+   */
+  function setCSSPropertyOnToggleColorSchemeComponent(): void {
+    const el: HTMLElement | null = document.getElementById("profile__toggle-color-scheme-wrapper")
+    const appHeaderEl: HTMLElement | null = document.getElementById("app-header")
+    if (!el || !appHeaderEl) {
+      return
+    }
+    const { right } = appHeaderEl.getBoundingClientRect()
+    const appHeaderPaddingRight: number = parseFloat(window.getComputedStyle(appHeaderEl).paddingRight)
+    el.style.setProperty("--left", `${right - appHeaderPaddingRight}px`)
+  }
+</script>
+
 <style>
-  .toggle-color-scheme-wrapper {
-    position-anchor: --app-header;
-    right: anchor(right);
+  @supports (anchor-name: --app-header) {
+    #app-header {
+      anchor-name: --app-header;
+    }
   }
 
-  .app-header {
-    anchor-name: --app-header;
+  @supports (position-anchor: --app-header) and (right: anchor(right)) {
+    #profile__toggle-color-scheme-wrapper {
+      position-anchor: --app-header;
+      right: anchor(right);
+      --at-apply: mr-6 "md:mr-12";
+    }
+  }
+
+  @supports not ((position-anchor: --app-header) or (right: anchor(right))) {
+    #profile__toggle-color-scheme-wrapper {
+      --at-apply: left-[var(--left)] -translate-x-full;
+    }
   }
 </style>
