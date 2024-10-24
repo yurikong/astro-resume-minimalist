@@ -91,7 +91,7 @@ const buttonNextId: string = nanoid(8)
           {/* Images */}
           {imageModules.map((it, index) => (
             <Image
-              class:list={["flex-auto", "object-contain", "dark:brightness-95"]}
+              class:list={["flex-auto", "w-full", "h-0", "object-contain", "dark:brightness-95"]}
               src={it}
               alt={assets[index]?.alt}
             />
