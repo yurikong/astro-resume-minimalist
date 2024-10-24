@@ -89,38 +89,33 @@ import ImageViewer from "~components/ImageViewer.astro"
   <!-- Description -->
   <p class:list={["leading-normal", "mt-8", "md:mt-16"]}>
     <span>I am the creator of</span>
-    <span class="inline-flex">
-      <AppLink
-        class:list={["text-gray-800", "dark:text-gray-300"]}
-        url="https://github.com/yurikong/astro-theme-resume-minimalist"
-        showSuffixIcon
-      >
-        Astro Theme Resume Minimalist
-      </AppLink>
-      .
-    </span>
+    <AppLink
+      class:list={["text-gray-800", "dark:text-gray-300"]}
+      url="https://github.com/yurikong/astro-theme-resume-minimalist"
+      showSuffixIcon
+    >
+      Astro Theme Resume Minimalist
+    </AppLink>
+    .
   </p>
-
-  <!-- Social Contacts -->
-  <ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
-    <li title="WeChat">
-      <ImageViewer
-        assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "Wechat logo." }]}
-        showIndex={false}
-      >
-        <i class:list={["i-ri:wechat-line", "cursor-pointer"]}></i>
-      </ImageViewer>
-    </li>
-
-    {
-      socials.map((it) => (
-        <li>
-          <AppLink url={it.url} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
-        </li>
-      ))
-    }
-  </ul>
 </section>
+
+<!-- Social Contacts -->
+<ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
+  <li title="WeChat">
+    <ImageViewer assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "Wechat logo." }]} showIndex={false}>
+      <i class:list={["i-ri:wechat-line", "cursor-pointer"]}></i>
+    </ImageViewer>
+  </li>
+
+  {
+    socials.map((it) => (
+      <li>
+        <AppLink url={it.url} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
+      </li>
+    ))
+  }
+</ul>
 
 <script>
   setCSSPropertyOnToggleColorSchemeComponent()
