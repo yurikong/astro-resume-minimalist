@@ -36,7 +36,7 @@ const { jobTitle, company, companyHomepage, description, projects, technologiesU
           {projects.map((it) => (
             <li class:list={["font-medium", "text-sm", "leading-normal", "text-gray-700", "dark:text-gray-400"]}>
               <AppLink url={it.url} showPrefixIcon>
-                {it.name}
+                <span class="inline-block">{it.name}</span>
               </AppLink>
             </li>
           ))}
