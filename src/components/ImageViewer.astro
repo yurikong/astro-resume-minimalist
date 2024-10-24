@@ -201,6 +201,23 @@ const buttonNextId: string = nanoid(8)
           }
         }, 250)
       )
+
+      this.dialogEl.addEventListener(
+        "keydown",
+        throttle((e: KeyboardEvent): void => {
+          const { key } = e
+          if (key === "ArrowUp" || key === "ArrowLeft") {
+            this.setDisplayImage(this.index - 1)
+          } else if (key === "ArrowDown" || key === "ArrowRight") {
+            this.setDisplayImage(this.index + 1)
+          } else {
+            // do nothing
+          }
+          if (this.index === this.imageNodeList.length - 1) {
+            this.dialogEl.focus()
+          }
+        }, 250)
+      )
     }
 
     /**
