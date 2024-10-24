@@ -47,13 +47,14 @@ const dialogId: string = nanoid(8)
             "dark:bg-gray-900",
           ]}
         >
-          {/* 数量 */}
+          {/* Page Count */}
           {!!showIndex && (
             <div class:list={["fixed", "top-4", "left-1/2", "-translate-x-1/2", "text-gray-800", "dark:text-gray-300"]}>
               <span id={`${dialogId}__index`}>1</span>/{assets.length}
             </div>
           )}
 
+          {/* Images */}
           {imageModules.map((it, index) => (
             <Image class:list={["h-full", "object-contain", "dark:brightness-95"]} src={it} alt={assets[index]?.alt} />
           ))}

@@ -13,6 +13,7 @@ const { class: className } = Astro.props
 const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
 ---
 
+<!-- Work -->
 <section class={className}>
   <header
     class:list={[
@@ -39,6 +40,8 @@ const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
   >
     work
   </header>
+
+  <!-- Work List -->
   <ul>
     {
       workDetailsList.map((it) => (

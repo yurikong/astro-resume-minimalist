@@ -12,6 +12,7 @@ const { class: className } = Astro.props
 const educationDetailsList: IEducation[] = educations.toSorted(mostRecentYearComparator)
 ---
 
+<!-- Education -->
 <section class={className}>
   <header
     class:list={[
@@ -38,6 +39,8 @@ const educationDetailsList: IEducation[] = educations.toSorted(mostRecentYearCom
   >
     education
   </header>
+
+  <!-- Education List -->
   <ul>
     {
       educationDetailsList.map((it) => (
