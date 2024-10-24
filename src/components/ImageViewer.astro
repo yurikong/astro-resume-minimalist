@@ -130,14 +130,13 @@ const buttonNextId: string = nanoid(8)
       this.addEventListener("click", () => {
         if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
           document.startViewTransition(() => {
-            this.setDisplayImage(0, false)
-            this.dialogEl.togglePopover()
+            this.show()
           })
           return
         }
-        this.setDisplayImage(0, false)
-        this.dialogEl.togglePopover()
+        this.show()
       })
+
       const threshold: number = 50
       this.dialogEl.addEventListener("touchstart", (e) => {
         if (e.changedTouches.length > 1) {
@@ -165,6 +164,7 @@ const buttonNextId: string = nanoid(8)
           this.setDisplayImage(this.index - 1)
         }
       })
+
       this.dialogEl.addEventListener("toggle", (e) => {
         const evt = e as ToggleEvent
         if (evt.newState === "open") {
@@ -173,6 +173,7 @@ const buttonNextId: string = nanoid(8)
           document.body.classList.remove("overflow-hidden")
         }
       })
+
       if (this.buttonPrevEl) {
         this.buttonPrevEl.addEventListener("click", (e) => {
           e.stopPropagation()
@@ -185,6 +186,14 @@ const buttonNextId: string = nanoid(8)
           this.setDisplayImage(this.index + 1)
         })
       }
+    }
+
+    /**
+     * Show modal popup.
+     */
+    private show(): void {
+      this.setDisplayImage(0, false)
+      this.dialogEl.togglePopover()
     }
 
     /**
