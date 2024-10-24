@@ -13,7 +13,7 @@ const { class: className } = Astro.props
 const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparator).slice(0, 10)
 ---
 
-<!-- Projects -->
+<!-- Project -->
 <section class={className}>
   <header
     class:list={[
@@ -40,6 +40,8 @@ const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparato
   >
     projects
   </header>
+
+  <!-- Project List -->
   <ul>
     {
       projectDetailsList.map((it) => (
