@@ -65,6 +65,31 @@ const { class: className } = Astro.props
     }
 
     /**
+     * Update document head meta for theme color.
+     */
+    private updateDocumentMeta(): void {
+      const metaThemeColorNodes = document.head.querySelectorAll('meta[name="theme-color"]')
+      metaThemeColorNodes.forEach((node) => {
+        document.head.removeChild(node)
+      })
+      const metaThemeColorLight: HTMLMetaElement = document.createElement("meta")
+      metaThemeColorLight.setAttribute("name", "theme-color")
+      metaThemeColorLight.setAttribute("content", "#f3f4f6")
+      const metaThemeColorDark: HTMLMetaElement = document.createElement("meta")
+      metaThemeColorDark.setAttribute("name", "theme-color")
+      metaThemeColorDark.setAttribute("content", "#111827")
+      if (this.colorScheme === "os") {
+        metaThemeColorLight.setAttribute("media", "(prefers-color-scheme: light)")
+        metaThemeColorDark.setAttribute("media", "(prefers-color-scheme: dark)")
+        document.head.append(metaThemeColorLight, metaThemeColorDark)
+      } else if (this.colorScheme === "dark") {
+        document.head.appendChild(metaThemeColorDark)
+      } else {
+        document.head.appendChild(metaThemeColorLight)
+      }
+    }
+
+    /**
      * Update icon class name based on color scheme.
      */
     private updateIconClassName(): void {
@@ -99,6 +124,7 @@ const { class: className } = Astro.props
         this.setLightScheme()
         this.matchMediaListDark.removeEventListener("change", this.handleDarkScheme)
       }
+      this.updateDocumentMeta()
       this.updateIconClassName()
       localStorage.setItem(this.localStorageKey, this.colorScheme)
     }
