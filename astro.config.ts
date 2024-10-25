@@ -12,6 +12,7 @@ const { PORT }: ImportMetaEnv | Record<string, string> = loadEnv(import.meta.env
 export default defineConfig({
   prefetch: {
     prefetchAll: true,
+    defaultStrategy: "viewport",
   },
   site: "https://yurikong.github.io",
   base: "astro-theme-resume-minimalist",
@@ -32,6 +33,9 @@ export default defineConfig({
   ],
   image: {
     service: squooshImageService(),
+  },
+  experimental: {
+    clientPrerender: true,
   },
   vite: {
     build: {
