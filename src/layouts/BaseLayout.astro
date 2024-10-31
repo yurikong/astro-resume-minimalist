@@ -1,24 +1,39 @@
 ---
+import type { TLocale } from "~/i18n"
+import HeadMetaEn from "~components/en/HeadMeta.astro"
+import HeadMetaZh from "~components/zh/HeadMeta.astro"
+import HeadIcons from "~components/HeadIcons.astro"
+import HeadFonts from "~components/HeadFonts.astro"
 import { ViewTransitions } from "astro:transitions"
 import IconifyIconDisplayFix from "~components/IconifyIconDisplayFix.astro"
-import AppFooter from "~components/AppFooter.astro"
+import AppFooterEn from "~components/en/AppFooter.astro"
+import AppFooterZh from "~components/zh/AppFooter.astro"
 
-const title: string = "Astro Theme Resume Minimalist — Jianqiang Du"
-const description: string = "An open-sourced minimal resume site template built with Astro."
+interface Props {
+  locale?: TLocale | undefined
+  prependTitle?: string | undefined
+}
+const { locale = "en", prependTitle } = Astro.props
+
+let documentTitle: string = ""
+if (locale === "en") {
+  documentTitle = "Astro Resume Minimalist — Jianqiang Du"
+} else if (locale === "zh") {
+  documentTitle = "Astro极简简历 — 杜健强"
+} else {
+  // do nothing
+}
+if (prependTitle) {
+  documentTitle = `${prependTitle} | ${documentTitle}`
+}
 ---
 
-<html lang="en" class="scroll-smooth">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="generator" content={Astro.generator} />
-  <title>{title}</title>
-  <meta name="title" content={title} />
-  <meta name="description" content={description} />
-  <link rel="apple-touch-icon" sizes="180x180" href=`${import.meta.env.BASE_URL}/apple-touch-icon.png` />
-  <link rel="icon" type="image/png" sizes="32x32" href=`${import.meta.env.BASE_URL}/favicon-32x32.png` />
-  <link rel="icon" type="image/png" sizes="16x16" href=`${import.meta.env.BASE_URL}/favicon-16x16.png` />
-  <link rel="manifest" href=`${import.meta.env.BASE_URL}/site.webmanifest` />
-  <link rel="stylesheet" href=`${import.meta.env.BASE_URL}/fonts/Inter/inter.css` />
+<html lang={Astro.currentLocale} class="scroll-smooth">
+  <title>{documentTitle}</title>
+  {locale === "en" && <HeadMetaEn />}
+  {locale === "zh" && <HeadMetaZh />}
+  <HeadIcons />
+  <HeadFonts />
   <ViewTransitions />
 
   <body
@@ -40,7 +55,8 @@ const description: string = "An open-sourced minimal resume site template built 
       <slot />
     </div>
 
-    <AppFooter />
+    {locale === "en" && <AppFooterEn />}
+    {locale === "zh" && <AppFooterZh />}
   </body>
 </html>
 

@@ -1,15 +1,15 @@
 ---
 import type { IProject } from "~types/project"
-import { projects } from "~data/projects"
+import { projects } from "~data/en/projects"
 import { mostRecentYearComparator } from "~utils/comparators"
 import ProjectDetails from "./ProjectDetails.astro"
 import AppLink from "~components/AppLink.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
 
 interface Props {
   class?: string
 }
 const { class: className } = Astro.props
-
 const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparator).slice(0, 10)
 ---
 
@@ -38,7 +38,7 @@ const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparato
       "dark:bg-gray-900",
     ]}
   >
-    projects
+    Projects
   </header>
 
   <!-- Project List -->
@@ -55,10 +55,10 @@ const projectDetailsList: IProject[] = projects.toSorted(mostRecentYearComparato
   <!-- View All Projects -->
   <AppLink
     class:list={["block", "mt-24", "font-semibold", "capitalize", "text-gray-800", "dark:text-gray-300"]}
-    url="/project"
+    url={getRelativeLocaleUrl("en", "project")}
     showSuffixIcon
     suffixIconClassName="i-ri:arrow-right-line"
   >
-    view all projects
+    View All Projects
   </AppLink>
 </section>

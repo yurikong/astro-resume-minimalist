@@ -1,16 +1,16 @@
 ---
 import type { IEducation } from "~types/education"
-import YearRange from "~components/YearRange.astro"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
 import AppLink from "~components/AppLink.astro"
 
 interface Props extends IEducation {}
-const { university, universityHomepage, degree, major, GPA, startYear, endYear } = Astro.props
+const { university, universityHomepage, degreeAndMajor, GPA, startYear, endYear } = Astro.props
 ---
 
 <!-- Education Details -->
 <div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
   <!-- Attended Years -->
-  <YearRange
+  <LocaleYearRange
     class:list={["text-xs", "tracking-wide", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
     startYear={startYear}
     endYear={endYear}
@@ -26,10 +26,9 @@ const { university, universityHomepage, degree, major, GPA, startYear, endYear }
       {university}
     </AppLink>
 
-    <!-- Major & Degree -->
+    <!-- Degree & Major -->
     <div class:list={["flex", "text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>
-      {major}
-      {!!degree && <span>, {degree}</span>}
+      {degreeAndMajor}
     </div>
 
     <!-- GPA -->

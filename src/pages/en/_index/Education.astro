@@ -1,5 +1,5 @@
 ---
-import { educations } from "~data/educations"
+import { educations } from "~data/en/educations"
 import type { IEducation } from "~types/education"
 import { mostRecentYearComparator } from "~utils/comparators"
 import EducationDetails from "./EducationDetails.astro"
@@ -8,7 +8,6 @@ interface Props {
   class?: string
 }
 const { class: className } = Astro.props
-
 const educationDetailsList: IEducation[] = educations.toSorted(mostRecentYearComparator)
 ---
 
@@ -37,7 +36,7 @@ const educationDetailsList: IEducation[] = educations.toSorted(mostRecentYearCom
       "dark:bg-gray-900",
     ]}
   >
-    education
+    Education
   </header>
 
   <!-- Education List -->

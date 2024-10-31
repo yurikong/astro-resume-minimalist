@@ -1,8 +1,9 @@
 ---
-import { socials } from "~data/socials"
+import { socials } from "~data/en/socials"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
-import ImageViewer from "~components/ImageViewer.astro"
+import LocaleImageViewer from "~components/LocaleImageViewer.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
 ---
 
 <!-- Profile -->
@@ -35,7 +36,10 @@ import ImageViewer from "~components/ImageViewer.astro"
       "dark:bg-gray-900",
     ]}
   >
-    <AppLink url="/"><span class:list={["hidden", "sm:inline"]}>astro theme </span>resume</AppLink>
+    <AppLink url={getRelativeLocaleUrl("en")}>
+      <span class:list={["hidden", "sm:inline"]}>astro resume</span>
+      <span>minimalist</span>
+    </AppLink>
   </header>
 
   <!-- Name -->
@@ -50,7 +54,7 @@ import ImageViewer from "~components/ImageViewer.astro"
       "dark:text-gray-300",
     ]}
   >
-    jianqiang du
+    Jianqiang Du
   </h1>
 
   <!-- Job Title -->
@@ -67,7 +71,7 @@ import ImageViewer from "~components/ImageViewer.astro"
       "md:mt-4",
     ]}
   >
-    Software Developer
+    Software Engineer
   </div>
 
   <!-- Location -->
@@ -88,26 +92,30 @@ import ImageViewer from "~components/ImageViewer.astro"
     <span>Foshan</span>
   </div>
 
-  <!-- Description -->
+  <!-- Introduction -->
   <p class:list={["leading-normal", "mt-8", "md:mt-16"]}>
     <span>I am the creator of</span>
     <AppLink
       class:list={["text-gray-800", "dark:text-gray-300"]}
       url="https://github.com/yurikong/astro-theme-resume-minimalist"
       showSuffixIcon
+      suffixIconClassName="i-ri:github-fill"
     >
-      Astro Theme Resume Minimalist
+      Astro Resume Minimalist
     </AppLink>
-    .
+    <span>.</span>
   </p>
 </section>
 
 <!-- Social Contacts -->
 <ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
-  <li title="WeChat">
-    <ImageViewer assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "Wechat logo." }]} showIndex={false}>
+  <li title="Wechat">
+    <LocaleImageViewer
+      assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "Wechat Contact QR." }]}
+      showIndex={false}
+    >
       <i class:list={["i-ri:wechat-line", "cursor-pointer"]}></i>
-    </ImageViewer>
+    </LocaleImageViewer>
   </li>
 
   {

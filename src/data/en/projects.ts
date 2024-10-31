@@ -3,30 +3,29 @@ import { GithubRepository } from "~classes/repository"
 
 export const projects: IProject[] = [
   {
-    id: "astro-theme-resume-minimalist",
-    name: "Astro Theme Resume Minimalist",
+    id: "astro-resume-minimalist",
+    name: "Astro Resume Minimalist",
     description: "An open-sourced minimal resume site template built with Astro.",
-    technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML & CSS", "Github Pages"],
+    technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML", "CSS", "Github Pages"],
     link: {
-      url: "https://yurikong.github.io/astro-theme-resume-minimalist/",
+      url: "https://github.com/yurikong/astro-theme-resume-minimalist",
       displayText: "Github",
       iconClassName: "i-ri:github-fill",
     },
     assets: [
       {
-        src: "/src/assets/images/projects/astro-theme-resume-minimalist-1.webp",
-        alt: "Screenshot of Astro Theme Resume Minimalist.",
+        src: "/src/assets/images/projects/astro-resume-minimalist.webp",
+        alt: "Screenshot of Astro Resume Minimalist.",
       },
     ],
-    repository: new GithubRepository("yurikong", "astro-theme-resume-minimalist"),
+    repository: new GithubRepository("yurikong", "astro-resume-minimalist"),
     startYear: 2024,
     endYear: 2024,
   },
   {
-    id: "sacmi-nh-sdp-print",
+    id: "sacmi-sdp-print",
     name: "SDP Print",
     description: "Desktop app for ceramic tiles production using Sacmi NH's single-pass inkjet printer (SDP).",
-    madeAt: "Sacmi NH",
     technologiesUsed: [
       "Vue 3",
       "Pinia",
@@ -44,27 +43,26 @@ export const projects: IProject[] = [
     startYear: 2023,
   },
   {
-    id: "sacmi-nh-sdp-print-image-rotation",
-    name: "SDP Print-Image Rotation",
+    id: "sacmi-sdp-print-image-rotation",
+    name: "SDP Print - Image Rotation",
     description:
       "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
-    madeAt: "Sacmi NH",
     technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
     assets: [
       {
         src: "/src/assets/images/projects/sacmi-nh-sdp-print-image-rotation-1.webp",
-        alt: "Screenshot 1 of SDP Print-Image Rotation.",
+        alt: "Screenshot 1 of SDP Print - Image Rotation.",
       },
       {
         src: "/src/assets/images/projects/sacmi-nh-sdp-print-image-rotation-2.webp",
-        alt: "Screenshot 2 of SDP Print-Image Rotation.",
+        alt: "Screenshot 2 of SDP Print - Image Rotation.",
       },
     ],
     startYear: 2024,
     endYear: 2024,
   },
   {
-    id: "aats-certificate-of-analysis-generator",
+    id: "certificate-of-analysis-generator",
     name: "Certificate of Analysis Generator",
     description: "Desktop app for generating Certificate of Analysis for use in an analytical testing laboratory.",
     technologiesUsed: ["Flutter"],
@@ -79,11 +77,11 @@ export const projects: IProject[] = [
       },
       {
         src: "/src/assets/images/projects/aats-certificate-of-analysis-generator-3.webp",
-        alt: "Screenshot 3 of COA Generator.",
+        alt: "Screenshot 3 of Certificate of Analysis Generator.",
       },
       {
         src: "/src/assets/images/projects/aats-certificate-of-analysis-generator-4.webp",
-        alt: "Screenshot 4 of COA Generator.",
+        alt: "Screenshot 4 of Certificate of Analysis Generator.",
       },
     ],
     startYear: 2023,
@@ -93,14 +91,13 @@ export const projects: IProject[] = [
     id: "sdebank-digifly",
     name: "Digifly",
     description: "Data visualization web app for a bank client.",
-    madeAt: "Stramo",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
       "Vue Router",
       "Javascript",
       "SCSS",
-      "Echarts",
+      "ECharts",
       "G2",
       "G2Plot",
       "Swiper",
@@ -122,7 +119,6 @@ export const projects: IProject[] = [
     id: "sdebank-digifly-admin",
     name: "Digifly Admin",
     description: "Admin dashboard for data visualization web app (Digifly) for a bank client.",
-    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "Element UI", "Webpack"],
     startYear: 2022,
     endYear: 2023,
@@ -131,7 +127,6 @@ export const projects: IProject[] = [
     id: "sdebank-management-cockpit",
     name: "Sdebank Management Cockpit",
     description: "Management Cockpit on the web for a bank client.",
-    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "ECharts", "G2", "G2Plot", "Webpack"],
     assets: [
       {
@@ -154,11 +149,10 @@ export const projects: IProject[] = [
     id: "sdebank-groton-snakehead-monitor",
     name: "Snakehead Monitor",
     description: "Web app for monitoring snakehead prices.",
-    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Javascript", "SCSS", "G2Plot", "Webpack"],
     assets: [
       {
-        src: "/src/assets/images/projects/sdebank-groton-snakehead-monitor-1.webp",
+        src: "/src/assets/images/projects/sdebank-groton-snakehead-monitor.webp",
         alt: "Screenshot of Snakehead Monitor.",
       },
     ],
@@ -169,7 +163,6 @@ export const projects: IProject[] = [
     id: "sdebank-big-data-marketing-platform",
     name: "Big Data Marketing Platform",
     description: "Web app for marketing for a bank client.",
-    madeAt: "Stramo",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
@@ -177,7 +170,7 @@ export const projects: IProject[] = [
       "Javascript",
       "SCSS",
       "Element UI",
-      "Echarts",
+      "ECharts",
       "G2",
       "Swiper",
       "Webpack",

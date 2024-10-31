@@ -4,14 +4,16 @@ import type { ImageMetadata } from "astro"
 import type { IProjectAsset } from "~types/project"
 import { nanoid } from "nanoid"
 import DefaultImage from "~assets/images/default.webp"
+import type { TLocale } from "~types/i18n"
 
 interface Props {
   assets: IProjectAsset[]
   showIndex?: boolean | undefined
+  locale?: TLocale | undefined
   class?: string | undefined
   children?: unknown | undefined
 }
-const { assets, showIndex = true, class: className } = Astro.props
+const { assets, showIndex = true, locale = "en", class: className } = Astro.props
 
 type ImageMetadataModule = { default: ImageMetadata }
 
@@ -23,6 +25,9 @@ const imageModules = assets.map<ImageMetadata | Promise<ImageMetadataModule>>(({
 const dialogId: string = nanoid(8)
 const buttonPrevId: string = nanoid(8)
 const buttonNextId: string = nanoid(8)
+
+const buttonPrevTitle: string = locale === "zh" ? "上一页" : "Previous"
+const buttonNextTitle: string = locale === "zh" ? "下一页" : "Next"
 ---
 
 {
@@ -59,7 +64,7 @@ const buttonNextId: string = nanoid(8)
                   "p-4",
                   "focus-visible:outline-0",
                 ]}
-                title="Previous"
+                title={buttonPrevTitle}
               >
                 <i class="i-ri:arrow-left-line" />
               </button>
@@ -82,7 +87,7 @@ const buttonNextId: string = nanoid(8)
                   "p-4",
                   "focus-visible:outline-0",
                 ]}
-                title="Next"
+                title={buttonNextTitle}
               >
                 <i class="i-ri:arrow-right-line" />
               </button>
