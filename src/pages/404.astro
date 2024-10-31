@@ -17,7 +17,7 @@ const { locale = defaultLocale } = Astro.props
     <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
       <AppLink
         class:list={["leading-tight", "lowercase"]}
-        url={getRelativeLocaleUrl("en")}
+        url={getRelativeLocaleUrl(Astro.currentLocale ?? defaultLocale)}
         showPrefixIcon
         prefixIconClassName="i-ri:arrow-left-line"
       >
