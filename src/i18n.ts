@@ -36,6 +36,7 @@ export function getLocale(): TLocale {
 
 /**
  * Set `locale` to local storage and redirect to corresponding locale page.
+ * Client side only.
  * @param {TLocale} locale
  */
 export function setLocale(locale: TLocale): void {
