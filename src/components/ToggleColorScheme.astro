@@ -11,6 +11,7 @@ const { class: className } = Astro.props
 
 <script>
   import type { TColorScheme } from "~types/color-scheme"
+  import { type TLocale, parseLocale } from "~/i18n"
 
   class ToggleColorScheme extends HTMLElement {
     private colorScheme: TColorScheme = "os"
@@ -21,6 +22,7 @@ const { class: className } = Astro.props
     public connectedCallback(): void {
       this.readColorScheme()
       this.setColorScheme()
+      this.setTitle()
       this.addEventListener("click", this.handleClick)
     }
 
@@ -40,11 +42,15 @@ const { class: className } = Astro.props
         this.colorScheme = "os"
       }
       if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
-        document.startViewTransition(() => this.setColorScheme())
+        document.startViewTransition(() => {
+          this.setColorScheme()
+          this.setTitle()
+        })
         return
       }
 
       this.setColorScheme()
+      this.setTitle()
     }
 
     /**
@@ -127,6 +133,34 @@ const { class: className } = Astro.props
       this.updateDocumentMeta()
       this.updateIconClassName()
       localStorage.setItem(this.localStorageKey, this.colorScheme)
+    }
+
+    /**
+     * Set title
+     */
+    private setTitle(): void {
+      const locale: TLocale = parseLocale(document.documentElement.lang)
+      let title: string = ""
+      if (locale === "en") {
+        if (this.colorScheme === "os") {
+          title = "System"
+        } else if (this.colorScheme === "light") {
+          title = "Light"
+        } else {
+          title = "Dark"
+        }
+      } else if (locale === "zh") {
+        if (this.colorScheme === "os") {
+          title = "系统主题"
+        } else if (this.colorScheme === "light") {
+          title = "明亮主题"
+        } else {
+          title = "暗黑主题"
+        }
+      } else {
+        // do nothing
+      }
+      this.title = title
     }
 
     private handleDarkScheme = () => this.setSystemScheme()
