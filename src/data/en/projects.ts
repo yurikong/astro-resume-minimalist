@@ -8,7 +8,7 @@ export const projects: IProject[] = [
     description: "An open-sourced minimal resume site template built with Astro.",
     technologiesUsed: ["Astro", "Typescript", "UnoCSS", "HTML", "CSS", "Github Pages"],
     link: {
-      url: "https://github.com/yurikong/astro-theme-resume-minimalist",
+      url: "https://github.com/yurikong/astro-resume-minimalist",
       displayText: "Github",
       iconClassName: "i-ri:github-fill",
     },

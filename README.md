@@ -1,4 +1,4 @@
-# Astro Theme Resume Minimalist
+# Astro Resume Minimalist
 
 Yet another minimalist resume template built with Astro.
 
