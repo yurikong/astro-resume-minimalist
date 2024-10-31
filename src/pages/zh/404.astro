@@ -1,0 +1,32 @@
+---
+import LocaleToggleLocale from "~components/LocaleToggleLocale.astro"
+import LocaleBaseLayout from "~layouts/LocaleBaseLayout.astro"
+import AppLink from "~components/AppLink.astro"
+import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
+---
+
+<LocaleBaseLayout locale="zh">
+  <div class:list={["py-5", "md:py-8"]}>
+    <!-- Nav -->
+    <nav class:list={["flex", "justify-between", "leading-tight", "mb-2", "md:mb-4", "gap-4", "md:gap-5"]}>
+      <AppLink
+        class:list={["lowercase"]}
+        url={getRelativeLocaleUrl("zh")}
+        showPrefixIcon
+        prefixIconClassName="i-ri:arrow-left-line"
+      >
+        返回
+      </AppLink>
+
+      <LocaleToggleLocale class:list={["ml-auto"]} />
+      <LocaleToggleColorScheme class="text-xl" />
+    </nav>
+
+    <h1
+      class:list={["font-medium", "tracking-tight", "text-4xl", "sm:text-5xl", "text-gray-800", "dark:text-gray-300"]}
+    >
+      404
+    </h1>
+  </div>
+</LocaleBaseLayout>

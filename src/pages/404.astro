@@ -1,34 +1,16 @@
 ---
-import { type TLocale, parseLocale, defaultLocale } from "~/i18n"
-import LocaleBaseLayout from "~layouts/LocaleBaseLayout.astro"
-import AppLink from "~components/AppLink.astro"
-import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
+import HeadIcons from "~components/HeadIcons.astro"
+import HeadMetaEn from "~components/en/HeadMeta.astro"
 
-const locale: TLocale = parseLocale(Astro.currentLocale ?? defaultLocale)
+const redirectMessage: string = "redirecting..."
+
+return Astro.redirect(getRelativeLocaleUrl(Astro.currentLocale, "404"))
 ---
 
-<LocaleBaseLayout locale={locale}>
-  <div class:list={["py-5", "md:py-8"]}>
-    <!-- Nav -->
-    <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
-      <AppLink
-        class:list={["leading-tight", "lowercase"]}
-        url={getRelativeLocaleUrl(locale)}
-        showPrefixIcon
-        prefixIconClassName="i-ri:arrow-left-line"
-      >
-        {locale === "en" && "back"}
-        {locale === "zh" && "返回"}
-      </AppLink>
-
-      <LocaleToggleColorScheme class="text-xl" />
-    </nav>
-
-    <h1
-      class:list={["font-medium", "tracking-tight", "text-4xl", "sm:text-5xl", "text-gray-800", "dark:text-gray-300"]}
-    >
-      404
-    </h1>
-  </div>
-</LocaleBaseLayout>
+<html lang={Astro.currentLocale}>
+  <title>{redirectMessage}</title>
+  <HeadMetaEn />
+  <HeadIcons />
+  <body>{redirectMessage}</body>
+</html>
