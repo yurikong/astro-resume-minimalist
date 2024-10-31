@@ -1,5 +1,5 @@
 ---
-import { works } from "~data/works"
+import { works } from "~data/en/works"
 import { mostRecentYearComparator } from "~utils/comparators"
 import type { IWork } from "~types/work"
 import WorkDetails from "./WorkDetails.astro"
@@ -9,7 +9,6 @@ interface Props {
   class?: string
 }
 const { class: className } = Astro.props
-
 const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
 ---
 
@@ -38,7 +37,7 @@ const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
       "dark:bg-gray-900",
     ]}
   >
-    work
+    Work
   </header>
 
   <!-- Work List -->
@@ -57,6 +56,6 @@ const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
     class:list={["block", "mt-24", "font-semibold", "capitalize", "text-gray-800", "dark:text-gray-300"]}
     showSuffixIcon
   >
-    view full resume
+    View Full Resume
   </AppLink>
 </section>

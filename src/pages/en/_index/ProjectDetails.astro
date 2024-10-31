@@ -1,16 +1,14 @@
 ---
 import type { IProject, IProjectHighlight } from "~types/project"
 import type { IGithubRepositoryInfo } from "~types/repository"
-import YearRange from "~components/YearRange.astro"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
 import AppLink from "~components/AppLink.astro"
 import Tag from "~components/Tag.astro"
-import ImageViewer from "~components/ImageViewer.astro"
+import LocaleImageViewer from "~components/LocaleImageViewer.astro"
 
 interface Props extends IProject {}
 const { name, description, technologiesUsed, assets, link, repository, startYear, endYear } = Astro.props
-
 const url: string | undefined = link?.url ?? repository?.url
-
 const highlights: IProjectHighlight[] = []
 if (!!repository) {
   try {
@@ -19,12 +17,12 @@ if (!!repository) {
     if (isPrivate === false) {
       highlights.push(
         {
-          name: "Stars",
+          name: "stars",
           iconClassName: "i-ri:star-fill",
           value: starsCount,
         },
         {
-          name: "Forks",
+          name: "forks",
           iconClassName: "i-ri:git-fork-fill",
           value: forksCount,
         }
@@ -40,7 +38,7 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
 <!-- Project Details -->
 <div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
   <!-- Ongoing Years -->
-  <YearRange
+  <LocaleYearRange
     class:list={["text-xs", "tracking-widest", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
     startYear={startYear}
     endYear={endYear}
@@ -93,7 +91,7 @@ const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.val
     <!-- Preview -->
     {
       assets && assets.length > 0 && (
-        <ImageViewer
+        <LocaleImageViewer
           class:list={["mt-4", "ring", "rounded", "overflow-hidden", "ring-gray-300", "dark:ring-gray-600"]}
           assets={assets}
         />

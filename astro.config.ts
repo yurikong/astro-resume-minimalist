@@ -10,7 +10,7 @@ export default defineConfig({
     defaultStrategy: "viewport",
   },
   site: "https://yurikong.github.io",
-  base: "astro-theme-resume-minimalist",
+  base: "/astro-theme-resume-minimalist",
   server: {
     open: true,
   },
@@ -24,6 +24,14 @@ export default defineConfig({
     }),
     robotsTxt(),
   ],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "zh"],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
   image: {
     service: squooshImageService(),
   },

@@ -1,20 +1,28 @@
 ---
+import type { TLocale } from "~/i18n"
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
+
+interface Props {
+  locale?: TLocale | undefined
+}
+const { locale = "en" } = Astro.props
 ---
 
-<BaseLayout>
+<BaseLayout locale={locale}>
   <div class:list={["py-5", "md:py-8"]}>
     <!-- Nav -->
     <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
       <AppLink
         class:list={["leading-tight", "lowercase"]}
-        url="/"
+        url={getRelativeLocaleUrl("en")}
         showPrefixIcon
         prefixIconClassName="i-ri:arrow-left-line"
       >
-        back
+        {locale === "en" && "back"}
+        {locale === "zh" && "返回"}
       </AppLink>
 
       <ToggleColorScheme class="text-xl" />

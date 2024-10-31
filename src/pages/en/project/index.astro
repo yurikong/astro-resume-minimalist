@@ -3,10 +3,11 @@ import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
 import type { IProject } from "~types/project"
-import { projects } from "~data/projects"
+import { projects } from "~data/en/projects"
 import { mostRecentYearComparator } from "~utils/comparators"
-import YearRange from "~components/YearRange.astro"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
 import Tag from "~components/Tag.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
 
 const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
 ---
@@ -17,11 +18,11 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
     <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
       <AppLink
         class:list={["leading-tight", "lowercase"]}
-        url="/"
+        url={getRelativeLocaleUrl("en")}
         showPrefixIcon
         prefixIconClassName="i-ri:arrow-left-line"
       >
-        back
+        Back
       </AppLink>
 
       <ToggleColorScheme class="text-xl" />
@@ -39,7 +40,7 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
         "dark:text-gray-300",
       ]}
     >
-      all projects
+      All Projects
     </h1>
 
     <!-- Project Archives -->
@@ -146,7 +147,7 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
             <tr class:list={["border-b", "last:border-none", "border-gray-800/10", "dark:border-gray-100/10"]}>
               {/* Year */}
               <td class:list={["w-1/12", "align-top", "text-sm", "leading-snug", "capitalize", "py-4", "pr-4"]}>
-                <YearRange startYear={it.startYear} endYear={it.endYear} />
+                <LocaleYearRange locale="en" startYear={it.startYear} endYear={it.endYear} />
               </td>
 
               {/* Project */}
@@ -162,7 +163,12 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
                   "pr-4",
                 ]}
               >
-                <AppLink class="sm:hidden" url={it.link?.url} showSuffixIcon={!!it.link}>
+                <AppLink
+                  class="sm:hidden"
+                  url={it.link?.url}
+                  showSuffixIcon={!!it.link}
+                  suffixIconClassName={it.link?.iconClassName}
+                >
                   {it.name}
                 </AppLink>
                 <div class:list={["hidden", "sm:block"]}>{it.name}</div>
