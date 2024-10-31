@@ -26,6 +26,7 @@ export const projects: IProject[] = [
     id: "sacmi-sdp-print",
     name: "SDP Print",
     description: "Desktop app for ceramic tiles production using Sacmi NH's single-pass inkjet printer (SDP).",
+    madeAt: "Sacmi NH",
     technologiesUsed: [
       "Vue 3",
       "Pinia",
@@ -47,6 +48,7 @@ export const projects: IProject[] = [
     name: "SDP Print - Image Rotation",
     description:
       "Desktop app for ceramic tiles misalignment correction in overlay printing using Meteor's MetPrint DFE and Keyence's computer vision system.",
+    madeAt: "Sacmi NH",
     technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
     assets: [
       {
@@ -91,6 +93,7 @@ export const projects: IProject[] = [
     id: "sdebank-digifly",
     name: "Digifly",
     description: "Data visualization web app for a bank client.",
+    madeAt: "Stramo",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
@@ -119,6 +122,7 @@ export const projects: IProject[] = [
     id: "sdebank-digifly-admin",
     name: "Digifly Admin",
     description: "Admin dashboard for data visualization web app (Digifly) for a bank client.",
+    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "Element UI", "Webpack"],
     startYear: 2022,
     endYear: 2023,
@@ -127,6 +131,7 @@ export const projects: IProject[] = [
     id: "sdebank-management-cockpit",
     name: "Sdebank Management Cockpit",
     description: "Management Cockpit on the web for a bank client.",
+    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "ECharts", "G2", "G2Plot", "Webpack"],
     assets: [
       {
@@ -149,6 +154,7 @@ export const projects: IProject[] = [
     id: "sdebank-groton-snakehead-monitor",
     name: "Snakehead Monitor",
     description: "Web app for monitoring snakehead prices.",
+    madeAt: "Stramo",
     technologiesUsed: ["Vue 2", "Javascript", "SCSS", "G2Plot", "Webpack"],
     assets: [
       {
@@ -163,6 +169,7 @@ export const projects: IProject[] = [
     id: "sdebank-big-data-marketing-platform",
     name: "Big Data Marketing Platform",
     description: "Web app for marketing for a bank client.",
+    madeAt: "Stramo",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
