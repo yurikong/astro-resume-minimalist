@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
-import ToggleColorScheme from "~components/ToggleColorScheme.astro"
+import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import type { IProject } from "~types/project"
 import { projects } from "~data/en/projects"
 import { mostRecentYearComparator } from "~utils/comparators"
@@ -25,7 +25,7 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
         Back
       </AppLink>
 
-      <ToggleColorScheme class="text-xl" />
+      <LocaleToggleColorScheme class="text-xl" />
     </nav>
 
     <!-- Page Title -->
