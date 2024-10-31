@@ -1,10 +1,10 @@
 ---
-import type { TLocale } from "~types/i18n"
+import { type TLocale, defaultLocale } from "~/i18n"
 
 interface Props {
   locale?: TLocale | undefined
 }
-const { locale = "en" } = Astro.props
+const { locale = defaultLocale } = Astro.props
 
 interface IMeta {
   name: string
