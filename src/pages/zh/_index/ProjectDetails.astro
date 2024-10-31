@@ -1,0 +1,103 @@
+---
+import type { IProject, IProjectHighlight } from "~types/project"
+import type { IGithubRepositoryInfo } from "~types/repository"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
+import AppLink from "~components/AppLink.astro"
+import Tag from "~components/Tag.astro"
+import LocaleImageViewer from "~components/LocaleImageViewer.astro"
+
+interface Props extends IProject {}
+const { name, description, technologiesUsed, assets, link, repository, startYear, endYear } = Astro.props
+const url: string | undefined = link?.url ?? repository?.url
+const highlights: IProjectHighlight[] = []
+if (!!repository) {
+  try {
+    const repositoryInfo: IGithubRepositoryInfo = await repository.getInfo()
+    const { private: isPrivate, stargazers_count: starsCount, forks_count: forksCount } = repositoryInfo
+    if (isPrivate === false) {
+      highlights.push(
+        {
+          name: "星数",
+          iconClassName: "i-ri:star-fill",
+          value: starsCount,
+        },
+        {
+          name: "分叉数",
+          iconClassName: "i-ri:git-fork-fill",
+          value: forksCount,
+        }
+      )
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+const selectedHighlights: IProjectHighlight[] = highlights.filter((it) => it.value > 0)
+---
+
+<!-- Project Details -->
+<div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
+  <!-- Ongoing Years -->
+  <LocaleYearRange
+    class:list={["text-xs", "tracking-widest", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
+    locale="zh"
+    startYear={startYear}
+    endYear={endYear}
+  />
+
+  <div class:list={["sm:col-span-6"]}>
+    <!-- Name -->
+    <AppLink
+      class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+      url={url}
+      showSuffixIcon={!!url}
+      suffixIconClassName={link?.iconClassName}
+    >
+      {name}
+    </AppLink>
+
+    <!-- Description -->
+    <p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
+
+    <!-- Repository Stars & Forks -->
+    {
+      selectedHighlights.length > 0 && (
+        <ul class:list={["flex", "flex-wrap", "gap-2", "mt-2"]}>
+          {selectedHighlights.map((it) => (
+            <li
+              class:list={["flex", "items-center", "gap-1", "font-medium", "text-sm", "leading-normal"]}
+              title={it.name}
+            >
+              <i class={it.iconClassName} />
+              <span>{it.value}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Technologies Used -->
+    {
+      !!technologiesUsed && technologiesUsed.length > 0 && (
+        <ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
+          {technologiesUsed.map((it) => (
+            <li>
+              <Tag text={it} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Preview -->
+    {
+      assets && assets.length > 0 && (
+        <LocaleImageViewer
+          class:list={["mt-4", "ring", "rounded", "overflow-hidden", "ring-gray-300", "dark:ring-gray-600"]}
+          locale="zh"
+          assets={assets}
+        />
+      )
+    }
+  </div>
+</div>
