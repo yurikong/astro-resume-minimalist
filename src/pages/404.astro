@@ -1,5 +1,5 @@
 ---
-import type { TLocale } from "~/i18n"
+import { type TLocale, defaultLocale } from "~/i18n"
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import ToggleColorScheme from "~components/ToggleColorScheme.astro"
@@ -8,7 +8,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 interface Props {
   locale?: TLocale | undefined
 }
-const { locale = "en" } = Astro.props
+const { locale = defaultLocale } = Astro.props
 ---
 
 <BaseLayout locale={locale}>

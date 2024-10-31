@@ -1,14 +1,21 @@
 ---
 import type { IExperience } from "~types/experience"
-import type { TLocale } from "~types/i18n"
+import { type TLocale, defaultLocale } from "~/i18n"
 
 interface Props extends IExperience {
   class?: string
   locale?: TLocale | undefined
 }
-const { startYear, endYear, locale = "en", class: className } = Astro.props
+const { startYear, endYear, locale = defaultLocale, class: className } = Astro.props
 
-const presentDisplayText: string = locale === "zh" ? "至今" : "Present"
+let presentDisplayText: string = ""
+if (locale === "en") {
+  presentDisplayText = "Present"
+} else if (locale === "zh") {
+  presentDisplayText = "至今"
+} else {
+  // do nothing
+}
 ---
 
 <div class={className}>

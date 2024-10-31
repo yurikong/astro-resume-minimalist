@@ -1,5 +1,5 @@
 ---
-import type { TLocale } from "~/i18n"
+import { type TLocale, defaultLocale } from "~/i18n"
 import HeadMetaEn from "~components/en/HeadMeta.astro"
 import HeadMetaZh from "~components/zh/HeadMeta.astro"
 import HeadIcons from "~components/HeadIcons.astro"
@@ -13,7 +13,7 @@ interface Props {
   locale?: TLocale | undefined
   prependTitle?: string | undefined
 }
-const { locale = "en", prependTitle } = Astro.props
+const { locale = defaultLocale, prependTitle } = Astro.props
 
 let documentTitle: string = ""
 if (locale === "en") {
