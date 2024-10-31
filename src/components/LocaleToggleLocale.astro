@@ -1,0 +1,36 @@
+---
+import countryCodeToFlagEmoji from "country-code-to-flag-emoji"
+import { type TLocale, defaultLocale, supportedLocales, parseLocale } from "~/i18n"
+import AppLink from "./AppLink.astro"
+import { getRelativeLocaleUrl } from "astro:i18n"
+
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
+
+let nextLocale: TLocale | undefined
+const currentLocale: TLocale = parseLocale(Astro.currentLocale ?? defaultLocale)
+const currentLocaleIndex: number = supportedLocales.findIndex((it) => it === currentLocale)
+if (currentLocaleIndex >= 0) {
+  const nextLocaleIndex: number = (currentLocaleIndex + 1) % supportedLocales.length
+  nextLocale = supportedLocales.at(nextLocaleIndex)
+}
+
+const titleDisplayTextMap: Record<TLocale, string> = {
+  en: "Change Language",
+  zh: "切换语言",
+}
+---
+
+{
+  nextLocale && (
+    <AppLink
+      class:list={["flex", "leading-none", className]}
+      url={getRelativeLocaleUrl(nextLocale)}
+      title={titleDisplayTextMap[currentLocale]}
+    >
+      {countryCodeToFlagEmoji(currentLocale)}
+    </AppLink>
+  )
+}
