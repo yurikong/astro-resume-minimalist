@@ -2,7 +2,7 @@
 import { type TLocale, defaultLocale } from "~/i18n"
 import BaseLayout from "~layouts/BaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
-import ToggleColorScheme from "~components/ToggleColorScheme.astro"
+import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 
 interface Props {
@@ -25,7 +25,7 @@ const { locale = defaultLocale } = Astro.props
         {locale === "zh" && "返回"}
       </AppLink>
 
-      <ToggleColorScheme class="text-xl" />
+      <LocaleToggleColorScheme class="text-xl" />
     </nav>
 
     <h1

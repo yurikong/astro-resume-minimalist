@@ -1,7 +1,7 @@
 ---
 import { socials } from "~data/en/socials"
 import AppLink from "~components/AppLink.astro"
-import ToggleColorScheme from "~components/ToggleColorScheme.astro"
+import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import LocaleImageViewer from "~components/LocaleImageViewer.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 ---
@@ -9,7 +9,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 <!-- Profile -->
 <section>
   <div id="profile__toggle-color-scheme-wrapper" class:list={["fixed", "top-5", "md:top-8", "z-21"]}>
-    <ToggleColorScheme class:list={["text-xl"]} />
+    <LocaleToggleColorScheme class:list={["text-xl"]} />
   </div>
 
   <!-- App Header -->
