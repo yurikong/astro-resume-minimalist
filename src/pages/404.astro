@@ -1,6 +1,6 @@
 ---
 import { type TLocale, defaultLocale } from "~/i18n"
-import BaseLayout from "~layouts/BaseLayout.astro"
+import LocaleBaseLayout from "~layouts/LocaleBaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
@@ -11,7 +11,7 @@ interface Props {
 const { locale = defaultLocale } = Astro.props
 ---
 
-<BaseLayout locale={locale}>
+<LocaleBaseLayout locale={locale}>
   <div class:list={["py-5", "md:py-8"]}>
     <!-- Nav -->
     <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
@@ -34,4 +34,4 @@ const { locale = defaultLocale } = Astro.props
       404
     </h1>
   </div>
-</BaseLayout>
+</LocaleBaseLayout>

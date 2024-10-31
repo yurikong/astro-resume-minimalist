@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "~layouts/BaseLayout.astro"
+import LocaleBaseLayout from "~layouts/LocaleBaseLayout.astro"
 import AppLink from "~components/AppLink.astro"
 import LocaleToggleColorScheme from "~components/LocaleToggleColorScheme.astro"
 import type { IProject } from "~types/project"
@@ -12,7 +12,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
 ---
 
-<BaseLayout>
+<LocaleBaseLayout locale="zh">
   <div class:list={["py-5", "md:py-8"]}>
     <!-- Nav -->
     <nav class:list={["flex", "items-center", "justify-between", "mb-2", "md:mb-4"]}>
@@ -235,4 +235,4 @@ const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
       </tbody>
     </table>
   </div>
-</BaseLayout>
+</LocaleBaseLayout>

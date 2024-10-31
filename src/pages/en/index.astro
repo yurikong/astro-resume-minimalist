@@ -1,19 +1,19 @@
 ---
-import BaseLayout from "~layouts/BaseLayout.astro"
+import LocaleBaseLayout from "~layouts/LocaleBaseLayout.astro"
 import Profile from "./_index/Profile.astro"
 import Education from "./_index/Education.astro"
 import Work from "./_index/Work.astro"
 import Project from "./_index/Project.astro"
 ---
 
-<BaseLayout>
+<LocaleBaseLayout>
   <main>
     <Profile />
     <Education class="mt-24" />
     <Work class="mt-24" />
     <Project class="mt-24" />
   </main>
-</BaseLayout>
+</LocaleBaseLayout>
 
 <style>
   html {
