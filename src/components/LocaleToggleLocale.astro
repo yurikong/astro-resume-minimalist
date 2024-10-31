@@ -21,13 +21,19 @@ const titleDisplayTextMap: Record<TLocale, string> = {
   en: "Change Language",
   zh: "切换语言",
 }
+
+const currentHref: string = Astro.url.href
+const href: string = currentHref.endsWith("/") ? currentHref.substring(0, currentHref.length - 1) : currentHref
+const tokens: string[] = href.split("/")
+const localeTokenIndex: number = tokens.findIndex((it) => it === currentLocale)
+const urlTokens: string[] = localeTokenIndex >= 0 ? tokens.slice(localeTokenIndex + 1) : []
 ---
 
 {
   nextLocale && (
     <AppLink
       class:list={["flex", "leading-none", className]}
-      url={getRelativeLocaleUrl(nextLocale)}
+      url={getRelativeLocaleUrl(nextLocale, urlTokens.join("/"))}
       title={titleDisplayTextMap[currentLocale]}
     >
       {countryCodeToFlagEmoji(currentLocale)}
