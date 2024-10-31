@@ -26,6 +26,7 @@ export const projects: IProject[] = [
     id: "sacmi-sdp-print",
     name: "SDP瓷砖打印软件",
     description: "桌面应用，适用于使用萨克米南海研发的单程喷墨陶瓷打印机的瓷砖产线",
+    madeAt: "南海萨克米",
     technologiesUsed: [
       "Vue 3",
       "Pinia",
@@ -46,6 +47,7 @@ export const projects: IProject[] = [
     id: "sacmi-sdp-print-image-rotation",
     name: "SDP瓷砖对位软件",
     description: "桌面应用，通过视觉系统识别的砖片位置偏差对砖片位置进行校准，适用于一线多机的瓷砖产线",
+    madeAt: "南海萨克米",
     technologiesUsed: ["React", "Typescript", "Material UI", "Vite", "Wails v2", "Go", "OPC-UA"],
     assets: [
       {
@@ -90,6 +92,7 @@ export const projects: IProject[] = [
     id: "sdebank-digifly",
     name: "顺农数据大屏",
     description: "网页应用，用于顺德农商银行的数据展示",
+    madeAt: "顺谋",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
@@ -118,6 +121,7 @@ export const projects: IProject[] = [
     id: "sdebank-digifly-admin",
     name: "顺农数据大屏后台",
     description: "顺农数据大屏的数据管理后台",
+    madeAt: "顺谋",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "Element UI", "Webpack"],
     startYear: 2022,
     endYear: 2023,
@@ -126,6 +130,7 @@ export const projects: IProject[] = [
     id: "sdebank-management-cockpit",
     name: "顺农总营智能驾驶舱",
     description: "网页应用，用于顺德农商银行管理层决策分析",
+    madeAt: "顺谋",
     technologiesUsed: ["Vue 2", "Vuex", "Vue Router", "Javascript", "SCSS", "ECharts", "G2", "G2Plot", "Webpack"],
     assets: [
       {
@@ -148,6 +153,7 @@ export const projects: IProject[] = [
     id: "sdebank-groton-snakehead-monitor",
     name: "顺农国通黑鱼监控",
     description: "网页应用，用于监控黑鱼价格",
+    madeAt: "顺谋",
     technologiesUsed: ["Vue 2", "Javascript", "SCSS", "G2Plot", "Webpack"],
     assets: [
       {
@@ -162,6 +168,7 @@ export const projects: IProject[] = [
     id: "sdebank-big-data-marketing-platform",
     name: "顺农大数据营销平台",
     description: "网页应用，用于顺德农商银行制定、分配、审核、执行、分析市场营销",
+    madeAt: "顺谋",
     technologiesUsed: [
       "Vue 2",
       "Vuex",
