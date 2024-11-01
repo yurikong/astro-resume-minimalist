@@ -35,16 +35,24 @@ export function getLocale(): TLocale {
 }
 
 /**
- * Set `locale` to local storage and redirect to corresponding locale page.
+ * Set `locale` to local storage.
  * Client side only.
  * @param {TLocale} locale
  */
 export function setLocale(locale: TLocale): void {
   localStorage.setItem("locale", locale)
-  let url: string = window.location.href
-  if (!url.endsWith("/")) {
-    url += "/"
+}
+
+/**
+ * Get next supported locale of input locale.
+ * @param {TLocale} locale
+ * @returns {TLocale | undefined}
+ */
+export function nextLocaleOf(locale: TLocale): TLocale | undefined {
+  const currentLocaleIndex: number = supportedLocales.findIndex((it) => it === locale)
+  if (currentLocaleIndex >= 0) {
+    const nextLocaleIndex: number = (currentLocaleIndex + 1) % supportedLocales.length
+    return supportedLocales.at(nextLocaleIndex)
   }
-  url += locale
-  window.location.href = url
+  return undefined
 }
