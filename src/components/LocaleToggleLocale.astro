@@ -1,6 +1,6 @@
 ---
 import countryCodeToFlagEmoji from "country-code-to-flag-emoji"
-import { type TLocale, defaultLocale, supportedLocales, parseLocale } from "~/i18n"
+import { type TLocale, defaultLocale, parseLocale, nextLocaleOf } from "~/i18n"
 import AppLink from "./AppLink.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
 
@@ -9,19 +9,12 @@ interface Props {
 }
 const { class: className } = Astro.props
 
-let nextLocale: TLocale | undefined
 const currentLocale: TLocale = parseLocale(Astro.currentLocale ?? defaultLocale)
-const currentLocaleIndex: number = supportedLocales.findIndex((it) => it === currentLocale)
-if (currentLocaleIndex >= 0) {
-  const nextLocaleIndex: number = (currentLocaleIndex + 1) % supportedLocales.length
-  nextLocale = supportedLocales.at(nextLocaleIndex)
-}
-
+const nextLocale: TLocale | undefined = nextLocaleOf(currentLocale)
 const titleDisplayTextMap: Record<TLocale, string> = {
   en: "Change Language",
   zh: "切换语言",
 }
-
 const currentHref: string = Astro.url.href
 const href: string = currentHref.endsWith("/") ? currentHref.substring(0, currentHref.length - 1) : currentHref
 const tokens: string[] = href.split("/")
@@ -31,12 +24,41 @@ const urlTokens: string[] = localeTokenIndex >= 0 ? tokens.slice(localeTokenInde
 
 {
   nextLocale && (
-    <AppLink
-      class:list={["flex", "leading-none", className]}
-      url={getRelativeLocaleUrl(nextLocale, urlTokens.join("/"))}
-      title={titleDisplayTextMap[currentLocale]}
-    >
-      {countryCodeToFlagEmoji(currentLocale)}
-    </AppLink>
+    <locale-toggle-locale class:list={["cursor-pointer", "flex", className]}>
+      <AppLink
+        class:list={["flex", "leading-none"]}
+        url={getRelativeLocaleUrl(nextLocale, urlTokens.join("/"))}
+        title={titleDisplayTextMap[currentLocale]}
+      >
+        {countryCodeToFlagEmoji(currentLocale)}
+      </AppLink>
+    </locale-toggle-locale>
   )
 }
+
+<script>
+  import { type TLocale, parseLocale, nextLocaleOf, setLocale } from "~/i18n"
+
+  class LocaleToggleLocale extends HTMLElement {
+    /**
+     * Click handler.
+     */
+    private handleClick(): void {
+      const currentLocale: TLocale = parseLocale(document.documentElement.lang)
+      const nextLocale: TLocale | undefined = nextLocaleOf(currentLocale)
+      if (nextLocale) {
+        setLocale(nextLocale)
+      }
+    }
+
+    connectedCallback(): void {
+      this.addEventListener("click", this.handleClick)
+    }
+
+    disconnectedCallback(): void {
+      this.removeEventListener("click", this.handleClick)
+    }
+  }
+
+  customElements.define("locale-toggle-locale", LocaleToggleLocale)
+</script>
