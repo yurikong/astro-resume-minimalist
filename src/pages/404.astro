@@ -1,11 +1,8 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n"
 import HeadIcons from "~components/HeadIcons.astro"
 import HeadMetaEn from "~components/en/HeadMeta.astro"
 
 const redirectMessage: string = "redirecting..."
-
-return Astro.redirect(getRelativeLocaleUrl(Astro.currentLocale, "404"))
 ---
 
 <html lang={Astro.currentLocale}>
@@ -14,3 +11,14 @@ return Astro.redirect(getRelativeLocaleUrl(Astro.currentLocale, "404"))
   <HeadIcons />
   <body>{redirectMessage}</body>
 </html>
+
+<script>
+  import { type TLocale, getLocale, setLocale } from "~/i18n"
+
+  const locale: TLocale = getLocale()
+  setLocale(locale)
+  const tokens: string[] = window.location.href.split(import.meta.env.BASE_URL, 1)
+  tokens.push(`/${locale}/404`)
+  const url: string = tokens.join(import.meta.env.BASE_URL)
+  window.location.href = url
+</script>
