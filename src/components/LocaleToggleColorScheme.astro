@@ -1,0 +1,206 @@
+---
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
+---
+
+<locale-toggle-color-scheme
+  class:list={["flex", "items-center", "justify-center", "cursor-pointer", className]}
+  type="button"
+>
+  <i></i>
+</locale-toggle-color-scheme>
+
+<script>
+  import type { TColorScheme } from "~types/color-scheme"
+  import { type TLocale, parseLocale } from "~/i18n"
+
+  class LocaleToggleColorScheme extends HTMLElement {
+    private colorScheme: TColorScheme = "os"
+    private localStorageKey: string = "colorScheme"
+    private matchMediaListDark: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)")
+    private matchMediaListPrefersReducedMotion: MediaQueryList = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    public connectedCallback(): void {
+      this.readColorScheme()
+      this.setColorScheme()
+      this.setTitle()
+      this.addEventListener("click", this.handleClick)
+    }
+
+    public disconnectedCallback(): void {
+      this.removeEventListener("click", this.handleClick)
+    }
+
+    /**
+     * Click handler for switching color schemes.
+     */
+    private handleClick(): void {
+      if (this.colorScheme === "os") {
+        this.colorScheme = "light"
+      } else if (this.colorScheme === "light") {
+        this.colorScheme = "dark"
+      } else {
+        this.colorScheme = "os"
+      }
+      if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
+        document.startViewTransition(() => {
+          this.setColorScheme()
+          this.setTitle()
+        })
+        return
+      }
+
+      this.setColorScheme()
+      this.setTitle()
+    }
+
+    /**
+     * Reads color scheme from LocalStorage.
+     */
+    private readColorScheme(): void {
+      const localColorScheme: string = localStorage.getItem(this.localStorageKey) ?? ""
+      this.colorScheme = this.isColorScheme(localColorScheme) ? localColorScheme : "os"
+    }
+
+    /**
+     * Whether `scheme` is of type `TColorScheme`.
+     * @param {string} scheme
+     * @returns {boolean}
+     */
+    private isColorScheme(scheme: string): scheme is TColorScheme {
+      return scheme === "light" || scheme === "dark" || scheme === "os"
+    }
+
+    /**
+     * Update document head meta for theme color.
+     */
+    private updateDocumentMeta(): void {
+      const metaThemeColorNodes = document.head.querySelectorAll('meta[name="theme-color"]')
+      metaThemeColorNodes.forEach((node) => {
+        document.head.removeChild(node)
+      })
+      const metaThemeColorLight: HTMLMetaElement = document.createElement("meta")
+      metaThemeColorLight.setAttribute("name", "theme-color")
+      metaThemeColorLight.setAttribute("content", "#f3f4f6")
+      const metaThemeColorDark: HTMLMetaElement = document.createElement("meta")
+      metaThemeColorDark.setAttribute("name", "theme-color")
+      metaThemeColorDark.setAttribute("content", "#111827")
+      if (this.colorScheme === "os") {
+        metaThemeColorLight.setAttribute("media", "(prefers-color-scheme: light)")
+        metaThemeColorDark.setAttribute("media", "(prefers-color-scheme: dark)")
+        document.head.append(metaThemeColorLight, metaThemeColorDark)
+      } else if (this.colorScheme === "dark") {
+        document.head.appendChild(metaThemeColorDark)
+      } else {
+        document.head.appendChild(metaThemeColorLight)
+      }
+    }
+
+    /**
+     * Update icon class name based on color scheme.
+     */
+    private updateIconClassName(): void {
+      const el: HTMLElement | null = this.querySelector("i")
+      if (el === null) {
+        return
+      }
+      let iconClassName: string
+      if (this.colorScheme === "os") {
+        iconClassName = "i-ri:computer-line"
+      } else if (this.colorScheme === "light") {
+        iconClassName = "i-ri:sun-line"
+      } else {
+        iconClassName = "i-ri:moon-line"
+      }
+      const node: HTMLElement = document.createElement("i")
+      node.classList.add(iconClassName)
+      this.replaceChild(node, el)
+    }
+
+    /**
+     * Set color scheme.
+     */
+    private setColorScheme(): void {
+      if (this.colorScheme === "os") {
+        this.setSystemScheme()
+        this.matchMediaListDark.addEventListener("change", this.handleDarkScheme)
+      } else if (this.colorScheme === "dark") {
+        this.setDarkScheme()
+        this.matchMediaListDark.removeEventListener("change", this.handleDarkScheme)
+      } else {
+        this.setLightScheme()
+        this.matchMediaListDark.removeEventListener("change", this.handleDarkScheme)
+      }
+      this.updateDocumentMeta()
+      this.updateIconClassName()
+      localStorage.setItem(this.localStorageKey, this.colorScheme)
+    }
+
+    /**
+     * Set title
+     */
+    private setTitle(): void {
+      const locale: TLocale = parseLocale(document.documentElement.lang)
+      let title: string = ""
+      if (locale === "en") {
+        if (this.colorScheme === "os") {
+          title = "System"
+        } else if (this.colorScheme === "light") {
+          title = "Light"
+        } else {
+          title = "Dark"
+        }
+      } else if (locale === "zh") {
+        if (this.colorScheme === "os") {
+          title = "系统主题"
+        } else if (this.colorScheme === "light") {
+          title = "明亮主题"
+        } else {
+          title = "暗黑主题"
+        }
+      } else {
+        // do nothing
+      }
+      this.title = title
+    }
+
+    private handleDarkScheme = () => this.setSystemScheme()
+
+    /**
+     * Set system color scheme.
+     */
+    private setSystemScheme(): void {
+      if (this.systemIsDark) {
+        this.setDarkScheme()
+      } else {
+        this.setLightScheme()
+      }
+    }
+
+    /**
+     * Whether system color scheme is dark.
+     * @returns {boolean}
+     */
+    public get systemIsDark(): boolean {
+      return this.matchMediaListDark.matches
+    }
+
+    /**
+     * Set dark scheme.
+     */
+    private setDarkScheme(): void {
+      document.documentElement.classList.add("dark")
+    }
+
+    /**
+     * Set light scheme.
+     */
+    private setLightScheme(): void {
+      document.documentElement.classList.remove("dark")
+    }
+  }
+
+  customElements.define("locale-toggle-color-scheme", LocaleToggleColorScheme)
+</script>

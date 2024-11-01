@@ -1,22 +1,26 @@
 ---
-import BaseLayout from "~layouts/BaseLayout.astro"
-import Profile from "./_index/Profile.astro"
-import Education from "./_index/Education.astro"
-import Work from "./_index/Work.astro"
-import Project from "./_index/Project.astro"
+import HeadIcons from "~components/HeadIcons.astro"
+import HeadMetaEn from "~components/en/HeadMeta.astro"
+
+const redirectMessage: string = "redirecting..."
 ---
 
-<BaseLayout>
-  <main>
-    <Profile />
-    <Education class="mt-24" />
-    <Work class="mt-24" />
-    <Project class="mt-24" />
-  </main>
-</BaseLayout>
+<html lang="en">
+  <title>{redirectMessage}</title>
+  <HeadMetaEn />
+  <HeadIcons />
+  <body>{redirectMessage}</body>
+</html>
 
-<style>
-  html {
-    --at-apply: scroll-pt-19 "md:scroll-pt-29";
+<script>
+  import { type TLocale, getLocale, setLocale } from "~/i18n"
+
+  const locale: TLocale = getLocale()
+  setLocale(locale)
+  let url: string = window.location.href
+  if (!url.endsWith("/")) {
+    url += "/"
   }
-</style>
+  url += locale
+  window.location.href = url
+</script>

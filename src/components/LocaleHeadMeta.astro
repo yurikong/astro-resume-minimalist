@@ -1,0 +1,36 @@
+---
+import { type TLocale, defaultLocale } from "~/i18n"
+
+interface Props {
+  locale?: TLocale | undefined
+}
+const { locale = defaultLocale } = Astro.props
+
+interface IMeta {
+  name: string
+  content: string
+}
+let metas: IMeta[] = []
+if (locale === "en") {
+  metas = [
+    { name: "application-name", content: "Astro Resume Minimalist" },
+    { name: "author", content: "Jianqiang Du" },
+    { name: "description", content: "An open-sourced minimalistic resume site template built with Astro." },
+    { name: "keywords", content: "resume,portfolio,personal website,Astro" },
+  ]
+} else if (locale === "zh") {
+  metas = [
+    { name: "application-name", content: "Astro极简简历" },
+    { name: "author", content: "杜健强" },
+    { name: "description", content: "使用Astro框架构建的一个开源的极简主义风格的简历模板网站" },
+    { name: "keywords", content: "简历、作品集、个人网页、Astro" },
+  ]
+} else {
+  // do nothing
+}
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+{metas.map((it) => <meta {...it} />)}
+<meta name="generator" content={Astro.generator} />

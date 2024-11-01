@@ -1,0 +1,75 @@
+---
+import { type TLocale, defaultLocale } from "~/i18n"
+import HeadMetaEn from "~components/en/HeadMeta.astro"
+import HeadMetaZh from "~components/zh/HeadMeta.astro"
+import HeadIcons from "~components/HeadIcons.astro"
+import HeadFonts from "~components/HeadFonts.astro"
+import { ViewTransitions } from "astro:transitions"
+import IconifyIconDisplayFix from "~components/IconifyIconDisplayFix.astro"
+import AppFooterEn from "~components/en/AppFooter.astro"
+import AppFooterZh from "~components/zh/AppFooter.astro"
+
+interface Props {
+  locale?: TLocale | undefined
+  prependTitle?: string | undefined
+}
+const { locale = defaultLocale, prependTitle } = Astro.props
+
+let documentTitle: string = ""
+if (locale === "en") {
+  documentTitle = "Astro Resume Minimalist — Jianqiang Du"
+} else if (locale === "zh") {
+  documentTitle = "Astro极简简历 — 杜健强"
+} else {
+  // do nothing
+}
+if (prependTitle) {
+  documentTitle = `${prependTitle} | ${documentTitle}`
+}
+---
+
+<html lang={Astro.currentLocale} class="scroll-smooth">
+  <title>{documentTitle}</title>
+  {locale === "en" && <HeadMetaEn />}
+  {locale === "zh" && <HeadMetaZh />}
+  <HeadIcons />
+  <HeadFonts />
+  <ViewTransitions />
+
+  <body
+    class:list={[
+      "tabular-nums",
+      "antialiased",
+      "relative",
+      "leading-relaxed",
+      "text-gray-500",
+      "bg-gray-100",
+      "dark:bg-gray-900",
+      "max-w-screen-lg",
+      "mx-auto",
+    ]}
+  >
+    <IconifyIconDisplayFix />
+
+    <div class:list={["px-6", "md:px-12"]}>
+      <slot />
+    </div>
+
+    {locale === "en" && <AppFooterEn />}
+    {locale === "zh" && <AppFooterZh />}
+  </body>
+</html>
+
+<style>
+  :root {
+    --font-family: system-ui, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "Inter", var(--font-family);
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root {
+      font-family: "InterVariable", var(--font-family);
+    }
+  }
+</style>

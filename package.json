@@ -1,17 +1,17 @@
 {
-  "name": "astro-theme-resume-minimalist",
+  "name": "astro-resume-minimalist",
   "type": "module",
   "version": "1.0.12",
   "description": "An open-sourced minimal resume site template built with Astro.",
-  "homepage": "https://github.com/yurikong/astro-theme-resume-minimalist#readme",
+  "homepage": "https://github.com/yurikong/astro-resume-minimalist#readme",
   "bugs": {
-    "url": "https://github.com/yurikong/astro-theme-resume-minimalist/issues",
+    "url": "https://github.com/yurikong/astro-resume-minimalist/issues",
     "email": "jackdu2013@163.com"
   },
   "author": "Jianqiang Du <jackdu2013@163.com> (https://yurikong.github.io)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yurikong/astro-theme-resume-minimalist.git"
+    "url": "https://github.com/yurikong/astro-resume-minimalist.git"
   },
   "license": "MIT",
   "private": true,
@@ -29,6 +29,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "astro": "^4.12.2",
     "astro-robots-txt": "^1.0.0",
+    "country-code-to-flag-emoji": "^1.3.3",
     "nanoid": "^5.0.7",
     "typescript": "^5.5.4"
   },

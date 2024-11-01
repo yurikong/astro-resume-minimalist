@@ -1,0 +1,89 @@
+---
+import AppLink from "~components/AppLink.astro"
+import LocaleImageViewer from "~components/LocaleImageViewer.astro"
+---
+
+<!-- App Footer -->
+<footer class:list={["text-center", "text-xs", "leading-relaxed", "px-6", "pt-24", "pb-12", "md:px-12", "md:pt-48"]}>
+  <!-- Donations -->
+  <div class:list={["flex", "items-center", "justify-center", "gap-8"]}>
+    <!-- Wechat -->
+    <div class:list={["flex-1", "max-w-25", "lg:max-w-35"]}>
+      <LocaleImageViewer
+        locale="zh"
+        assets={[{ src: "/src/assets/images/wechat-donation-qr.webp", alt: "扫描二维码在微信打赏" }]}
+        showIndex={false}
+      />
+      <div class:list={["mt-1", "dark:text-gray-400"]}>微信打赏</div>
+    </div>
+
+    <!-- Buy me a coffee -->
+    <div class:list={["flex-1", "max-w-25", "lg:max-w-35"]}>
+      <LocaleImageViewer
+        locale="zh"
+        assets={[{ src: "/src/assets/images/buy-me-a-coffee-donation-qr.webp", alt: "扫描二维码给我买杯咖啡" }]}
+        showIndex={false}
+      />
+      <div class:list={["mt-1", "dark:text-gray-400"]}>买杯咖啡</div>
+    </div>
+  </div>
+
+  <!-- Site info -->
+  <p class:list={["mt-8", "lg:mt-12"]}>
+    <!-- Author -->
+    <div>
+      <span>
+        用<span class="text-red-500"> ❤️ </span>制作 —
+      </span>
+      <AppLink
+        class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+        url="https://yurikong.github.io"
+        showSuffixIcon
+      >
+        杜健强
+      </AppLink>
+    </div>
+
+    <!-- License -->
+    <div>
+      <span>源代码以</span>
+      <span class="inline-flex">
+        <AppLink
+          class:list={["text-gray-800", "dark:text-gray-400"]}
+          url="https://opensource.org/license/mit"
+          showSuffixIcon
+        >
+          MIT协议
+        </AppLink>
+        <span>发布</span>
+      </span>
+    </div>
+
+    <!-- Credit -->
+    <div>
+      <span>特别鸣谢 —</span>
+      <AppLink
+        class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+        url="https://brittanychiang.com"
+        showSuffixIcon
+      >
+        brittany chiang
+      </AppLink>
+    </div>
+
+    <!-- Engine -->
+    <div>
+      <span>本站使用</span>
+      <span class="inline-flex">
+        <AppLink
+          class:list={["capitalize", "text-gray-800", "dark:text-gray-400"]}
+          url="https://astro.build"
+          showSuffixIcon
+        >
+          {Astro.generator}
+        </AppLink>
+        <span>框架构建</span>
+      </span>
+    </div>
+  </p>
+</footer>

@@ -1,0 +1,59 @@
+---
+import type { IWork } from "~types/work"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
+import AppLink from "~components/AppLink.astro"
+import Tag from "~components/Tag.astro"
+
+interface Props extends IWork {}
+const { jobTitle, company, companyHomepage, description, projects, technologiesUsed, startYear, endYear } = Astro.props
+---
+
+<!-- Work Details -->
+<div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
+  <!-- Employed Years -->
+  <LocaleYearRange
+    class:list={["text-xs", "tracking-wide", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
+    startYear={startYear}
+    endYear={endYear}
+  />
+
+  <div class:list={["sm:col-span-6"]}>
+    <!-- Job Title & Company -->
+    <AppLink
+      class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+      url={companyHomepage}
+      showSuffixIcon
+    >
+      {jobTitle} · {company}
+    </AppLink>
+
+    <!-- Description -->
+    <p class:list={["text-sm", "leading-relaxed", "mt-2"]}>{description}</p>
+
+    <!-- Products -->
+    {
+      !!projects && projects.length > 0 && (
+        <ul class:list={["flex", "flex-wrap", "gap-x-4", "gap-y-2", "mt-4"]}>
+          {projects.map((it) => (
+            <li class:list={["font-medium", "text-sm", "leading-normal", "text-gray-700", "dark:text-gray-400"]}>
+              <AppLink url={it.url} showPrefixIcon>
+                <span class="inline-block">{it.name}</span>
+              </AppLink>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <!-- Technologies Used -->
+    <ul class:list={["flex", "flex-wrap", "gap-x-1.5", "gap-y-2", "mt-4"]}>
+      {
+        technologiesUsed.map((it) => (
+          <li>
+            <Tag text={it} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
