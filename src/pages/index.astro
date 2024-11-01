@@ -13,7 +13,14 @@ const redirectMessage: string = "redirecting..."
 </html>
 
 <script>
-  import { getLocale, setLocale } from "~/i18n"
+  import { type TLocale, getLocale, setLocale } from "~/i18n"
 
-  setLocale(getLocale())
+  const locale: TLocale = getLocale()
+  setLocale(locale)
+  let url: string = window.location.href
+  if (!url.endsWith("/")) {
+    url += "/"
+  }
+  url += locale
+  window.location.href = url
 </script>
