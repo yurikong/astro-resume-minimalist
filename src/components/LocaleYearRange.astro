@@ -1,0 +1,23 @@
+---
+import type { IExperience } from "~types/experience"
+import { type TLocale, defaultLocale } from "~/i18n"
+
+interface Props extends IExperience {
+  class?: string
+  locale?: TLocale | undefined
+}
+const { startYear, endYear, locale = defaultLocale, class: className } = Astro.props
+
+let presentDisplayText: string = ""
+if (locale === "en") {
+  presentDisplayText = "Present"
+} else if (locale === "zh") {
+  presentDisplayText = "至今"
+} else {
+  // do nothing
+}
+---
+
+<div class={className}>
+  <span>{startYear}{startYear !== endYear && <span> — {endYear ?? presentDisplayText}</span>}</span>
+</div>

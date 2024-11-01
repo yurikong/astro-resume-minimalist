@@ -1,0 +1,305 @@
+---
+import { Image } from "astro:assets"
+import type { ImageMetadata } from "astro"
+import type { IProjectAsset } from "~types/project"
+import { nanoid } from "nanoid"
+import DefaultImage from "~assets/images/default.webp"
+import { type TLocale, defaultLocale } from "~/i18n"
+
+interface Props {
+  assets: IProjectAsset[]
+  showIndex?: boolean | undefined
+  locale?: TLocale | undefined
+  class?: string | undefined
+  children?: unknown | undefined
+}
+const { assets, showIndex = true, locale = defaultLocale, class: className } = Astro.props
+
+type ImageMetadataModule = { default: ImageMetadata }
+
+const localImages = import.meta.glob<ImageMetadataModule>("/src/assets/images/**/*.{png,jpe?g,gif,svg,webp}")
+const imageModules = assets.map<ImageMetadata | Promise<ImageMetadataModule>>(({ src }) => {
+  return localImages[src]?.() ?? DefaultImage
+})
+
+const dialogId: string = nanoid(8)
+const buttonPrevId: string = nanoid(8)
+const buttonNextId: string = nanoid(8)
+
+let buttonPrevTitle: string = ""
+let buttonNextTitle: string = ""
+if (locale === "en") {
+  buttonPrevTitle = "Previous"
+  buttonNextTitle = "Next"
+} else if (locale === "zh") {
+  buttonPrevTitle = "上一页"
+  buttonNextTitle = "下一页"
+} else {
+  // do nothing
+}
+---
+
+{
+  imageModules[0] && (
+    <image-viewer
+      data-dialog-id={dialogId}
+      data-btn-prev-id={buttonPrevId}
+      data-btn-next-id={buttonNextId}
+      class:list={["flex", "items-center", "justify-center", className]}
+    >
+      <slot>
+        <Image
+          class:list={["h-full", "object-contain", "cursor-pointer", "dark:brightness-95"]}
+          src={imageModules[0]}
+          alt={assets[0]?.alt}
+        />
+      </slot>
+
+      <dialog id={dialogId} popover class:list={["focus-visible:outline-0"]}>
+        <div class:list={["w-vw", "h-dvh", "flex", "flex-col", "bg-gray-100", "dark:bg-gray-900"]}>
+          {/* Paging */}
+          {!!showIndex && (
+            <div class:list={["flex", "items-center", "justify-between", "text-gray-800", "dark:text-gray-300"]}>
+              {/* Previous */}
+              <button
+                id={buttonPrevId}
+                type="button"
+                class:list={[
+                  "image-viewer__btn",
+                  "flex",
+                  "items-center",
+                  "justify-center",
+                  "text-xl",
+                  "p-4",
+                  "focus-visible:outline-0",
+                ]}
+                title={buttonPrevTitle}
+              >
+                <i class="i-ri:arrow-left-line" />
+              </button>
+
+              {/* Page Count */}
+              <div>
+                <span id={`${dialogId}__index`}>1</span>/{assets.length}
+              </div>
+
+              {/* Next */}
+              <button
+                id={buttonNextId}
+                type="button"
+                class:list={[
+                  "image-viewer__btn",
+                  "flex",
+                  "items-center",
+                  "justify-center",
+                  "text-xl",
+                  "p-4",
+                  "focus-visible:outline-0",
+                ]}
+                title={buttonNextTitle}
+              >
+                <i class="i-ri:arrow-right-line" />
+              </button>
+            </div>
+          )}
+
+          {/* Images */}
+          {imageModules.map((it, index) => (
+            <Image
+              class:list={["flex-auto", "w-full", "h-0", "object-contain", "dark:brightness-95"]}
+              src={it}
+              alt={assets[index]?.alt}
+            />
+          ))}
+        </div>
+      </dialog>
+    </image-viewer>
+  )
+}
+
+<script>
+  import { throttle } from "~utils/throttle"
+
+  class ImageViewer extends HTMLElement {
+    private index: number
+    private indexEl: HTMLSpanElement | null
+    private dialogEl: HTMLDialogElement
+    private imageNodeList: NodeListOf<HTMLImageElement>
+    private touch: Touch | null
+    private matchMediaListPrefersReducedMotion: MediaQueryList
+    private buttonPrevEl: HTMLButtonElement | null
+    private buttonNextEl: HTMLButtonElement | null
+
+    constructor() {
+      super()
+      this.index = 0
+      const dialogId: string = this.dataset.dialogId!
+      this.indexEl = document.getElementById(`${dialogId}__index`) as HTMLSpanElement | null
+      this.dialogEl = document.getElementById(dialogId)! as HTMLDialogElement
+      this.imageNodeList = this.dialogEl.querySelectorAll("img")
+      this.touch = null
+      this.matchMediaListPrefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+      this.buttonPrevEl = document.getElementById(this.dataset.btnPrevId!) as HTMLButtonElement | null
+      this.buttonNextEl = document.getElementById(this.dataset.btnNextId!) as HTMLButtonElement | null
+    }
+
+    public connectedCallback() {
+      this.addEventListener("click", () => {
+        if (document.startViewTransition && !this.matchMediaListPrefersReducedMotion.matches) {
+          document.startViewTransition(() => {
+            this.show()
+          })
+          return
+        }
+        this.show()
+      })
+
+      const threshold: number = 50
+      this.dialogEl.addEventListener("touchstart", (e) => {
+        if (e.changedTouches.length > 1) {
+          return
+        }
+        this.touch = e.changedTouches.item(0)
+      })
+      this.dialogEl.addEventListener("touchend", (e) => {
+        if (e.changedTouches.length > 1 || !this.touch) {
+          return
+        }
+        const touch = e.changedTouches.item(0)
+        if (!touch) {
+          return
+        }
+        const diff: number = Math.abs(touch.screenX - this.touch.screenX)
+        if (diff < threshold) {
+          return
+        }
+        if (touch.screenX < this.touch.screenX) {
+          // swipe left (show next image)
+          this.setDisplayImage(this.index + 1)
+        } else {
+          // swipe right (show previous image)
+          this.setDisplayImage(this.index - 1)
+        }
+      })
+
+      this.dialogEl.addEventListener("toggle", (e) => {
+        const evt = e as ToggleEvent
+        if (evt.newState === "open") {
+          document.body.classList.add("overflow-hidden")
+        } else {
+          document.body.classList.remove("overflow-hidden")
+        }
+      })
+
+      if (this.buttonPrevEl) {
+        this.buttonPrevEl.addEventListener("click", (e) => {
+          e.stopPropagation()
+          this.setDisplayImage(this.index - 1)
+        })
+      }
+      if (this.buttonNextEl) {
+        this.buttonNextEl.addEventListener("click", (e) => {
+          e.stopPropagation()
+          this.setDisplayImage(this.index + 1)
+        })
+      }
+
+      this.dialogEl.addEventListener(
+        "wheel",
+        throttle((e: WheelEvent): void => {
+          if (e.deltaY === 0) {
+            return
+          } else if (e.deltaY < 0) {
+            this.setDisplayImage(this.index - 1)
+          } else {
+            this.setDisplayImage(this.index + 1)
+          }
+        }, 250)
+      )
+
+      this.dialogEl.addEventListener(
+        "keydown",
+        throttle((e: KeyboardEvent): void => {
+          const { key } = e
+          if (key === "ArrowUp" || key === "ArrowLeft") {
+            this.setDisplayImage(this.index - 1)
+          } else if (key === "ArrowDown" || key === "ArrowRight") {
+            this.setDisplayImage(this.index + 1)
+          } else {
+            // do nothing
+          }
+          if (this.index === this.imageNodeList.length - 1) {
+            this.dialogEl.focus()
+          }
+        }, 250)
+      )
+    }
+
+    /**
+     * Show modal popup.
+     */
+    private show(): void {
+      this.setDisplayImage(0, false)
+      this.dialogEl.togglePopover()
+    }
+
+    /**
+     * Set currently displaying image.
+     * @param {number} index
+     * @param {boolean | undefined} [shouldAnimate=true] whether animate on display image change
+     */
+    private setDisplayImage(index: number, shouldAnimate: boolean = true): void {
+      if (index < 0) {
+        index = 0
+      }
+      if (index > this.imageNodeList.length - 1) {
+        index = this.imageNodeList.length - 1
+      }
+      this.index = index
+      if (document.startViewTransition && shouldAnimate) {
+        document.startViewTransition(() => {
+          this.doSetDisplayImage()
+        })
+        return
+      }
+      this.doSetDisplayImage()
+    }
+
+    /**
+     * Execute set currently displaying image.
+     */
+    private doSetDisplayImage(): void {
+      this.imageNodeList.forEach((it, index) => {
+        it.classList.toggle("hidden", index !== this.index)
+      })
+      if (this.indexEl) {
+        this.indexEl.textContent = (this.index + 1).toString()
+      }
+      this.updateButtonDisabledStates()
+    }
+
+    /**
+     * Update prev & next button disabled states.
+     */
+    private updateButtonDisabledStates(): void {
+      if (this.buttonPrevEl) {
+        this.buttonPrevEl.disabled = this.index === 0
+      }
+      if (this.buttonNextEl) {
+        this.buttonNextEl.disabled = this.index === this.imageNodeList.length - 1
+      }
+    }
+  }
+
+  customElements.define("image-viewer", ImageViewer)
+</script>
+
+<style>
+  dialog::backdrop {
+    --at-apply: bg-gray-100 "dark:bg-gray-900";
+  }
+
+  .image-viewer__btn:disabled {
+    --at-apply: text-gray-400 "dark:text-gray-500";
+  }
+</style>

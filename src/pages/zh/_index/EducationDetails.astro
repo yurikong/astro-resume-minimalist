@@ -1,0 +1,38 @@
+---
+import type { IEducation } from "~types/education"
+import LocaleYearRange from "~components/LocaleYearRange.astro"
+import AppLink from "~components/AppLink.astro"
+
+interface Props extends IEducation {}
+const { university, universityHomepage, degreeAndMajor, GPA, startYear, endYear } = Astro.props
+---
+
+<!-- Education Details -->
+<div class:list={["grid", "gap-1", "sm:grid-cols-8", "sm:gap-8"]}>
+  <!-- Attended Years -->
+  <LocaleYearRange
+    class:list={["text-xs", "tracking-wide", "uppercase", "sm:leading-loose", "sm:col-span-2"]}
+    locale="zh"
+    startYear={startYear}
+    endYear={endYear}
+  />
+
+  <div class:list={["sm:col-span-6"]}>
+    <!-- University Name -->
+    <AppLink
+      class:list={["block", "font-medium", "text-gray-800", "dark:text-gray-300"]}
+      url={universityHomepage}
+      showSuffixIcon
+    >
+      {university}
+    </AppLink>
+
+    <!-- Degree & Major -->
+    <div class:list={["flex", "text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>
+      {degreeAndMajor}
+    </div>
+
+    <!-- GPA -->
+    <div class:list={["text-sm", "leading-relaxed", "text-gray-700", "dark:text-gray-400"]}>GPA: {GPA}</div>
+  </div>
+</div>
