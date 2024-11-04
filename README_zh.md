@@ -114,10 +114,10 @@ yarn dev
 
 - 微信
 
-  <img width=180 src="./src/assets/images/wechat-donation-qr.webp" alt="Wechat Donation QR">
+  <img width=200 src="./src/assets/images/wechat-donation-qr.webp" alt="Wechat Donation QR">
 
 <br/>
 
 - 买杯咖啡
 
-  <img width=180 src="./src/assets/images/buy-me-a-coffee-donation-qr.webp" alt="Buy me a coffee QR">
+  <img width=200 src="./src/assets/images/buy-me-a-coffee-donation-qr.webp" alt="Buy me a coffee QR">
