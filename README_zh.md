@@ -1,5 +1,5 @@
 <p align="center">
- <img width=200 src="./public/android-chrome-512x512.png" alt="Project logo">
+ <img width=200 src="./public/android-chrome-512x512.png" alt="项目LOGO">
 </p>
 
 <h3 align="center">Astro极简简历</h3>
@@ -19,7 +19,7 @@
 
 <p align="center">使用Astro构建的一个极简风格简历模板网站</p>
 
-## 📝 Table of Contents
+## 📝 目录
 
 - [关于](#关于)
 - [功能](#功能)
@@ -114,10 +114,10 @@ yarn dev
 
 - 微信
 
-  <img width=200 src="./src/assets/images/wechat-donation-qr.webp" alt="Wechat Donation QR">
+  <img width=200 src="./src/assets/images/wechat-donation-qr.webp" alt="微信打赏二维码">
 
 <br/>
 
 - 买杯咖啡
 
-  <img width=200 src="./src/assets/images/buy-me-a-coffee-donation-qr.webp" alt="Buy me a coffee QR">
+  <img width=200 src="./src/assets/images/buy-me-a-coffee-donation-qr.webp" alt="买杯咖啡二维码">

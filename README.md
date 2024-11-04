@@ -29,7 +29,7 @@
 - [Deployment](#deployment)
 - [Built Using](#built_using)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [Acknowledgments](#acknowledgements)
 - [Support](#support)
 
 ## 🧐 About <a id="about"></a>
@@ -108,7 +108,7 @@ yarn dev
 
 - [@Jianqiang Du](https://github.com/yurikong)
 
-## 🎉 Acknowledgements <a id="acknowledgement"></a>
+## 🎉 Acknowledgements <a id="acknowledgements"></a>
 
 - [@Brittany Chiang](https://brittanychiang.com)
 
