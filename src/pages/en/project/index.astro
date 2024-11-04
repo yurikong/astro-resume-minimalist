@@ -13,7 +13,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 const projectList: IProject[] = projects.toSorted(mostRecentYearComparator)
 ---
 
-<LocaleBaseLayout>
+<LocaleBaseLayout prependTitle="All Projects">
   <div class:list={["py-5", "md:py-8"]}>
     <!-- Nav -->
     <nav class:list={["flex", "justify-between", "leading-tight", "mb-2", "md:mb-4", "gap-4", "md:gap-5"]}>
