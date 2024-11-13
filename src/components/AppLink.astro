@@ -5,6 +5,7 @@ interface Props {
   prefixIconClassName?: string | undefined
   showSuffixIcon?: boolean | undefined
   suffixIconClassName?: string | undefined
+  forceExternal?: boolean | undefined
   title?: string | undefined
   class?: string | undefined
 }
@@ -14,10 +15,11 @@ const showPrefixIcon: boolean = Astro.props.showPrefixIcon ?? false
 const prefixIconClassName: string = Astro.props.prefixIconClassName || "i-ri:links-line"
 const showSuffixIcon: boolean = Astro.props.showSuffixIcon ?? false
 const suffixIconClassName: string = Astro.props.suffixIconClassName || "i-ri:external-link-line"
+const forceExternal: boolean = Astro.props.forceExternal ?? false
 const title: string | undefined = Astro.props.title || undefined
 const className: string | undefined = Astro.props.class || undefined
 
-const isInternal: boolean = url.startsWith("#") || url.startsWith("/")
+const isInternal: boolean = forceExternal ? false : url.startsWith("#") || url.startsWith("/")
 ---
 
 <app-link class:list={[className]} data-url={url}>

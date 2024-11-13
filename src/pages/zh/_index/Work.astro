@@ -4,6 +4,7 @@ import { mostRecentYearComparator } from "~utils/comparators"
 import type { IWork } from "~types/work"
 import WorkDetails from "./WorkDetails.astro"
 import AppLink from "~components/AppLink.astro"
+import { fromBaseURL } from "~utils/url"
 
 interface Props {
   class?: string
@@ -54,7 +55,9 @@ const workDetailsList: IWork[] = works.toSorted(mostRecentYearComparator)
   <!-- View Full Resume -->
   <AppLink
     class:list={["block", "mt-24", "font-semibold", "capitalize", "text-gray-800", "dark:text-gray-300"]}
+    url={fromBaseURL("resume-zh.pdf")}
     showSuffixIcon
+    forceExternal
   >
     查看完整简历
   </AppLink>
