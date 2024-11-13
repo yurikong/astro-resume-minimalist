@@ -8,11 +8,8 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 ---
 
 <!-- Profile -->
-<section>
-  <div
-    id="profile__toggle-color-scheme-wrapper"
-    class:list={["fixed", "top-5", "md:top-8", "z-21", "flex", "gap-4", "md:gap-5"]}
-  >
+<the-profile>
+  <div id="profile__toggle-wrapper" class:list={["fixed", "top-5", "md:top-8", "z-21", "flex", "gap-4", "md:gap-5"]}>
     <LocaleToggleLocale />
     <LocaleToggleColorScheme class:list={["text-xl"]} />
   </div>
@@ -99,7 +96,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
 
   <!-- Introduction -->
   <p class:list={["leading-normal", "mt-8", "md:mt-16"]}>
-    <span>我就是那个整出了</span>
+    <span>我是</span>
     <AppLink
       class:list={["text-gray-800", "dark:text-gray-300"]}
       url="https://github.com/yurikong/astro-resume-minimalist"
@@ -108,47 +105,57 @@ import { getRelativeLocaleUrl } from "astro:i18n"
     >
       Astro极简简历模板
     </AppLink>
-    <span>的人</span>
+    <span>的作者。</span>
   </p>
-</section>
 
-<!-- Social Contacts -->
-<ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
-  <li title="微信">
-    <LocaleImageViewer
-      assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "扫一扫加我微信" }]}
-      showIndex={false}
-    >
-      <i class:list={["i-ri:wechat-line", "cursor-pointer"]}></i>
-    </LocaleImageViewer>
-  </li>
+  <!-- Social Contacts -->
+  <ul class:list={["flex", "flex-wrap", "items-center", "gap-5", "text-2xl", "leading-none", "mt-12"]}>
+    <li title="微信">
+      <LocaleImageViewer
+        assets={[{ src: "/src/assets/images/wechat-contact-qr.webp", alt: "扫一扫加我微信" }]}
+        showIndex={false}
+      >
+        <i class:list={["i-ri:wechat-line", "cursor-pointer"]}></i>
+      </LocaleImageViewer>
+    </li>
 
-  {
-    socials.map((it) => (
-      <li>
-        <AppLink url={it.url} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
-      </li>
-    ))
-  }
-</ul>
+    {
+      socials.map((it) => (
+        <li>
+          <AppLink url={it.url} showPrefixIcon prefixIconClassName={it.iconClassName} title={it.name} />
+        </li>
+      ))
+    }
+  </ul>
+</the-profile>
 
 <script>
-  setCSSPropertyOnToggleColorSchemeComponent()
-  window.addEventListener("resize", setCSSPropertyOnToggleColorSchemeComponent)
-
-  /**
-   * Bind `--left` to ToggleColorSchemeComponent.
-   */
-  function setCSSPropertyOnToggleColorSchemeComponent(): void {
-    const el: HTMLElement | null = document.getElementById("profile__toggle-color-scheme-wrapper")
-    const appHeaderEl: HTMLElement | null = document.getElementById("app-header")
-    if (!el || !appHeaderEl) {
-      return
+  class Profile extends HTMLElement {
+    public connectedCallback(): void {
+      this.setCSSPropertyOnLocaleToggleColorSchemeComponent()
+      window.addEventListener("resize", this.setCSSPropertyOnLocaleToggleColorSchemeComponent)
     }
-    const { right } = appHeaderEl.getBoundingClientRect()
-    const appHeaderPaddingRight: number = parseFloat(window.getComputedStyle(appHeaderEl).paddingRight)
-    el.style.setProperty("--left", `${right - appHeaderPaddingRight}px`)
+
+    public disconnectedCallback(): void {
+      window.removeEventListener("resize", this.setCSSPropertyOnLocaleToggleColorSchemeComponent)
+    }
+
+    /**
+     * Bind `--left` to `LocaleToggleColorScheme` component.
+     */
+    private setCSSPropertyOnLocaleToggleColorSchemeComponent(): void {
+      const el: HTMLElement | null = document.getElementById("profile__toggle-wrapper")
+      const appHeaderEl: HTMLElement | null = document.getElementById("app-header")
+      if (!el || !appHeaderEl) {
+        return
+      }
+      const { right } = appHeaderEl.getBoundingClientRect()
+      const appHeaderPaddingRight: number = parseFloat(window.getComputedStyle(appHeaderEl).paddingRight)
+      el.style.setProperty("--left", `${right - appHeaderPaddingRight}px`)
+    }
   }
+
+  customElements.define("the-profile", Profile)
 </script>
 
 <style>
@@ -159,7 +166,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
   }
 
   @supports (position-anchor: --app-header) and (right: anchor(right)) {
-    #profile__toggle-color-scheme-wrapper {
+    #profile__toggle-wrapper {
       position-anchor: --app-header;
       right: anchor(right);
       --at-apply: mr-6 "md:mr-12";
@@ -167,7 +174,7 @@ import { getRelativeLocaleUrl } from "astro:i18n"
   }
 
   @supports not ((position-anchor: --app-header) or (right: anchor(right))) {
-    #profile__toggle-color-scheme-wrapper {
+    #profile__toggle-wrapper {
       --at-apply: left-[var(--left)] -translate-x-full;
     }
   }
