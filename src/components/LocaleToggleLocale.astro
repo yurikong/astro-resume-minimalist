@@ -1,5 +1,4 @@
 ---
-import countryCodeToFlagEmoji from "country-code-to-flag-emoji"
 import { type TLocale, defaultLocale, parseLocale, nextLocaleOf } from "~/i18n"
 import AppLink from "./AppLink.astro"
 import { getRelativeLocaleUrl } from "astro:i18n"
@@ -26,11 +25,11 @@ const urlTokens: string[] = localeTokenIndex >= 0 ? tokens.slice(localeTokenInde
   nextLocale && (
     <locale-toggle-locale class:list={["cursor-pointer", "flex", className]}>
       <AppLink
-        class:list={["flex", "leading-none"]}
+        class:list={["flex", "items-center", "leading-none", "uppercase"]}
         url={getRelativeLocaleUrl(nextLocale, urlTokens.join("/"))}
         title={titleDisplayTextMap[currentLocale]}
       >
-        {countryCodeToFlagEmoji(currentLocale)}
+        {currentLocale}
       </AppLink>
     </locale-toggle-locale>
   )
