@@ -1,7 +1,7 @@
 {
   "name": "astro-resume-minimalist",
   "type": "module",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "An open-sourced minimal resume site template built with Astro.",
   "homepage": "https://github.com/yurikong/astro-resume-minimalist#readme",
   "bugs": {
