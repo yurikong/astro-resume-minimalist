@@ -2,7 +2,7 @@ import type { IWork } from "~types/work"
 
 export const works: IWork[] = [
   {
-    jobTitle: "软件开发工程师",
+    jobTitle: "软件工程师",
     company: "萨克米机械（佛山南海）有限公司",
     companyHomepage: "https://www.sacmi.cn/sacmi-china",
     description:
@@ -37,8 +37,8 @@ export const works: IWork[] = [
       "主要负责为公司的目标客户开发并维护多个交互式网页应用，通过与包括开发工程师、UI设计师、产品经理、测试工程师的跨职能团队的紧密合作，最大限度的确保代码质量和应用服务合规性",
     companyHomepage: "http://www.stramo.cn/",
     projects: [
-      { name: "顺农数据大屏", url: "#sdebank-digifly" },
-      { name: "顺农数据大屏后台", url: "#sdebank-digifly-admin" },
+      { name: "顺农数字大屏", url: "#sdebank-digifly" },
+      { name: "顺农数字大屏后台", url: "#sdebank-digifly-admin" },
       { name: "顺农总营智能驾驶舱", url: "#sdebank-management-cockpit" },
       { name: "顺农国通黑鱼监控", url: "#sdebank-groton-snakehead-monitor" },
       { name: "顺农大数据营销平台", url: "#sdebank-big-data-marketing-platform" },
